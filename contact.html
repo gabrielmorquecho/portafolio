@@ -127,22 +127,37 @@
         document.getElementById("contactForm").addEventListener("submit", function(e) {
           e.preventDefault();
 
-          emailjs.sendForm(
-            "service_5yxw6tf",
-            "template_r3pbcyk",
-            this
-          )
-          .then(() => {
-            document.getElementById("submitSuccessMessage").classList.remove("d-none");
-            document.getElementById("submitErrorMessage").classList.add("d-none");
-            this.reset();
-          })
-          .catch(() => {
-            document.getElementById("submitErrorMessage").classList.remove("d-none");
-            document.getElementById("submitSuccessMessage").classList.add("d-none");
-          });
-        });
-        </script>
+      const form = this;
+
+  // 1️⃣ Enviar correo A TI (Contact Us)
+  emailjs.sendForm(
+    "service_5yxw6tf",
+    "template_2e9j1uj", // Contact Us
+    form
+  )
+  .then(() => {
+
+    // 2️⃣ Enviar auto-respuesta al usuario
+    return emailjs.sendForm(
+      "service_5yxw6tf",
+      "template_r3pbcyk", // Auto-Reply
+      form
+    );
+
+  })
+  .then(() => {
+    // Éxito total
+    document.getElementById("submitSuccessMessage").classList.remove("d-none");
+    document.getElementById("submitErrorMessage").classList.add("d-none");
+    form.reset();
+  })
+  .catch((error) => {
+    console.error("EmailJS Error:", error);
+    document.getElementById("submitErrorMessage").classList.remove("d-none");
+    document.getElementById("submitSuccessMessage").classList.add("d-none");
+  });
+});
+</script>
 
     </body>
 </html>
