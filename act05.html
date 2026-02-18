@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Actividad5</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+
+    </head>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Ciberseguridad</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects.html">Actividades</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Projects Section-->
+            <section class="py-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+
+                       <div class="container my-5">
+                        <h1 class="display-5 fw-bolder mb-0" style="text-align: center;"><span class="text-gradient d-inline">ACTIVIDAD 5</span></h1>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+                      <div class="text-center my-5 custom-font">
+                        <a href="Actividades/175805-act05.pdf" download="175805-act05.pdf" class="btn btn-lg shadow-sm px-4 py-3" style="background-color: #1a638b; color: white; border-radius: 50px; font-weight: 600; border: none; transition: all 0.3s ease;">
+                          <i class="bi bi-file-earmark-pdf-fill me-2"></i> Descargar Reporte (PDF)
+                        </a>
+                      </div>
+                          <div class="card shadow rounded-4 border-0">
+                            <div class="card-body">
+                              
+<style>
+    /* Contenedor principal de la tarjeta */
+.card-body {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Título con degradado */
+.card-title-custom {
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+}
+
+/* Estilo avanzado para la tabla */
+.table-custom {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Encabezado con estética de "Matriz de Datos" */
+.matrix-header th {
+    background-color: #1a237e; /* Azul profundo institucional */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 15px;
+    letter-spacing: 1px;
+    border: none;
+}
+
+/* Celdas de la tabla */
+.table-custom td {
+    padding: 12px 15px;
+    line-height: 1.5;
+    border-bottom: 1px solid #e0e6ed;
+    color: #37474f;
+    vertical-align: top;
+}
+
+/* Columna de Criterios (la primera) */
+.fw-bold.bg-light {
+    background-color: #f8f9fa !important;
+    color: #1a237e;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    width: 120px;
+}
+
+/* Efecto Hover para facilitar la lectura de filas */
+.table-hover tbody tr:hover {
+    background-color: #f1f4ff;
+    transition: background-color 0.3s ease;
+}
+
+/* Badges de Orientación */
+.badge {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    display: inline-block;
+}
+
+.bg-primary { background-color: #304ffe !important; } /* Defensa/Ataque */
+.bg-danger { background-color: #c62828 !important; }  /* Ofensiva */
+.bg-secondary { background-color: #546e7a !important; } /* Evaluación */
+.bg-info { background-color: #00bcd4 !important; color: #fff !important; } /* Científica */
+
+/* Listas dentro de la tabla */
+.ps-3 {
+    margin-top: 5px;
+    padding-left: 1.2rem !important;
+}
+
+.ps-3 li {
+    margin-bottom: 4px;
+}
+
+/* Enlaces */
+.table-custom a {
+    color: #304ffe;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.table-custom a:hover {
+    color: #c2185b;
+}
+/* Efecto de Terminal */
+.terminal-container {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    color: #fff;
+}
+
+.terminal-body p span {
+    margin-right: 5px;
+}
+
+/* Breadcrumb personalizado */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "|";
+    color: #dee2e6;
+}
+
+/* Animación sutil para las cards */
+.row .col-md-4 div {
+    transition: transform 0.2s ease-in-out;
+    border-left: 3px solid transparent !important;
+}
+
+.row .col-md-4 div:hover {
+    transform: translateY(-5px);
+    border-left: 3px solid #304FFE !important;
+}
+
+/* --- ESTILOS ACTIVIDAD 02 REPLICADOS --- */
+
+/* Contenedor de la fuente personalizada (asegúrate de tenerla importada) */
+.custom-font {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Caja de reflexión con el azul clarito característico */
+.reflection-box {
+    background-color: #f0f7ff !important; /* Azul clarito de la Actividad 2 */
+    transition: all 0.3s ease;
+    border: 1px solid rgba(26, 99, 139, 0.1) !important;
+}
+
+.reflection-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+/* Icono de cita */
+.quote-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+/* Títulos y textos en el tono azul petróleo */
+.text-primary, h3[style*="color: #1a638b;"] {
+    color: #1a638b !important;
+}
+
+/* Estilo de la tarjeta interna de puntos clave */
+.bg-white.rounded-4.border.shadow-sm {
+    border-color: rgba(26, 99, 139, 0.1) !important;
+}
+
+/* Estilo para las listas y checks */
+.bi-check-circle-fill {
+    color: #28a745 !important;
+}
+
+/* Clase para el texto en itálica del footer */
+.italic {
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* Separador superior */
+.border-top {
+    border-top: 1px solid rgba(26, 99, 139, 0.1) !important;
+}
+
+/* Fuente para el estilo consola (si no está instalada usará Courier) */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&display=swap');
+</style>
+<div class="card-body p-4">
+      
+      <div class="text-center mb-5">
+        <div class="activity-header mb-5">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="card-title-custom mb-1" style="background: linear-gradient(90deg, #304FFE 0%, #C2185B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-size: 2.2rem;">
+        ACTIVIDAD 05: Cartografía del Pentesting
+      </h2>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item small text-primary fw-bold">SEGURIDAD INFORMÁTICA</li>
+          
+        </ol>
+      </nav>
+    </div>
+    <div class="status-badge mt-3 mt-md-0">
+      <span class="badge rounded-pill p-2 px-3" style="background: rgba(48, 79, 254, 0.1); color: #304FFE; border: 1px solid #304FFE;">
+        <i class="fas fa-microchip me-1"></i> ITI Project Core
+      </span>
+    </div>
+  </div>
+
+  <div class="terminal-container p-3 mb-4" style="background: #1e1e1e; border-radius: 8px; border-left: 5px solid #C2185B; font-family: 'Fira Code', 'Courier New', monospace;">
+    <div class="terminal-header mb-2 d-flex gap-1">
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></span>
+      <span class="ms-2 text-muted small" style="font-size: 0.7rem;">bash — objective_analyzer.sh</span>
+    </div>
+    <div class="terminal-body">
+      <p class="mb-0" style="color: #d1d1d1; font-size: 0.9rem;">
+        <span style="color: #27c93f;">$</span> run --analyze "pentesting_methodologies"
+      </p>
+      <p class="mb-0" style="color: #fff; font-size: 0.95rem; text-align: justify; line-height: 1.6;">
+        <span class="fw-bold" style="color: #304FFE;">[LOG]:</span> Como ingeniero en formación en la UPSLP, esta práctica desglosa los frameworks críticos de ciberseguridad. En un ecosistema de amenazas persistentes, la selección del marco referencial no es arbitraria: se basa en el vector de ataque, la arquitectura del activo y el cumplimiento normativo.
+      </p>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="p-3 border rounded-3 bg-white h-100 shadow-sm">
+        <h6 class="text-uppercase fw-bold text-muted small"><i class="fas fa-project-diagram text-primary me-2"></i>Alcance</h6>
+        <p class="mb-0 small text-primary">Comparativa de 6 metodologías globales (MITRE, OWASP, NIST, etc.)</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-3 border rounded-3 bg-white h-100 shadow-sm">
+        <h6 class="text-uppercase fw-bold text-muted small"><i class="fas fa-shield-alt text-primary me-2"></i>Efoque</h6>
+        <p class="mb-0 small text-prima">De la emulación de adversarios (Red Team) a auditoría científica (Compliance)</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-3 border rounded-3 bg-white h-100 shadow-sm">
+        <h6 class="text-uppercase fw-bold text-muted small"><i class="fas fa-check-double text-primary me-2"></i>Vigencia</h6>
+        <p class="mb-0 small text-primary">Documentación actualizada al estándar 2026 e industria 4.0</p>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+
+      <div class="table-custom">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="matrix-header text-center" style="background-color: #f8f9fa;">
+            <tr>
+              <th style="width: 10%;">Criterio</th>
+              <th style="width: 15%;">MITRE ATT&CK</th>
+              <th style="width: 15%;">OWASP WSTG</th>
+              <th style="width: 15%;">NIST SP 800-115</th>
+              <th style="width: 15%;">OSSTMM</th>
+              <th style="width: 15%;">PTES</th>
+              <th style="width: 15%;">ISSAF</th>
+            </tr>
+          </thead>
+          <tbody class="table-text-small" style="font-size: 0.85rem;">
+            
+            <tr>
+              <td class="fw-bold bg-light">Descripción</td>
+              <td>Base de conocimientos global sobre tácticas y técnicas de adversarios basada en observaciones del mundo real.</td>
+              <td>Guía técnica principal para pruebas de seguridad en aplicaciones web, enfocada en vulnerabilidades comunes.</td>
+              <td>Guía técnica para realizar pruebas y evaluaciones de seguridad en sistemas federales y privados.</td>
+              <td>Estándar científico para la medición de la seguridad operativa mediante canales de comunicación.</td>
+              <td>Metodología y conjunto de directrices diseñadas para establecer un estándar sistemático y efectivo en pentesting.</td>
+              <td>Framework de evaluación de seguridad que describe técnicas, métodos y procedimientos para realizar pentesting.</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Fases de Implementación</td>
+              <td>
+                <ol class="ps-3 mb-0">
+                  <li>Reconocimiento</li><li>Recursos</li><li>Acceso Inicial</li><li>Ejecución</li><li>Persistencia</li><li>Escalada</li><li>Evasión</li><li>Credenciales</li><li>Descubrimiento</li><li>Mov. Lateral</li><li>C2</li><li>Impacto</li>
+                </ol>
+              </td>
+              <td>
+                <ul class="ps-3 mb-0">
+                  <li>Info Gathering</li><li>Config Mgt</li><li>Identity Mgt</li><li>Auth</li><li>Authorization</li><li>Session Mgt</li><li>Input Validation</li><li>Error Handling</li><li>Cryptography</li><li>Business Logic</li><li>Client Side</li><li>API</li>
+                </ul>
+              </td>
+              <td>
+                <ol class="ps-3 mb-0">
+                  <li><strong>Planificación:</strong> Objetivos y RoE.</li>
+                  <li><strong>Descubrimiento:</strong> Escaneo y validación.</li>
+                  <li><strong>Ataque:</strong> Explotación y privilegios.</li>
+                  <li><strong>Informe:</strong> Hallazgos y mitigación.</li>
+                </ol>
+              </td>
+              <td>
+                <ol class="ps-3 mb-0">
+                  <li>Planificación y Alcance.</li>
+                  <li>Recopilación (Inductiva).</li>
+                  <li>Análisis (Interactiva).</li>
+                  <li>Pruebas Activas/Intervención.</li>
+                  <li>Resultados y Reporte.</li>
+                </ol>
+              </td>
+              <td>
+                <ol class="ps-3 mb-0">
+                  <li>Interacciones previas.</li>
+                  <li>Inteligencia (OSINT).</li>
+                  <li>Modelado de amenazas.</li>
+                  <li>Análisis de vulns.</li>
+                  <li>Explotación.</li>
+                  <li>Post-explotación.</li>
+                  <li>Informes.</li>
+                </ol>
+              </td>
+              <td>
+                <ol class="ps-3 mb-0">
+                  <li><strong>Planificación:</strong> RoE y preparación.</li>
+                  <li><strong>Evaluación:</strong> Mapeo, penetración, enumeración adicional.</li>
+                  <li><strong>Reporte:</strong> Limpieza y destrucción de evidencia.</li>
+                </ol>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Objetivo Principal</td>
+              <td>Crear una base de conocimientos (TTPs) utilizados por adversarios durante ciberataques reales.</td>
+              <td>Evaluar la seguridad de aplicaciones web para ayudar a desarrolladores a identificar y mitigar fallos.</td>
+              <td>Proporcionar directrices técnicas para planificar y documentar pruebas de seguridad de la información.</td>
+              <td>Proporcionar un marco estructurado y científico para realizar auditorías operativas.</td>
+              <td>Proporcionar una metodología estandarizada para realizar pentesting de alta calidad.</td>
+              <td>Metodología exhaustiva para evaluar seguridad, permitiendo identificar y probar vulnerabilidades.</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Escenarios de Uso</td>
+              <td>Emulación de adversarios, Threat Hunting y evaluación de madurez del SOC.</td>
+              <td>Pentesting de Caja Negra/Blanca, Revisión de Código e integración en S-SDLC.</td>
+              <td>Diseño de metodologías, escaneo de redes y auditoría de configuraciones.</td>
+              <td>Seguridad Operativa, Física, Telecomunicaciones e Ingeniería Social.</td>
+              <td>Contrataciones comerciales de Pentesting de red e infraestructura.</td>
+              <td>Análisis forense inicial y auditorías técnicas de configuración de servidores.</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Orientación</td>
+              <td class="text-center"><span class="badge bg-primary">Defensiva/Ofensiva</span></td>
+              <td class="text-center"><span class="badge bg-danger">Ofensiva</span></td>
+              <td class="text-center"><span class="badge bg-secondary">Evaluación</span></td>
+              <td class="text-center"><span class="badge bg-info text-dark">Científica</span></td>
+              <td class="text-center"><span class="badge bg-danger">Ofensiva</span></td>
+              <td class="text-center"><span class="badge bg-dark">Técnica</span></td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Autores / Organismos</td>
+              <td>MITRE Corporation (Gobierno EE.UU.)</td>
+              <td>OWASP Foundation</td>
+              <td>NIST</td>
+              <td>ISECOM</td>
+              <td>Grupo de expertos (Dave Kennedy et al.)</td>
+              <td>OISSG</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">URL Oficial</td>
+              <td><a href="https://attack.mitre.org" target="_blank" class="text-decoration-none">attack.mitre.org</a></td>
+              <td><a href="https://owasp.org/www-project-wstg" target="_blank" class="text-decoration-none">owasp.org</a></td>
+              <td><a href="https://csrc.nist.gov" target="_blank" class="text-decoration-none">csrc.nist.gov</a></td>
+              <td><a href="https://isecom.org" target="_blank" class="text-decoration-none">isecom.org</a></td>
+              <td><a href="http://www.pentest-standard.org" target="_blank" class="text-decoration-none">pentest-standard.org</a></td>
+              <td><a href="http://oissg.org" target="_blank" class="text-decoration-none">oissg.org</a></td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Certificaciones</td>
+              <td>MAD20 (MITRE ATT&CK Defender)</td>
+              <td>eWPT, eWPTX, GWAPT, OSWA/OSWE.</td>
+              <td>CISA, CySA+, CEH, GSEC.</td>
+              <td>OPST, OPSA, OPSE.</td>
+              <td>OSCP, PenTest+, eJPT, eCPPT, CPTS.</td>
+              <td>Google Cybersec, (ISC)², EC-Council.</td>
+            </tr>
+
+            <tr>
+              <td class="fw-bold bg-light">Versiones Vigentes</td>
+              <td>v14.x / v15 (2026).</td>
+              <td>v4.2 (Estable) / v5.0 (Draft).</td>
+              <td>v3.0 (Manual) / v4.0 (Dev).</td>
+              <td>v1.1 Estándar continuo.</td>
+              <td>v1.1 Estándar continuo.</td>
+              <td>v2.1 (Referencia histórica).</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 p-3 rounded-3 border-start border-4 border-primary bg-light">
+        <h6 class="fw-bold text-primary mb-1">Criterio de Aplicación Profesional</h6>
+        <p class="small text-dark mb-0" style="text-align: justify;">
+          Como ingeniero, entiendo que para un <strong>Pentesting de Red Comercial</strong>, la referencia obligada es <strong>PTES</strong>. Si el enfoque es <strong>Gubernamental o Normativo</strong>, el estándar <strong>NIST</strong> es fundamental. En el desarrollo de software, <strong>OWASP</strong> es el pilar para garantizar un código seguro. Esta comparativa permite seleccionar la herramienta adecuada para el activo específico a proteger.
+        </p>
+      </div>
+
+    </div>
+                                
+
+
+                            </div>
+                            
+                          </div>
+                          <div class="mt-5 custom-font">
+  <div class="card reflection-box shadow-sm border-0 rounded-4" style="background-color: #f0f7ff;">
+    <div class="card-body p-4 p-md-5">
+      <div class="d-flex align-items-center mb-4">
+        <i class="bi bi-chat-left-quote-fill quote-icon me-3" style="color: #1a638b; font-size: 2rem;"></i>
+        <h3 class="fw-bold mb-0" style="color: #1a638b;">Reflexión Técnica y Prospectiva</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <p class="text-primary" style="text-align: justify; line-height: 1.7; color: #1a638b !important;">
+            La diversidad de marcos de trabajo como <strong>MITRE ATT&CK, OWASP y NIST</strong> no debe entenderse como una competencia de estándares, sino como una caja de herramientas multidimensional. Desde mi perspectiva como estudiante de ingeniería en la <strong>UPSLP</strong>, la lección sistémica es que la seguridad técnica es insuficiente sin una metodología robusta: no basta con ejecutar un escaneo de vulnerabilidades si no se tiene el rigor científico de <strong>OSSTMM</strong> para medir la confianza operativa o la estructura de <strong>PTES</strong> para guiar la explotación profesional. 
+          </p>
+          <p class="text-primary" style="text-align: justify; line-height: 1.7; color: #1a638b !important;">
+            En el escenario actual de la Industria 4.0, la mayor vulnerabilidad es la <strong>fragmentación del análisis</strong>. La adopción de una mentalidad de <em>Assume Breach</em> (asumir el compromiso), apoyada en la base de conocimientos de MITRE, permite que el Pentesting deje de ser un evento estático y se convierta en una estrategia de resiliencia continua. La ciberseguridad, por tanto, trasciende el software; es un ejercicio de gobernanza técnica donde la metodología dicta la supervivencia del sistema. 
+          </p>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="p-4 bg-white rounded-4 border shadow-sm">
+            <h6 class="fw-bold text-primary mb-3">Puntos Clave para el Futuro:</h6>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Interoperabilidad:</strong> Combinar PTES para el proceso y OWASP/MITRE para la técnica específica. 
+              </li>
+              <li class="mb-3">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Enfoque Científico:</strong> Priorizar métricas cuantificables (RAVs) sobre hallazgos anecdóticos para elevar el estándar del Pentesting. 
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong>Ética y Rigor:</strong> La planificación y las reglas de compromiso (RoE) de NIST son el único blindaje legal y profesional del auditor. 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-top">
+        <p class="mb-0 text-center text-muted italic">
+          <small>"El dominio de la metodología es lo que diferencia a un entusiasta de la seguridad de un ingeniero capaz de proteger infraestructuras críticas."</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </section>
+            
+        </main>
+        <!-- Footer-->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy;Eduardo Gabriel Morquecho Medina-2026</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Aviso de Privacidad</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Repositorio</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="contact.html">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        
+    </body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Actividad3</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+
+    </head>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Ciberseguridad</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects.html">Actividades</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Projects Section-->
+            <section class="py-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+
+                       <div class="container my-5">
+                        <h1 class="display-5 fw-bolder mb-0" style="text-align: center;"><span class="text-gradient d-inline">ACTIVIDAD 3</span></h1>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+                      <div class="text-center my-5 custom-font">
+                        <a href="Actividades/175805-act03.pdf" download="175805-act03.pdf" class="btn btn-lg shadow-sm px-4 py-3" style="background-color: #1a638b; color: white; border-radius: 50px; font-weight: 600; border: none; transition: all 0.3s ease;">
+                          <i class="bi bi-file-earmark-pdf-fill me-2"></i> Descargar Reporte (PDF)
+                        </a>
+                      </div>
+                          <div class="card shadow rounded-4 border-0">
+                            <div class="card-body">
+                              
+
+<style>
+  .custom-font {
+    font-family: 'Inter', sans-serif;
+  }
+  .header-iptables {
+    background: linear-gradient(90deg, #304FFE 0%, #C2185B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+  .table-blue-header {
+    background-color: #1a638b !important;
+    color: white !important;
+  }
+  .code-block {
+    background-color: #263238;
+    color: #80cbc4;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    border-left: 5px solid #304FFE;
+  }
+  .step-badge {
+    background-color: #e3f2fd;
+    color: #1a638b;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+  .reflection-box-blue {
+    background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+    border-top: 5px solid #1a638b;
+  }
+  .quote-icon-blue {
+    font-size: 2rem;
+    color: #1a638b;
+    opacity: 0.3;
+  }
+</style>
+
+
+  
+    <div class="card-body p-4 p-md-5">
+      
+      <div class="text-center mb-5">
+        <h2 class="header-iptables">Gestión de Políticas de Filtrado: Arquitectura iptables</h2>
+        <p class="text-muted">Interpretación y Traducción de Reglas de Seguridad en Linux</p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-5">
+          <h5 class="fw-bold text-primary mb-3">Flujo Lógico del Paquete</h5>
+          <p class="text-secondary" style="text-align: justify;">
+            Para que la ciberseguridad sea efectiva en el host, iptables procesa el tráfico siguiendo una jerarquía estricta. Cuando un paquete ingresa al sistema, atraviesa tres niveles críticos de decisión:
+          </p>
+          <div class="d-flex flex-column gap-2">
+            <div class="p-2 border-start border-3 border-primary bg-light small">
+              <span class="step-badge me-2">1</span> <strong>Tabla:</strong> Define el tipo de procesamiento (filtrado, NAT, etc.).
+            </div>
+            <div class="p-2 border-start border-3 border-primary bg-light small">
+              <span class="step-badge me-2">2</span> <strong>Cadena:</strong> Ubicación del paquete (INPUT, OUTPUT, FORWARD).
+            </div>
+            <div class="p-2 border-start border-3 border-primary bg-light small">
+              <span class="step-badge me-2">3</span> <strong>Regla/Acción:</strong> El veredicto final (ACCEPT, DROP, REJECT).
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-7">
+          <h5 class="fw-bold text-primary mb-3">Estructura de Tablas y Propósitos</h5>
+          <div class="table-responsive">
+            <table class="table table-sm table-bordered align-middle">
+              <thead class="table-blue-header text-center">
+                <tr>
+                  <th>Tabla</th>
+                  <th>Propósito Principal</th>
+                  <th>Uso Técnico</th>
+                </tr>
+              </thead>
+              <tbody class="small">
+                <tr>
+                  <td class="fw-bold">FILTER</td>
+                  <td>Permitir o bloquear paquetes.</td>
+                  <td>Filtrado de tráfico de red.</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">NAT</td>
+                  <td>Traducción de direcciones IP.</td>
+                  <td>Distribución de acceso a internet.</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">MANGLE</td>
+                  <td>Modificación de cabeceras.</td>
+                  <td>Alteración de paquetes encontrados.</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">RAW</td>
+                  <td>Seguimiento detallado.</td>
+                  <td>Registro de llegada de información.</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">SECURITY</td>
+                  <td>Aplicación de seguridad MAC.</td>
+                  <td>Añadir capas de seguridad extra.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5 class="fw-bold text-primary mb-4 border-bottom pb-2">Implementación de Reglas Avanzadas</h5>
+          
+          <div class="mb-4">
+            <p class="fw-bold mb-2 small text-muted text-uppercase">Ejemplo 1: Control de Tráfico Web Seguro</p>
+            <div class="code-block mb-2">
+              iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+            </div>
+            <p style="font-family: 'Courier New', Courier, monospace; color: #3030fe;">
+              Esta regla habilita la entrada de tráfico TCP específicamente para los servicios <strong>HTTP (80)</strong> y <strong>HTTPS (443)</strong>, permitiendo el funcionamiento de servidores web.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <p class="fw-bold mb-2 small text-muted text-uppercase">Ejemplo 2: Gestión de Estado y Persistencia (Stateful Inspection)</p>
+            <div class="code-block mb-2">
+              iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT
+            </div>
+            <p style="font-family: 'Courier New', Courier, monospace; color: #3030fe;">
+              Permite el tráfico TCP entrante por la interfaz física <strong>eth0</strong> hacia servicios de administración (SSH) y web. La condición es que la conexión sea <strong>nueva (NEW)</strong> o ya esté <strong>establecida (ESTABLISHED)</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-light p-4 rounded-3 mt-4">
+        <h6 class="fw-bold text-dark mb-3">Comandos de Diagnóstico y Control</h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center bg-white p-2 rounded border">
+              <code class="me-3">-L -n</code>
+              <span class="small text-muted">Ver reglas numéricamente sin resolución DNS.</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center bg-white p-2 rounded border">
+              <code class="me-3">-L -v</code>
+              <span class="small text-muted">Ver contadores de paquetes y bytes procesados.</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center bg-white p-2 rounded border">
+              <code class="me-3">-s [IP]</code>
+              <span class="small text-muted">Filtrado por dirección IP de origen específica.</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center bg-white p-2 rounded border">
+              <code class="me-3">--limit 5/m</code>
+              <span class="small text-muted">Limitar intentos de conexión para mitigar fuerza bruta.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+
+
+  
+    <div class="card-body p-4 p-md-5">
+      
+      <h3 class="card-title-custom mb-4">Ejercicios de Escritura de Reglas</h3>
+      
+      <p class="text-secondary mb-5" style="text-align: justify;">
+        La correcta sintaxis en <code>iptables</code> es fundamental para traducir las políticas de seguridad en acciones técnicas precisas. A continuación, se detallan configuraciones clave para la administración de tráfico en sistemas Linux.
+      </p>
+
+      <div class="row g-4">
+        
+        <div class="col-md-6">
+          <div class="p-3 border rounded-3 bg-light h-100">
+            <h6 class="fw-bold text-primary mb-3">Filtrado Básico y Salida</h6>
+            
+            <div class="mb-4">
+              <p class="small mb-1 fw-bold">7. Permitir tráfico HTTP entrante</p>
+              <code class="d-block p-2 bg-dark text-light rounded small mb-2">
+                iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+              </code>
+              <p class="small text-muted mb-0">
+                <strong>Explicación:</strong> Se añade (<code>-A</code>) a la cadena de entrada una regla que permite el protocolo TCP hacia el puerto de destino 80 (HTTP).
+              </p>
+            </div>
+
+            <div class="mb-0">
+              <p class="small mb-1 fw-bold">8. Permitir todo el tráfico saliente</p>
+              <code class="d-block p-2 bg-dark text-light rounded small mb-2">
+                iptables -A OUTPUT -j ACCEPT
+              </code>
+              <p class="small text-muted mb-0">
+                <strong>Explicación:</strong> Esta política permite que todas las peticiones generadas desde el servidor local salgan hacia el exterior sin restricciones.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="p-3 border rounded-3 bg-light h-100">
+            <h6 class="fw-bold text-primary mb-3">Acceso Restringido y Estados</h6>
+            
+            <div class="mb-4">
+              <p class="small mb-1 fw-bold">9. SSH desde IP específica (192.168.1.50)</p>
+              <code class="d-block p-2 bg-dark text-light rounded small mb-2">
+                iptables -A INPUT -p tcp -s 192.168.1.50 --dport 22 -j ACCEPT
+              </code>
+              <p class="small text-muted mb-0">
+                <strong>Explicación:</strong> Aplica el principio de menor privilegio, permitiendo la administración remota solo a una dirección IP de origen (<code>-s</code>) confiable.
+              </p>
+            </div>
+
+            <div class="mb-0">
+              <p class="small mb-1 fw-bold">10. Tráfico Web solo para conexiones activas</p>
+              <code class="d-block p-2 bg-dark text-light rounded small mb-2">
+                iptables -A INPUT -p tcp -m multiport --dports 80,443 -m state --state ESTABLISHED -j ACCEPT
+              </code> <p class="small text-muted mb-0">
+                <strong>Explicación:</strong> Utiliza inspección de estado (<code>-m state</code>) para aceptar paquetes solo si pertenecen a una sesión ya establecida (<code>ESTABLISHED</code>).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="p-3 border rounded-3 bg-light">
+            <h6 class="fw-bold text-primary mb-3">11. Control Avanzado, Registro y Persistencia</h6>
+            <p class="small text-secondary mb-3">
+              Objetivo: Permitir tráfico web y SSH por la interfaz <code>eth0</code>, registrando los intentos y validando estados seguros.
+            </p>
+            
+            <div class="row g-3">
+              <div class="col-lg-6">
+                <p class="small mb-1 fw-bold">Fase 1: Auditoría (LOG)</p>
+                <code class="d-block p-2 bg-dark text-light rounded small mb-2">
+                  iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -j LOG --log-prefix "Intento "
+                </code>
+                <p class="small text-muted">
+                  <strong>Acción:</strong> Genera un registro en los logs del sistema antes de procesar el paquete, útil para auditorías de seguridad.
+                </p>
+              </div>
+              <div class="col-lg-6">
+                <p class="small mb-1 fw-bold">Fase 2: Conectividad (ACCEPT)</p>
+                <code class="d-block p-2 bg-dark text-light rounded small mb-2">
+                  iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT
+                </code>
+                <p class="small text-muted">
+                  <strong>Acción:</strong> Permite el paso solo a conexiones nuevas (<code>NEW</code>) o establecidas (<code>ESTABLISHED</code>) a través de la interfaz física especificada.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> </div> 
+
+<div class="container my-5 custom-font text-dark">
+  <div class="card reflection-box-blue shadow-sm border-0 rounded-4">
+    <div class="card-body p-4 p-md-5">
+      <div class="d-flex align-items-center mb-4">
+        <i class="bi bi-shield-lock-fill quote-icon-blue me-3"></i>
+        <h3 class="fw-bold mb-0" style="color: #1a638b;">Reflexión Técnica: La Precisión del Filtrado</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <p style="text-align: justify; line-height: 1.7;">
+            La configuración de <code>iptables</code> analizada en esta actividad revela que la seguridad perimetral no se trata simplemente de "abrir o cerrar puertos", sino de gestionar el <strong>estado</strong> y el <strong>origen</strong> del tráfico. Como futuro ingeniero, identifico que la implementación de reglas <em>stateful</em> (basadas en estado) es lo que diferencia a un servidor vulnerable de uno robusto, permitiendo que solo las comunicaciones legítimas y previamente establecidas tengan éxito.
+          </p>
+          <p style="text-align: justify; line-height: 1.7;">
+            El uso de herramientas de auditoría como el parámetro <code>LOG</code> y los contadores de tráfico (<code>-L -v</code>) es fundamental en escenarios reales. Estas funciones permiten detectar patrones de ataque de fuerza bruta o escaneos de puertos antes de que se conviertan en incidentes críticos, alineándose con las estrategias de detección temprana que vimos en los escenarios de seguridad corporativa.
+          </p>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="p-4 bg-white rounded-4 border shadow-sm">
+            <h6 class="fw-bold mb-3" style="color: #1a638b;">Puntos Clave del Aprendizaje:</h6>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-3">
+                <i class="bi bi-arrow-right-circle-fill me-2" style="color: #1a638b;"></i>
+                <strong>Jerarquía:</strong> Entender que un paquete fluye a través de tablas y cadenas antes de ser procesado es la base del diagnóstico de red.
+              </li>
+              <li class="mb-3">
+                <i class="bi bi-arrow-right-circle-fill me-2" style="color: #1a638b;"></i>
+                <strong>Control Granular:</strong> Restringir servicios como SSH a una IP específica es una aplicación directa del principio de menor privilegio.
+              </li>
+              <li>
+                <i class="bi bi-arrow-right-circle-fill me-2" style="color: #1a638b;"></i>
+                <strong>Visibilidad:</strong> Los contadores de paquetes son la métrica principal para validar la efectividad de una política de seguridad.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-top text-center">
+        <p class="mb-0 text-muted italic">
+          <small>"En la administración de sistemas Linux, una regla bien configurada en iptables es la primera y más fuerte línea de defensa contra intrusiones no autorizadas."</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </section>
+            
+        </main>
+        <!-- Footer-->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy;Eduardo Gabriel Morquecho Medina-2026</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Aviso de Privacidad</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Repositorio</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="contact.html">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        
+    </body>
+</html>
