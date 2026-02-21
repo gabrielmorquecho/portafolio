@@ -51,7 +51,183 @@
                       </div>
                           <div class="card shadow rounded-4 border-0">
                             <div class="card-body">
-                              
+                              <style>
+    /* Estilos de Guía Profesional - Actividad 6 */
+    .guide-header {
+        background: linear-gradient(90deg, #1a638b 0%, #304FFE 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        font-weight: 800;
+        margin-bottom: 2rem;
+    }
+
+    .guide-section-title {
+        color: #1a638b;
+        border-left: 5px solid #1a638b;
+        padding-left: 15px;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+    }
+
+    .topology-container {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+
+    .topology-zoom {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        background: #fff;
+    }
+
+    .topology-zoom img {
+        width: 100%;
+        height: auto;
+        transform: scale(1.4); /* Zoom para visibilidad de etiquetas */
+        transform-origin: center;
+        padding: 60px 0;
+    }
+
+    .terminal-box {
+        background: #1e1e1e;
+        color: #7cfc00;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .step-description {
+        font-size: 0.95rem;
+        color: #495057;
+        margin-bottom: 1rem;
+        text-align: justify;
+    }
+
+    .highlight-blue { color: #304FFE; font-weight: 600; }
+    
+    .list-custom li {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="p-4">
+    <h1 class="guide-header">IMPLEMENTACIÓN DE VPN IPSEC SITE-TO-SITE</h1>
+
+    <h4 class="guide-section-title">Topología</h4>
+    <div class="step-description">
+        La red se compone de los siguientes elementos interconectados para simular una comunicación segura a través de un proveedor de servicios (ISP):
+        <ul class="list-custom mt-2">
+            <li><strong>Tres routers 1941:</strong> Router Principal (ISP), R1 y R2.</li>
+            <li><strong>Dos switches 2960:</strong> Switch0 y Switch1.</li>
+            <li><strong>Dos PCs:</strong> PC0 (Red 192.168.1.0) y PC1 (Red 192.168.3.0).</li>
+        </ul>
+    </div>
+    <div class="topology-container shadow-sm">
+        <div class="topology-zoom">
+            <img src="Actividades/img/topologia.png" alt="Topología Site-to-Site">
+        </div>
+        <div class="bg-light p-2 text-center border-top">
+            <small class="text-muted">Infraestructura Site-to-Site interconectando Red Local 1 y Red Local 2.</small>
+        </div>
+    </div>
+
+    <h4 class="guide-section-title">1. Configuración Inicial</h4>
+    <div class="step-description">
+        Se configuran los nombres de host, direcciones IP en las interfaces GigabitEthernet y las rutas estáticas por defecto para asegurar el alcance entre los routers y el ISP.
+    </div>
+    <div class="terminal-box">
+        <span class="text-white">// Ejemplo de configuración en R1</span><br>
+        R1(config)# hostname R1<br>
+        R1(config)# interface G0/1<br>
+        R1(config-if)# ip address 192.168.1.1 255.255.255.0<br>
+        R1(config-if)# no shut<br>
+        R1(config-if)# interface G0/0<br>
+        R1(config-if)# ip address 209.165.100.1 255.255.255.0<br>
+        R1(config)# ip route 0.0.0.0 0.0.0.0 209.165.100.2
+    </div>
+
+    <h4 class="guide-section-title">2. Licencia de Seguridad</h4>
+    <div class="step-description">
+        Es fundamental activar el paquete tecnológico de seguridad en los tres routers (RISP, R1 y R2) para habilitar las funciones de criptografía IPsec.
+    </div>
+    <div class="terminal-box">
+        RISP(config)# license boot module c1900 technology-package securityK9<br>
+        R1(config)# license boot module c1900 technology-package securityK9<br>
+        R2(config)# license boot module c1900 technology-package securityK9<br>
+        <span class="text-muted">ACCEPT? [yes/no]: yes</span>
+    </div>
+
+    <h4 class="guide-section-title">3. Implementación de ACL's</h4>
+    <div class="step-description">
+        Se configuran listas de acceso extendidas para identificar el tráfico "interesante" que debe ser protegido por el túnel VPN.
+    </div>
+    <div class="terminal-box">
+        <span class="text-white">// ACL en R1 (Tráfico de LAN 1 a LAN 2)</span><br>
+        R1(config)# access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255<br><br>
+        <span class="text-white">// ACL en R2 (Tráfico de LAN 2 a LAN 1)</span><br>
+        R2(config)# access-list 100 permit ip 192.168.3.0 0.0.0.255 192.168.1.0 0.0.0.255
+    </div>
+
+    <h4 class="guide-section-title">4. Phase 01: ISAKMP policy</h4>
+    <div class="step-description">
+        Se define la política de intercambio de llaves para establecer el canal de control seguro, utilizando cifrado AES-256 y autenticación pre-compartida.
+    </div>
+    <div class="terminal-box">
+        R1(config)# crypto isakmp policy 10<br>
+        R1(config-isakmp)# encryption aes 256<br>
+        R1(config-isakmp)# authentication pre-share<br>
+        R1(config-isakmp)# group 5<br>
+        R1(config)# crypto isakmp key key1 address 209.165.200.1
+    </div>
+
+    <h4 class="guide-section-title">5. Phase 2: IPSec transform-set</h4>
+    <div class="step-description">
+        Se configura el conjunto de transformación para definir cómo se cifrarán los datos del usuario que viajan a través del túnel.
+    </div>
+    <div class="terminal-box">
+        R1(config)# crypto ipsec transform-set R1->R2 esp-aes 256 esp-sha-hmac<br>
+        R2(config)# crypto ipsec transform-set R2->R1 esp-aes 256 esp-sha-hmac
+    </div>
+
+    <h4 class="guide-section-title">6. Creación y Aplicación de mapa criptográfico</h4>
+    <div class="step-description">
+        Se crea el mapa criptográfico para unir el peer remoto, el transform-set y la ACL. Posteriormente se aplica a la interfaz de salida de cada router.
+    </div>
+    <div class="terminal-box">
+        <span class="text-white">// Configuración en R1</span><br>
+        R1(config)# crypto map IPSEC-MAP 10 ipsec-isakmp<br>
+        R1(config-crypto-map)# set peer 209.165.200.1<br>
+        R1(config-crypto-map)# set transform-set R1->R2<br>
+        R1(config-crypto-map)# match address 100<br>
+        R1(config)# interface G0/0<br>
+        R1(config-if)# crypto map IPSEC-MAP
+    </div>
+
+    <h4 class="guide-section-title">Conexión establecida</h4>
+    <div class="card border-success shadow-sm mb-4">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-shield-fill-check text-success fs-3 me-3"></i>
+                <h5 class="card-title text-success mb-0 fw-bold">Verificación de Túnel Activo</h5>
+            </div>
+            <p class="step-description mb-0">
+                La activación exitosa se confirma mediante los logs de consola: <span class="badge bg-success">ISAKMP is ON</span>. La conectividad final se valida con un ping exitoso entre los hosts remotos, asegurando que la comunicación es ahora privada y segura.
+            </p>
+        </div>
+    </div>
+</div>
                             </div>
                           </div>
                         </div>
