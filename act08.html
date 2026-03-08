@@ -37,13 +37,128 @@
             </nav>
             <!-- Page Content-->
             <div class="text-center my-5 custom-font">
-                <a href="Actividades/act08-Equipo4.pdf" download="act08-Equipo4.pdf" class="btn btn-lg shadow-sm px-4 py-3" style="background-color: #1a638b; color: white; border-radius: 50px; font-weight: 600; border: none; transition: all 0.3s ease;">
+ 
+                <section class="py-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+
+                       <div class="container my-5">
+                        <h1 class="display-5 fw-bolder mb-0" style="text-align: center;"><span class="text-gradient d-inline">SQL Injection</span></h1>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+                      <div class="text-center my-5 custom-font">
+                        <a href="Actividades/act08-Equipo4.pdf" download="act08-Equipo4.pdf" class="btn btn-lg shadow-sm px-4 py-3" style="background-color: #1a638b; color: white; border-radius: 50px; font-weight: 600; border: none; transition: all 0.3s ease;">
                     <i class="bi bi-file-earmark-pdf-fill me-2"></i> Descargar Reporte (PDF)
                 </a>
+                      </div>
+                          <div class="card shadow rounded-4 border-0">
+                            <div class="card-body">
+
+                                <div class="card-body p-4 p-md-5">
+                             
+                              <section class="sql-labs-section">
+
+<div class="text-center">
+
+<button class="sql-main-btn" onclick="toggleSQLLabs()">
+
+<i class="bi bi-database-fill"></i>
+SQL Injection Labs
+
+</button>
+
+</div>
 
 
+<div id="sqlLabs" class="sql-labs-container">
 
+<a href="act08/sqli1.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>
+    Lab 1<br>
+    <span>SQL injection vulnerability in WHERE clause allowing retrieval of hidden data</span>
+</a>
 
+<a href="act08/sqli2.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection2.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 2<br><span>SQL injection vulnerability allowing login bypass</span></a>
+
+<a href="act08/sqli3.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection3.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 3<br><span>SQL injection attack, querying the database type and version on Oracle</span></a>
+
+<a href="act08/sqli4.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection4.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 4<br><span>SQL injection attack, querying the database type and version on MySQL and Microsoft</span></a>
+
+<a href="act08/sqli5.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection5.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 5<br><span>SQL injection attack, listing the database contents on non-Oracle databases</span></a>
+
+<a href="act08/sqli6.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection6.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 6<br><span>SQL injection attack, listing the database contents on Oracle</span></a>
+
+<a href="act08/sqli7.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection7.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 7<br><span>SQL injection UNION attack, determining the number of columns returned by the query</span></a>
+
+<a href="act08/sqli8.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection8.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 8<br><span>SQL injection UNION attack, finding a column containing text</span></a>
+
+<a href="act08/sqli9.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection9.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 9<br><span>SQL injection UNION attack, retrieving data from other tables</span></a>
+
+<a href="act08/sqli10.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection10.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 10<br><span>SQL injection UNION attack, retrieving multiple values in a single column</span></a>
+
+<a href="act08/sqli11.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection11.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 11<br><span>Blind SQL injection with conditional responses</span></a>
+
+<a href="act08/sqli12.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection12.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 12<br><span>Blind SQL injection with conditional errors</span></a>
+
+<a href="act08/sqli13.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection13.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 13<br><span>Visible error-based SQL injection</span></a>
+
+<a href="act08/sqli14.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection14.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 14<br><span>Blind SQL injection with time delays</span></a>
+
+<a href="act08/sqli15.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection15.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 15<br><span>Blind SQL injection with time delays and information retrieval</span></a>
+
+<a href="act08/sqli16.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection16.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 16<br><span>Blind SQL injection with out-of-band interaction</span></a>
+
+<a href="act08/sqli17.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection17.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 17<br><span>Blind SQL injection with out-of-band data exfiltration</span></a>
+
+<a href="act08/sqli18.html" class="sql-lab-card">
+    <img src="act08/img/sql-injection18.png" alt="SQL Logo" style="width: 240px; height: auto;">
+    <br>Lab 18<br><span>SQL injection with filter bypass via XML encoding</span></a>
+
+</div>
+
+</section>      
+
+      
+            </div>
+          </div>
+        </div>
+
+      </div> </div> 
+
+                
+            </div>
 </div>
         </main>
         <!-- Footer-->
@@ -65,5 +180,27 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+
+        function toggleSQLLabs(){
+
+        let labs = document.getElementById("sqlLabs");
+
+        if(labs.style.display === "grid"){
+
+        labs.style.display = "none";
+
+        }else{
+
+        labs.style.display = "grid";
+
+        }
+
+        }
+
+        </script>
     </body>
 </html>
+
+
+

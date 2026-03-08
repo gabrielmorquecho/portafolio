@@ -53,6 +53,112 @@
   height: auto;
 }
 
+/* BOTON PRINCIPAL */
+
+.sql-main-btn{
+
+background: linear-gradient(135deg,#1a638b,#2c89b7);
+color:white;
+
+border:none;
+
+padding:20px 50px;
+
+font-size:22px;
+font-weight:700;
+
+border-radius:15px;
+
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+
+transition:all .3s ease;
+
+}
+
+.sql-main-btn i{
+
+margin-right:10px;
+
+}
+
+.sql-main-btn:hover{
+
+transform: translateY(-6px) scale(1.03);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.35);
+
+}
+
+
+/* CONTENEDOR LABS */
+
+.sql-labs-container{
+
+display:none;
+
+margin-top:40px;
+
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:20px;
+
+}
+
+
+/* TARJETAS LAB */
+
+.sql-lab-card{
+
+display:block;
+
+background:white;
+
+padding:18px;
+
+border-radius:12px;
+
+text-decoration:none;
+
+font-weight:600;
+
+color:#1a638b;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+transition:all .25s ease;
+
+}
+
+.sql-lab-card span{
+
+font-size:13px;
+
+color:#666;
+
+font-weight:400;
+
+}
+
+.sql-lab-card:hover{
+
+transform: translateY(-6px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
+
+background:#1a638b;
+
+color:white;
+
+}
+
+.sql-lab-card:hover span{
+
+color:#e5f3ff;
+
+}
+
     
 
 :root {
