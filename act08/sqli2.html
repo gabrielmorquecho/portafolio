@@ -42,8 +42,8 @@
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
 
                        <div class="container my-5">
-                        <h1 class="display-5 fw-bolder mb-0" style="text-align: center;"><span class="text-gradient d-inline">SQL injection vulnerability allowing login bypass</span></h1>
-                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+                       
+                    
                       
                           <div class="card shadow rounded-4 border-0">
                             <div class="card-body">
@@ -52,7 +52,76 @@
                              
                               <section class="sql-labs-section">
 
+                                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+        <h1 class="fw-bolder">Laboratorio 02: SQL injection allowing login bypass</h1>
+        
+    </div>
 
+    <div class="alert alert-info rounded-4 border-0 mb-5 d-flex align-items-center">
+        <div class="flex-grow-1">
+            <strong>Progreso SQLi:</strong> 2 de 18 laboratorios completados.
+            <div class="progress mt-2" style="height: 10px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 11.1%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 20px;">
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Detalles Técnicos</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Tipo:</strong> Inyección en Autenticación</li>
+                            <li><strong>Impacto:</strong> Acceso no autorizado (Bypass)</li>
+                            <li><strong>Vector:</strong> Parámetro <code>username</code></li>
+                        </ul>
+                        <hr>
+                        <h5 class="fw-bold">Descripción del Tipo</h5>
+                        <p class="small text-muted">Vulnerabilidad que ocurre al construir consultas de validación de credenciales sin sanitización, permitiendo modificar la lógica para que el servidor siempre devuelva un resultado válido.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="mb-5 border-start border-primary border-4 ps-4">
+                <h4 class="fw-bold">01. Intercepción en My Account</h4>
+                <p>Accedemos al apartado de "My account" e interceptamos la petición de inicio de sesión utilizando el Proxy de <strong>Burp Suite</strong>.</p>
+                <div class="p-2 bg-light rounded-4 text-center">
+                    <p class="text-muted small mb-1">[EVIDENCIA: INTERCEPCIÓN DE LOGIN]</p>
+                    <img src="img/lab02-intercept.png" class="img-fluid rounded-3 efecto-3d-pdf" alt="Burp Suite Intercept">
+                </div>
+            </div>
+
+            <div class="mb-5 border-start border-primary border-4 ps-4">
+                <h4 class="fw-bold">02. Manipulación del Parámetro Username</h4>
+                <p>Ingresamos datos genéricos en el formulario y modificamos la petición detrás del servidor. Sustituimos el valor original por el payload de inyección lógica.</p>
+                <div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+                    username=administrator'--&password=any
+                </div>
+                <div class="p-2 bg-light rounded-4 text-center">
+                    <p class="text-muted small mb-1">[EVIDENCIA: MODIFICACIÓN DEL PAYLOAD]</p>
+                    <img src="img/lab02-payload.png" class="img-fluid rounded-3 efecto-3d-pdf" alt="Inyección en Username">
+                </div>
+            </div>
+
+            <div class="mb-5 border-start border-success border-4 ps-4">
+                <h4 class="fw-bold text-success">03. Resolución: Acceso como Administrador</h4>
+                <p>Al procesar la solicitud con el valor <code>administrator'--</code>, se anula la verificación de contraseña, permitiendo el acceso total al sistema sin credenciales legítimas.</p>
+                <div class="p-2 bg-light rounded-4 text-center mb-4">
+                    <p class="text-muted small mb-1">[EVIDENCIA: LABORATORIO COMPLETADO]</p>
+                    <img src="img/lab02-success.png" class="img-fluid rounded-3 efecto-3d-pdf" alt="Acceso exitoso">
+                </div>
+                
+                <h5 class="fw-bold mb-3 text-center">Demostración en Video</h5>
+                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                    <iframe src="https://www.youtube.com/watch?v=4FGkpyYYfCs" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>      
 

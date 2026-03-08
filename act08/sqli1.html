@@ -52,7 +52,75 @@
                              
                               <section class="sql-labs-section">
 
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+        <h1 class="fw-bolder">Laboratorio 01: SQL injection in WHERE clause</h1>
+        
+    </div>
 
+    <div class="alert alert-info rounded-4 border-0 mb-5 d-flex align-items-center">
+        <div class="flex-grow-1">
+            <strong>Progreso SQLi:</strong> 1 de 18 laboratorios completados.
+            <div class="progress mt-2" style="height: 10px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 5.5%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 20px;">
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Detalles Técnicos</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Plataforma:</strong> PortSwigger Academy</li>
+                            <li><strong>Vulnerabilidad:</strong> SQLi (In-band)</li>
+                            <li><strong>Herramienta:</strong> Burp Suite</li>
+                        </ul>
+                        <hr>
+                        <h5 class="fw-bold">Descripción</h5>
+                        <p class="small text-muted">Manipulación de la lógica SQL para anular la condición <code>AND released = 1</code> y extraer registros ocultos del sistema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="mb-5 border-start border-primary border-4 ps-4">
+                <h4 class="fw-bold">01. Análisis de Parámetro</h4>
+                <p>Identificamos el parámetro <code>category</code> como el vector de entrada vulnerable.</p>
+                <div class="p-2 bg-light rounded-4 text-center">
+                    <p class="text-muted small mb-1">[EVIDENCIA: PETICIÓN ORIGINAL]</p>
+                    <img src="img/lab01-peticion.png" class="img-fluid rounded-3 efecto-3d-pdf" alt="Petición Original">
+                </div>
+            </div>
+
+            <div class="mb-5 border-start border-primary border-4 ps-4">
+                <h4 class="fw-bold">02. Explotación (Payload)</h4>
+                <p>Inyectamos el payload <code>' OR 1=1--</code> para forzar la condición verdadera en la base de datos.</p>
+                <div class="bg-dark text-info p-3 rounded-4 mb-3 font-monospace">
+                    GET /filter?category=Gifts'+OR+1=1-- HTTP/2
+                </div>
+                <div class="p-2 bg-light rounded-4 text-center">
+                    <p class="text-muted small mb-1">[EVIDENCIA: MODIFICACIÓN EN REPEATER]</p>
+                    <img src="img/lab01-repeater.png" class="img-fluid rounded-3 efecto-3d-pdf" alt="Uso de Repeater">
+                </div>
+            </div>
+
+            <div class="mb-5 border-start border-success border-4 ps-4">
+                <h4 class="fw-bold text-success">03. Resolución y Verificación</h4>
+                <p>El sistema responde mostrando los productos ocultos (released = 0).</p>
+                <div class="p-2 bg-light rounded-4 text-center mb-4">
+                    <p class="text-muted small mb-1">[EVIDENCIA: PANTALLA SOLUCIONADA]</p>
+                    <img src="img/lab01-success.png" class="img-fluid rounded-3 efecto-3d-pdf" alt="Lab Resuelto">
+                </div>
+                
+                <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+                    <iframe src="https://www.youtube.com/watch?v=U1tfxVGLPAs" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>      
 
@@ -88,4 +156,10 @@
         <script src="js/scripts.js"></script>
         
     </body>
-</html>
+</html>\
+
+
+
+
+
+    
