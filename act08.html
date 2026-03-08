@@ -57,6 +57,74 @@
                              
                               <section class="sql-labs-section">
 
+<section id="notas-seguridad" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-5 fw-bolder mb-4 text-center">Notas de Seguridad: SQL Injection (SQLi)</h2>
+        
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+                    <h3 class="fw-bold text-primary">¿Qué es SQL Injection?</h3>
+                    <p>Es una vulnerabilidad crítica donde las aplicaciones web incorporan directamente entradas del usuario en consultas SQL sin sanitización. Esto permite a un atacante insertar código malicioso para alterar consultas y acceder a datos no autorizados.</p>
+                    <span class="badge bg-danger w-25">Crítico (OWASP, 2021)</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 border-start border-primary border-4">
+                    <h4 class="fw-bold">In-band (Clásico)</h4>
+                    <p><small>Se usa el mismo canal para el ataque y la respuesta.</small></p>
+                    <ul>
+                        <li><strong>Error-based:</strong> Aprovecha mensajes del sistema.</li>
+                        <li><strong>Union-based:</strong> Combina resultados legítimos con extraídos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 border-start border-warning border-4">
+                    <h4 class="fw-bold">Blind (Ciego)</h4>
+                    <p><small>Inferencia de datos sin mensajes de error visibles.</small></p>
+                    <ul>
+                        <li><strong>Boolean-based:</strong> Respuestas de verdadero/falso.</li>
+                        <li><strong>Time-based:</strong> Retrasos intencionales (SLEEP).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 border-start border-dark border-4">
+                    <h4 class="fw-bold">Out-of-band</h4>
+                    <p><small>Exfiltración a través de canales externos (DNS/HTTP).</small></p>
+                    <p>Se utiliza cuando el canal principal está restringido.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-dark text-white">
+                    <h4 class="fw-bold text-warning">Impacto en la Tríada CIA</h4>
+                    <ul>
+                        <li><strong>Confidencialidad:</strong> Extracción de credenciales.</li>
+                        <li><strong>Integridad:</strong> Modificación de registros.</li>
+                        <li><strong>Disponibilidad:</strong> Eliminación de tablas o DoS.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-success text-white">
+                    <h4 class="fw-bold">Principios de Defensa</h4>
+                    <p>La medida más efectiva es el uso de <strong>Consultas Parametrizadas</strong> (Prepared Statements).</p>
+                    <ul>
+                        <li>Principio de mínimo privilegio.</li>
+                        <li>Validación mediante listas blancas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                                
 <div class="text-center">
 
 <button class="sql-main-btn" onclick="toggleSQLLabs()">
