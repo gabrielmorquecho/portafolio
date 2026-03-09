@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>LAB</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Ciberseguridad</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../resume.html">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Actividades</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../act08.html">ROAD TO HALL OF FAME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content-->
+            <div class="text-center my-5 custom-font">
+                <section class="py-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+
+                       <div class="container my-5">
+                       
+                    
+                      
+                          <div class="card shadow rounded-4 border-0">
+                            <div class="card-body">
+
+                                <div class="card-body p-4 p-md-5">
+                             
+                              <section class="sql-labs-section">
+
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <h1 class="fw-bolder">Laboratorio 05: SQL injection attack, listing the database contents on non-Oracle databases</h1>
+</div>
+
+<div class="alert alert-info rounded-4 border-0 mb-5 d-flex align-items-center">
+    <div class="flex-grow-1">
+        <strong>Progreso SQLi:</strong> 5 de 18 laboratorios completados.
+        <div class="progress mt-2" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 27%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-lg-4">
+<div class="sticky-top" style="top: 20px;">
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+<div class="card-body">
+
+<h5 class="fw-bold">Detalles Técnicos</h5>
+<ul class="list-unstyled">
+<li><strong>Tipo:</strong> UNION-based SQLi</li>
+<li><strong>Técnica:</strong> Schema Enumeration</li>
+<li><strong>SGBD:</strong> PostgreSQL / MySQL / SQL Server</li>
+<li><strong>Objetivo:</strong> Obtener credenciales del administrador</li>
+</ul>
+
+<hr>
+
+<h5 class="fw-bold">Análisis del Ataque</h5>
+<p class="small text-muted">
+En este laboratorio se explota una vulnerabilidad de <code>SQL Injection</code> 
+que permite consultar las tablas internas del sistema utilizando 
+<code>information_schema</code>.  
+Mediante la técnica <code>UNION SELECT</code> es posible enumerar tablas, 
+descubrir columnas y finalmente extraer credenciales almacenadas en la base de datos.
+</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- CONTENIDO -->
+<div class="col-lg-8">
+
+
+<!-- PASO 1 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+<h4 class="fw-bold">01. Análisis de la Aplicación</h4>
+
+<p>
+Al iniciar el laboratorio observamos que la página muestra productos 
+dependiendo de la categoría seleccionada.  
+Esto indica que el parámetro <code>category</code> se utiliza dentro de una 
+consulta SQL para filtrar los resultados.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: PÁGINA DEL LABORATORIO]</p>
+<img src="img/sql5-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 2 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+<h4 class="fw-bold">02. Intercepción de la Solicitud</h4>
+
+<p>
+Utilizamos <strong>Burp Suite</strong> para interceptar la solicitud HTTP 
+cuando seleccionamos una categoría.  
+Posteriormente enviamos la petición al módulo <strong>Repeater</strong> 
+para poder modificar manualmente el parámetro vulnerable.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: REQUEST EN BURP SUITE]</p>
+<img src="img/sql5-2.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 3 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+<h4 class="fw-bold">03. Determinación del Número de Columnas</h4>
+
+<p>
+Para poder utilizar <code>UNION SELECT</code> debemos conocer cuántas columnas 
+tiene la consulta original y cuáles aceptan texto.
+</p>
+
+<div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+'abc','def'--
+</div>
+
+<p>
+Al probar con diferentes valores se confirma que la consulta devuelve 
+<strong>dos columnas</strong>.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: DETERMINACIÓN DE COLUMNAS]</p>
+<img src="img/sql5-3.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 4 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+<h4 class="fw-bold">04. Enumeración de Tablas del Sistema</h4>
+
+<p>
+Una vez confirmada la estructura de la consulta, podemos consultar 
+las tablas del sistema mediante <code>information_schema.tables</code>.
+</p>
+
+<div class="bg-dark text-info p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+table_name,+NULL+FROM+information_schema.tables--
+</div>
+
+<p>
+Esta consulta devuelve los nombres de las tablas existentes en la base de datos.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: LISTA DE TABLAS]</p>
+<img src="img/sql5-4.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 5 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+<h4 class="fw-bold">05. Enumeración de Columnas</h4>
+
+<p>
+Después de identificar la tabla que contiene las credenciales 
+(por ejemplo <code>users_abcdef</code>), utilizamos la siguiente consulta 
+para conocer los nombres de sus columnas.
+</p>
+
+<div class="bg-dark text-info p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+column_name,+NULL+FROM+information_schema.columns+WHERE+table_name='users_abcdef'--
+</div>
+
+<p>
+Esto permite identificar las columnas que contienen 
+<strong>nombres de usuario y contraseñas</strong>.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: COLUMNAS DE LA TABLA]</p>
+<img src="img/sql5-5.png" class="img-fluid rounded-3 efecto-3d-pdf">
+<img src="img/sql5-5-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 6 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+<h4 class="fw-bold">06. Extracción de Credenciales</h4>
+
+<p>
+Finalmente realizamos una consulta directa a la tabla de usuarios para 
+extraer las credenciales almacenadas.
+</p>
+
+<div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+username_abcdef,+password_abcdef+FROM+users_abcdef--
+</div>
+
+<p>
+En la respuesta obtenemos el nombre de usuario 
+<strong>administrator</strong> junto con su contraseña, 
+lo que permite iniciar sesión en la aplicación.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: CREDENCIALES EXTRAÍDAS]</p>
+<img src="img/sql5-6.png" class="img-fluid rounded-3 efecto-3d-pdf">
+<img src="img/sql5-6-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- RESULTADO -->
+<div class="mb-5 border-start border-success border-4 ps-4">
+
+<h4 class="fw-bold text-success">07. Resultado: Acceso como Administrador</h4>
+
+<p>
+Utilizando la contraseña obtenida se inicia sesión en la sección 
+<code>My Account</code> con el usuario administrador, completando 
+exitosamente el laboratorio.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center mb-4">
+<p class="text-muted small mb-1">[EVIDENCIA: LOGIN ADMINISTRADOR]</p>
+<img src="img/sql5-7.png" class="img-fluid rounded-3 efecto-3d-pdf">
+<img src="img/sql5-7-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- MITIGACION -->
+<div class="mb-5 border-start border-danger border-4 ps-4">
+
+<h4 class="fw-bold text-danger">Mitigación Recomendada</h4>
+
+<p>
+Para prevenir ataques de SQL Injection es fundamental utilizar 
+<strong>consultas parametrizadas (Prepared Statements)</strong>.  
+De esta forma la entrada del usuario se interpreta únicamente como 
+dato y nunca como parte del código SQL.
+</p>
+
+<div class="bg-dark text-light p-3 rounded-4 font-monospace">
+Incorrecto (vulnerable):
+query = "SELECT * FROM products WHERE category = '" + user_input + "'";
+
+Correcto (seguro):
+PreparedStatement pstmt = connection.prepareStatement(
+"SELECT * FROM products WHERE category = ?");
+pstmt.setString(1, user_input);
+ResultSet results = pstmt.executeQuery();
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</section>
+
+      
+            </div>
+          </div>
+        </div>
+
+      </div> </div> 
+
+                
+            </div>
+</div>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy;Eduardo Gabriel Morquecho Medina-2026</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Aviso de Privacidad</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Repositorio</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="contact.html">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        
+    </body>
+</html>
