@@ -52,15 +52,227 @@
                              
                               <section class="sql-labs-section">
 
-                <!--contenido-->
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <h1 class="fw-bolder">Laboratorio 10: SQL Injection UNION Attack – Retrieving Multiple Values in a Single Column</h1>
+</div>
 
-   
+<div class="alert alert-info rounded-4 border-0 mb-5 d-flex align-items-center">
+    <div class="flex-grow-1">
+        <strong>Progreso SQLi:</strong> 10 de 18 laboratorios completados.
+        <div class="progress mt-2" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 56%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-lg-4">
+<div class="sticky-top" style="top: 20px;">
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+<div class="card-body">
+
+<h5 class="fw-bold">Detalles Técnicos</h5>
+<ul class="list-unstyled">
+<li><strong>Tipo:</strong> UNION-based SQL Injection</li>
+<li><strong>Técnica:</strong> Data Concatenation</li>
+<li><strong>Tabla objetivo:</strong> users</li>
+<li><strong>Columnas:</strong> username, password</li>
+<li><strong>Objetivo:</strong> Extraer credenciales en una sola columna</li>
+</ul>
+
+<hr>
+
+<h5 class="fw-bold">Análisis del Ataque</h5>
+<p class="small text-muted">
+En algunos casos la aplicación web solo muestra una columna con datos de texto.
+Esto impide recuperar múltiples valores directamente con <code>UNION SELECT</code>.  
+Para solucionar esto se utiliza una técnica de <strong>concatenación de datos</strong>,
+uniendo varias columnas dentro de un mismo campo utilizando operadores como
+<code>||</code>.
+</p>
+
+</div>
+</div>
+</div>
+</div>
 
 
+<!-- CONTENIDO PRINCIPAL -->
+<div class="col-lg-8">
 
-   
 
-</section>      
+<!-- PASO 1 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">01. Interceptar la Solicitud</h4>
+
+<p>
+Primero abrimos el laboratorio utilizando el navegador de
+<strong>Burp Suite</strong>. Activamos la opción
+<strong>Proxy → Intercept ON</strong> para capturar la solicitud HTTP
+cuando seleccionamos una categoría de productos.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: INTERCEPCIÓN DE REQUEST]</p>
+<img src="img/sql10-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 2 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">02. Enviar la Solicitud a Repeater</h4>
+
+<p>
+Una vez capturada la petición, la enviamos al módulo
+<strong>Repeater</strong> presionando <strong>Ctrl + R</strong>
+para poder modificar manualmente el parámetro vulnerable
+<code>category</code>.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: REQUEST EN REPEATER]</p>
+<img src="img/sql10-2.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 3 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">03. Determinar Columnas y Tipo de Datos</h4>
+
+<p>
+Primero debemos verificar cuántas columnas devuelve la consulta original
+y cuáles contienen datos de tipo texto.
+</p>
+
+<div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+NULL,'abc'--
+</div>
+
+<p>
+La respuesta confirma que la consulta devuelve <strong>dos columnas</strong>,
+pero solo una de ellas acepta datos de texto.
+</p>
+
+</div>
+
+
+<!-- PASO 4 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">04. Concatenación de Valores</h4>
+
+<p>
+Para poder mostrar el nombre de usuario y la contraseña en una sola
+columna utilizamos el operador de concatenación <code>||</code>.
+También agregamos un separador <code>~</code> para distinguir ambos valores.
+</p>
+
+<div class="bg-dark text-info p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+NULL,username||'~'||password+FROM+users--
+</div>
+
+<p>
+Esto permite que ambos valores aparezcan dentro de la misma columna
+de resultados.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: DATOS CONCATENADOS]</p>
+<img src="img/sql10-3.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 5 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">05. Identificación de Credenciales</h4>
+
+<p>
+En la respuesta de la aplicación aparecen los registros concatenados,
+por ejemplo:
+</p>
+
+<div class="bg-light p-3 rounded-4">
+<ul class="list-unstyled mb-0">
+<li>administrator~contraseña</li>
+<li>wiener~contraseña</li>
+<li>carlos~contraseña</li>
+</ul>
+</div>
+
+<p class="mt-3">
+Se copia la contraseña del usuario <strong>administrator</strong>
+para iniciar sesión en la aplicación.
+</p>
+
+</div>
+
+
+<!-- RESULTADO -->
+<div class="mb-5 border-start border-success border-4 ps-4">
+
+<h4 class="fw-bold text-success">06. Resultado: Acceso a la Cuenta Administrator</h4>
+
+<p>
+Finalmente accedemos a la sección <code>Login</code> e introducimos
+las credenciales obtenidas.  
+Al iniciar sesión correctamente como <strong>administrator</strong>
+se completa el laboratorio.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center mb-4">
+<p class="text-muted small mb-1">[EVIDENCIA: LOGIN ADMINISTRADOR]</p>
+<img src="img/sql10-4.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+<h5 class="fw-bold mb-3 text-center">Guía de Resolución en Video</h5>
+
+<div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/A8F3YhaoRCk?si=Nv7nuf-f9J0pHKCu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+</div>
+
+
+<!-- MITIGACION -->
+<div class="mb-5 border-start border-danger border-4 ps-4">
+
+<h4 class="fw-bold text-danger">Mitigación Recomendada</h4>
+
+<p>
+Para prevenir ataques de SQL Injection es fundamental utilizar
+<strong>consultas parametrizadas</strong> y validar las entradas
+del usuario antes de enviarlas a la base de datos.
+</p>
+
+<div class="bg-dark text-light p-3 rounded-4 font-monospace">
+Incorrecto (Vulnerable):
+query = "SELECT * FROM products WHERE category = '" + user_input + "'";
+
+Correcto (Seguro):
+PreparedStatement pstmt = connection.prepareStatement(
+"SELECT * FROM products WHERE category = ?");
+pstmt.setString(1, user_input);
+ResultSet results = pstmt.executeQuery();
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</section>
 
       
             </div>

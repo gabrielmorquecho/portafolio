@@ -52,15 +52,230 @@
                              
                               <section class="sql-labs-section">
 
-                <!--contenido-->
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <h1 class="fw-bolder">Laboratorio 09: SQL Injection UNION Attack – Retrieving Data from Other Tables</h1>
+</div>
 
-   
+<div class="alert alert-info rounded-4 border-0 mb-5 d-flex align-items-center">
+    <div class="flex-grow-1">
+        <strong>Progreso SQLi:</strong> 9 de 18 laboratorios completados.
+        <div class="progress mt-2" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 50%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-lg-4">
+<div class="sticky-top" style="top: 20px;">
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+<div class="card-body">
+
+<h5 class="fw-bold">Detalles Técnicos</h5>
+<ul class="list-unstyled">
+<li><strong>Tipo:</strong> UNION-based SQL Injection</li>
+<li><strong>Técnica:</strong> Data Extraction</li>
+<li><strong>Tabla objetivo:</strong> users</li>
+<li><strong>Columnas:</strong> username, password</li>
+<li><strong>Objetivo:</strong> Obtener credenciales de administrator</li>
+</ul>
+
+<hr>
+
+<h5 class="fw-bold">Análisis del Ataque</h5>
+<p class="small text-muted">
+Este laboratorio demuestra cómo un atacante puede utilizar
+<code>UNION SELECT</code> para recuperar información almacenada
+en otras tablas de la base de datos.  
+Al coincidir el número de columnas y los tipos de datos con la
+consulta original, el servidor devuelve información sensible
+como nombres de usuario y contraseñas dentro de la respuesta HTML.
+</p>
+
+</div>
+</div>
+</div>
+</div>
 
 
+<!-- CONTENIDO PRINCIPAL -->
+<div class="col-lg-8">
 
-   
 
-</section>      
+<!-- PASO 1 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">01. Interceptar la Solicitud</h4>
+
+<p>
+Primero abrimos el laboratorio y utilizamos <strong>Burp Suite</strong>
+para interceptar la solicitud HTTP generada cuando seleccionamos una
+categoría de productos.
+</p>
+
+<p>
+Activamos <strong>Proxy → Intercept ON</strong> y navegamos a cualquier
+categoría como <code>Accessories</code>.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: REQUEST INTERCEPTADO]</p>
+<img src="img/sql9-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 2 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">02. Enviar la Solicitud a Repeater</h4>
+
+<p>
+Una vez capturada la petición, la enviamos al módulo
+<strong>Repeater</strong> presionando <strong>Ctrl + R</strong>.
+Desde aquí podremos modificar manualmente el parámetro vulnerable
+<code>category</code>.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: REQUEST EN REPEATER]</p>
+<img src="img/sql9-2.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 3 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">03. Confirmar el Número de Columnas</h4>
+
+<p>
+Antes de extraer datos debemos confirmar que la consulta devuelve
+dos columnas de tipo texto. Esto se puede verificar con el siguiente payload:
+</p>
+
+<div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+'abc','def'--
+</div>
+
+<p>
+Si la página muestra los valores introducidos sin error,
+significa que la consulta original contiene dos columnas compatibles.
+</p>
+
+</div>
+
+
+<!-- PASO 4 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">04. Extracción de Datos de la Tabla Users</h4>
+
+<p>
+Una vez verificada la estructura del query, utilizamos
+<code>UNION SELECT</code> para recuperar los datos de la tabla
+<code>users</code>.
+</p>
+
+<div class="bg-dark text-info p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+username,+password+FROM+users--
+</div>
+
+<p>
+Este payload devuelve todos los nombres de usuario y contraseñas
+almacenados en la base de datos.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: DATOS EXTRAÍDOS]</p>
+<img src="img/sql9-3.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 5 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">05. Identificación del Usuario Administrador</h4>
+
+<p>
+En la respuesta del servidor aparecen múltiples registros,
+incluyendo el usuario <strong>administrator</strong>.
+Se debe copiar la contraseña asociada a este usuario
+para iniciar sesión en la aplicación.
+</p>
+
+<div class="bg-light p-3 rounded-4 text-center">
+<p class="text-muted small mb-1">Ejemplo de datos recuperados</p>
+<ul class="list-unstyled">
+<li>administrator : [password]</li>
+<li>wiener : [password]</li>
+<li>carlos : [password]</li>
+</ul>
+</div>
+
+</div>
+
+
+<!-- RESULTADO -->
+<div class="mb-5 border-start border-success border-4 ps-4">
+
+<h4 class="fw-bold text-success">06. Resultado: Acceso como Administrator</h4>
+
+<p>
+Con la contraseña obtenida se accede a la sección
+<code>My Account</code> e iniciamos sesión como
+<strong>administrator</strong>, completando exitosamente el laboratorio.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center mb-4">
+<p class="text-muted small mb-1">[EVIDENCIA: LOGIN ADMINISTRADOR]</p>
+<img src="img/sql9-4.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+<h5 class="fw-bold mb-3 text-center">Guía de Resolución en Video</h5>
+
+<div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/g1iNKDJ26tM?si=i5Tpsb2qHgjqxkd7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+</div>
+
+
+<!-- MITIGACION -->
+<div class="mb-5 border-start border-danger border-4 ps-4">
+
+<h4 class="fw-bold text-danger">Mitigación Recomendada</h4>
+
+<p>
+Para evitar este tipo de ataques se deben utilizar
+<strong>consultas parametrizadas (Prepared Statements)</strong>
+y evitar concatenar directamente la entrada del usuario
+en las consultas SQL.
+</p>
+
+<div class="bg-dark text-light p-3 rounded-4 font-monospace">
+Incorrecto (Vulnerable):
+query = "SELECT * FROM products WHERE category = '" + user_input + "'";
+
+Correcto (Seguro):
+PreparedStatement pstmt = connection.prepareStatement(
+"SELECT * FROM products WHERE category = ?");
+pstmt.setString(1, user_input);
+ResultSet results = pstmt.executeQuery();
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+</section>
 
       
             </div>

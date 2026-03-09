@@ -52,15 +52,213 @@
                              
                               <section class="sql-labs-section">
 
-                <!--contenido-->
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <h1 class="fw-bolder">Laboratorio 07: SQL Injection UNION Attack – Determining the Number of Columns</h1>
+</div>
 
-   
+<div class="alert alert-info rounded-4 border-0 mb-5 d-flex align-items-center">
+    <div class="flex-grow-1">
+        <strong>Progreso SQLi:</strong> 7 de 18 laboratorios completados.
+        <div class="progress mt-2" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 39%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-lg-4">
+<div class="sticky-top" style="top: 20px;">
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+<div class="card-body">
+
+<h5 class="fw-bold">Detalles Técnicos</h5>
+<ul class="list-unstyled">
+<li><strong>Tipo:</strong> UNION-based SQL Injection</li>
+<li><strong>Técnica:</strong> Column Enumeration</li>
+<li><strong>Objetivo:</strong> Determinar número de columnas</li>
+</ul>
+
+<hr>
+
+<h5 class="fw-bold">Análisis del Ataque</h5>
+<p class="small text-muted">
+En un ataque <code>UNION-based SQL Injection</code>, el atacante debe conocer
+cuántas columnas devuelve la consulta original para poder combinar los resultados
+con una consulta maliciosa.  
+En este laboratorio se utiliza la técnica de añadir valores <code>NULL</code>
+progresivamente hasta encontrar la cantidad correcta de columnas.
+</p>
+
+</div>
+</div>
+</div>
+</div>
 
 
+<!-- CONTENIDO PRINCIPAL -->
+<div class="col-lg-8">
 
-   
 
-</section>      
+<!-- PASO 1 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">01. Interceptación de la Solicitud</h4>
+
+<p>
+Primero abrimos el laboratorio y utilizamos <strong>Burp Suite</strong>
+para interceptar la solicitud HTTP cuando seleccionamos una categoría
+de producto.  
+Buscamos una petición que contenga el parámetro <code>category=</code>,
+ya que es el punto vulnerable de la aplicación.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: REQUEST INTERCEPTADO]</p>
+<img src="img/sql7-1.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 2 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">02. Envío al Repeater</h4>
+
+<p>
+Después de interceptar la solicitud, la enviamos al módulo
+<strong>Repeater</strong> de Burp Suite para poder modificar
+manualmente el parámetro vulnerable.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: REQUEST EN REPEATER]</p>
+<img src="img/sql7-2.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- PASO 3 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">03. Prueba Inicial con UNION SELECT</h4>
+
+<p>
+Se modifica el parámetro <code>category</code> para introducir una
+consulta <code>UNION SELECT</code>.  
+Inicialmente probamos con una sola columna usando <code>NULL</code>.
+</p>
+
+<div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+NULL--
+</div>
+
+<p>
+La respuesta del servidor genera un error, lo que indica que el número
+de columnas aún no coincide con el query original.
+</p>
+
+</div>
+
+
+<!-- PASO 4 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">04. Incremento Progresivo de Columnas</h4>
+
+<p>
+Continuamos agregando valores <code>NULL</code> hasta que la consulta
+coincida con la estructura del query original.
+</p>
+
+<div class="bg-dark text-warning p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+NULL,NULL--
+</div>
+
+<p>
+La aplicación sigue devolviendo un error, por lo que todavía no se ha
+alcanzado el número correcto de columnas.
+</p>
+
+</div>
+
+
+<!-- PASO 5 -->
+<div class="mb-5 border-start border-primary border-4 ps-4">
+
+<h4 class="fw-bold">05. Número Correcto de Columnas</h4>
+
+<p>
+Finalmente agregamos un tercer valor <code>NULL</code>.
+</p>
+
+<div class="bg-dark text-info p-3 rounded-4 mb-3 font-monospace">
+'+UNION+SELECT+NULL,NULL,NULL--
+</div>
+
+<p>
+En este punto la respuesta deja de generar errores y el servidor
+procesa correctamente la consulta, lo que indica que el query
+original contiene <strong>3 columnas</strong>.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center">
+<p class="text-muted small mb-1">[EVIDENCIA: CONSULTA EXITOSA]</p>
+<img src="img/sql7-3.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+
+</div>
+
+
+<!-- RESULTADO -->
+<div class="mb-5 border-start border-success border-4 ps-4">
+
+<h4 class="fw-bold text-success">06. Resultado del Laboratorio</h4>
+
+<p>
+Al identificar correctamente el número de columnas devueltas por la
+consulta original, el atacante ya puede construir payloads
+<code>UNION SELECT</code> válidos para extraer información sensible
+de la base de datos en ataques posteriores.
+</p>
+
+<div class="p-2 bg-light rounded-4 text-center mb-4">
+<p class="text-muted small mb-1">[EVIDENCIA: LABORATORIO COMPLETADO]</p>
+<img src="img/sql7-4.png" class="img-fluid rounded-3 efecto-3d-pdf">
+</div>
+<h5 class="fw-bold mb-3 text-center">Guía de Resolución en Video</h5>
+
+<div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2SuhOuAQzhI?si=111pYzeWTNvWjq6V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+
+
+<!-- MITIGACION -->
+<div class="mb-5 border-start border-danger border-4 ps-4">
+
+<h4 class="fw-bold text-danger">Mitigación Recomendada</h4>
+
+<p>
+Para prevenir ataques de SQL Injection se deben utilizar
+<strong>consultas parametrizadas</strong> y validar estrictamente
+las entradas del usuario.  
+Además, es recomendable implementar un manejo adecuado de errores
+para evitar que el servidor revele información sobre la estructura
+de las consultas SQL.
+</p>
+
+</div>
+
+
+</div>
+</div>
+
+</section>
 
       
             </div>
@@ -95,3 +293,4 @@
         
     </body>
 </html>
+
