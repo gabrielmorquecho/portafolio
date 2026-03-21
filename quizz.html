@@ -129,6 +129,7 @@
 
 <script>
 const scenarios = [
+    //Escenario 1
     {
         title: "El Paquete de Mensajería",
         content: `<strong>De:</strong> servicio-entrega@logistica-fast.net<br>
@@ -138,15 +139,70 @@ const scenarios = [
         isPhishing: true,
         feedback: "¡Correcto! El uso de acortadores de URL (bit.ly) y un dominio genérico (@logistica-fast.net) son señales claras de fraude. Además, las empresas de mensajería rara vez piden pagos pequeños por SMS o correos inesperados."
     },
-    {
-        title: "Actualización de Seguridad de la Universidad",
-        content: `<strong>De:</strong> it-support@upslp.edu.mx.seguridad.com<br>
-                  <strong>Asunto:</strong> Migración de Servidor: Valida tu cuenta<br><br>
-                  Estimado estudiante, para evitar la suspensión de tu correo institucional durante la migración al servidor Zentyal, ingresa tus credenciales actuales aquí: [Botón: Validar Cuenta]`,
-        senderLogoUrl: "Actividades/img/upslp.png", // Asegúrate de tener esta imagen
-        isPhishing: true,
-        feedback: "¡Cuidado! Mira bien el dominio: <em>upslp.edu.mx.seguridad.com</em>. El dominio real termina en .com, no en .mx. Es una técnica de subdominios para engañarte."
-    },
+    //Escenario 2
+    /*{
+    title: "Notificación de Actualización de Datos UPSLP",
+    content: `<strong>De:</strong> soporte.ti@upslp-mx.cloud<br>
+              <strong>Asunto:</strong> URGENTE: Sistema de actualización de datos y vigencia de cuenta Microsoft<br><br>
+              <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.5; font-size: 13px;">
+                <p>Estimada comunidad estudiantil de la <strong>Universidad Politécnica de San Luis Potosí:</strong></p>
+                <p>Nos complace invitarles a formar parte nuestro sistema de actualización de datos.</p>
+                
+                <p style="background-color: #fff3cd; padding: 10px; border-left: 5px solid #ffc107;">
+                    Esta es una última notificación para informarle que su cuenta de Microsoft será eliminada en las próximas <strong>24 horas</strong> debido a la nueva tecnología de Outlook.
+                </p>
+
+                <p>Si desea continuar usando su correo electrónico, por favor es necesario que confirme sus datos y agregue su número de <strong>WhatsApp</strong> para mantener vigente su cuenta.</p>
+                
+                <p>Ingrese al enlace de validación para completar el proceso mencionado:<br>
+                <a href="#" style="color: #0078d4; text-decoration: underline;">https://1034323234-000-4b48c8.netlify.app/</a></p>
+
+                <p><strong>Aviso Final.</strong> En el siguiente enlace podrá confirmar sus credenciales:</p>
+                
+                <p style="color: #d83b01; font-weight: bold;">Aviso: si ignora este mensaje, su correo electrónico se cancelará sin su consentimiento y quedará bloqueado inhabilitado.</p>
+                
+                <p>Notificación urgente En caso de que la URL no funcione correctamente, le solicitamos revisar los documentos adjuntos a este correo.</p>
+                
+                <p>Recibe un cordial saludo.</p>
+                
+                <div style="border-top: 1px solid #ccc; margin-top: 20px; padding-top: 10px; font-size: 10px; color: #666; text-align: justify;">
+                    <p>-------------------------------------------------------------------------------------------------------------------</p>
+                    <strong>AVISO DE CONFIDENCIALIDAD Y USO DE DERECHOS DE PROPIEDAD INTELECTUAL.</strong> El presente correo electrónico, puede contener información sensible y/o confidencial, y fue emitida para uso exclusivo del(os) destinatario(s)... [Texto legal abreviado para la simulación]... El infringir cualquiera de estas disposiciones puede hacerse acreedor a las sanciones o condenas que señalen las autoridades o tribunales competentes.
+                </div>
+              </div>`,
+    senderLogoUrl: "Actividades/img/upslp-logo.png", 
+    isPhishing: true,
+    feedback: "¡Nivel Máximo Completado! <br>1. <strong>Análisis del Link:</strong> La URL usa <em>netlify.app</em>. La UPSLP nunca usaría un servicio gratuito de hosting para validar cuentas oficiales. <br>2. <strong>Ingeniería Social:</strong> Mezcla un saludo cordial con la amenaza de borrar tu cuenta en 24 horas para forzarte a actuar sin pensar. <br>3. <strong>WhatsApp:</strong> Pedir el número de teléfono es una señal roja para robo de identidad o estafas posteriores. ¡Excelente ojo clínico!"
+},*/
+{
+    title: "Caso Real: Amenaza de Baja de Cuenta UPSLP",
+    content: `<strong>De:</strong> soporte.ti@upslp-mx.cloud<br>
+              <strong>Asunto:</strong> URGENTE: Sistema de actualización de datos y vigencia de cuenta Microsoft<br><br>
+              
+              <div style="width: 100%; background-color: #f1f1f1; border: 1px solid #ccc; overflow: hidden; margin: 0 auto;">
+                <img src="Actividades/img/correo_real_upslp.png" alt="Parte superior" style="display: block; width: 100%; height: auto; margin: 0; border: none;">
+                <img src="Actividades/img/correo_real_upslp2.png" alt="Parte inferior" style="display: block; width: 100%; height: auto; margin: 0; border: none;">
+                
+                <div style="padding: 15px; text-align: center; background-color: #fff; border-top: 1px solid #ddd;">
+                    <p style="font-size: 13px; color: #555; margin: 0; font-style: italic;">
+                        ↑ Desliza para analizar el cuerpo completo del mensaje real ↑
+                    </p>
+                </div>
+              </div>`,
+    senderLogoUrl: "Actividades/img/upslp-logo.png",
+    isPhishing: true,
+    feedback: `<strong>¡ANÁLISIS DE EXPERTO!</strong><br><br>
+               Este es un ataque de <em>Spear Phishing</em> real dirigido a la comunidad potosina. Aquí las banderas rojas que debiste notar:<br><br>
+               <ul>
+                   <li><strong>Remitente Falso:</strong> El dominio <code>upslp-mx.cloud</code> no es oficial. La Universidad utiliza siempre <code>@upslp.edu.mx</code>.</li>
+                   <li><strong>Urgencia Artificial:</strong> La amenaza de borrar tu cuenta en <strong>24 horas</strong> es una táctica para que entres en pánico y no analices el link.</li>
+                   <li><strong>Enlace Sospechoso:</strong> El link usa <code>netlify.app</code>. Una institución oficial jamás usaría un servicio de hosting gratuito para validar credenciales.</li>
+                   <li><strong>Petición de WhatsApp:</strong> Pedir redes sociales personales bajo el pretexto de "mantener la cuenta" es un método de recolección de datos (Doxing).</li>
+                   <li><strong>Incoherencia de Diseño:</strong> El texto mezcla un tono formal con errores de formato y un aviso legal copiado para parecer legítimo.</li>
+               </ul>
+               <strong>Conclusión:</strong> Si un correo te pide tu contraseña o WhatsApp bajo amenaza de bloqueo, ¡es estafa! Reporta siempre a la unidad de TI oficial.`
+},
+    //Escenario 3
     {
     title: "Alerta de Repositorio Arch Linux",
     content: `<strong>De:</strong> security-announce@arch-linux.org.net<br>
@@ -156,7 +212,166 @@ const scenarios = [
     senderLogoUrl: "Actividades/img/alerta.png", 
     isPhishing: true,
     feedback: "¡Peligro detectado! Nunca ejecutes scripts directamente desde `curl` hacia `bash` de fuentes no confirmadas. Además, el dominio oficial es <strong>archlinux.org</strong>, no <em>arch-linux.org.net</em>."
+    },   
+    //Escenario 4
+    {
+        title: "Vulnerabilidad detectada en librería de Python",
+        content: `<strong>De:</strong> security-team@pypi-alerts.org<br>
+                <strong>Asunto:</strong> [URGENTE] Acción requerida en tu repositorio "Personal-Finance-Dashboard"<br><br>
+                Estimado desarrollador, hemos detectado que tu proyecto utiliza una versión vulnerable de la librería <code>pandas</code>. Esta vulnerabilidad permite la ejecución remota de código (RCE). <br><br>
+                Para proteger tu código y recibir el parche de seguridad, por favor vincula tu cuenta de GitHub con nuestra herramienta de escaneo en el siguiente enlace: <br><br>
+                <a href="#" style="background-color: #2ea44f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">Vincular con GitHub</a><br><br>
+                Si no realizas esta acción en las próximas 24 horas, tu repositorio podría ser marcado como inseguro.`,
+        senderLogoUrl: "Actividades/img/pypi-logo.png", // Puedes buscar el logo de PyPI o Python
+        isPhishing: true,
+        feedback: "¡Cuidado! Este es un ataque de <strong>Spear Phishing</strong>. <br>1. El dominio <em>pypi-alerts.org</em> no es oficial (el real es pypi.org). <br>2. Usa un <strong>sentido de urgencia</strong> falso ('24 horas') para presionarte. <br>3. Pide vincular tu cuenta de GitHub, lo cual daría al atacante acceso total a tus repositorios privados."
+    },
+    //Escenario 5
+    {
+    title: "Documento de SharePoint de la UPSLP",
+    content: `<strong>De:</strong> no-reply@sharepoint-upslp.com<br>
+              <strong>Asunto:</strong> Eduardo Gabriel, alguien ha compartido "Horarios_Examenes_Finales_2026.docx" contigo<br><br>
+              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border: 1px solid #e1e1e1; padding: 20px; max-width: 500px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Microsoft_Office_SharePoint_Logo_2019.png" width="40" style="margin-bottom: 15px;">
+                <h2 style="font-size: 18px; color: #333;">Microsoft SharePoint</h2>
+                <p style="font-size: 14px; color: #666;">
+                    <strong>Control Escolar</strong> ha compartido un archivo de OneDrive para la Empresa contigo.
+                </p>
+                <div style="background-color: #f3f2f1; padding: 15px; border-radius: 4px; text-align: center; margin: 20px 0;">
+                    <span style="font-size: 16px; font-weight: bold; color: #0078d4;">Horarios_Examenes_Finales_2026.docx</span>
+                </div>
+                <a href="#" style="background-color: #0078d4; color: white; padding: 12px 25px; text-decoration: none; border-radius: 2px; display: block; text-align: center; font-weight: 600;">Abrir Documento</a>
+                <br>
+                <small style="color: #a19f9d; font-size: 11px;">Este mensaje se envió desde una dirección de correo electrónico que no acepta respuestas.</small>
+              </div>`,
+    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg", 
+    isPhishing: true,
+    feedback: "¡Cuidado! Este es un ataque de <strong>Brand Spoofing</strong>. <br>1. El dominio <em>sharepoint-upslp.com</em> es falso; SharePoint oficial usa <strong>sharepoint.com</strong>. <br>2. El botón 'Abrir Documento' suele llevar a una página de login falsa de Office 365 para robar tu matrícula y contraseña. <br>3. Nota que el remitente intenta ser muy específico con tu nombre y escuela para generar confianza."
+},
+//Escenario 6
+{
+    title: "Alerta de Inicio de Sesión Inusual",
+    content: `<strong>De:</strong> microsoft-security@account-protection-info.com<br>
+              <strong>Asunto:</strong> Alerta de seguridad de la cuenta de Microsoft: Inicio de sesión inusual detectado<br><br>
+              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; border: 1px solid #e1e1e1; color: #262626;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" width="110" style="margin-bottom: 20px;">
+                <h2 style="font-size: 18px; font-weight: 300; color: #262626;">Actividad de inicio de sesión inusual</h2>
+                <p style="font-size: 14px;">
+                    Detectamos algo inusual en un inicio de sesión reciente de la cuenta de Microsoft <strong>eduardo.morquecho@upslp.edu.mx</strong>.
+                </p>
+                <div style="background-color: #f2f2f2; padding: 15px; margin: 20px 0; font-size: 13px; line-height: 1.5;">
+                    <strong>Detalles del inicio de sesión:</strong><br>
+                    País o región: <strong>Moscú, Rusia</strong><br>
+                    Dirección IP: <strong>103.225.158.10</strong><br>
+                    Fecha: <strong>20 de marzo de 2026 21:45 (GMT)</strong><br>
+                    Plataforma: <strong>Windows 10</strong><br>
+                    Explorador: <strong>Firefox</strong>
+                </div>
+                <p style="font-size: 14px;">Si no has sido tú, revisa tu actividad reciente y te ayudaremos a proteger tu cuenta.</p>
+                <a href="#" style="background-color: #0078d4; color: white; padding: 10px 30px; text-decoration: none; display: inline-block; font-weight: 600; margin-top: 10px;">Revisar Actividad Reciente</a>
+                <br><br>
+                <p style="font-size: 12px; color: #666;">Gracias,<br>El equipo de cuentas de Microsoft</p>
+              </div>`,
+    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+    isPhishing: true,
+    feedback: "¡Cuidado! Este es un ataque de <strong>Ingeniería Social por Miedo</strong>. <br>1. El remitente <em>account-protection-info.com</em> parece legítimo, pero Microsoft oficial usa <strong>account-protection.microsoft.com</strong>. <br>2. El mapa o los detalles de Rusia están diseñados para asustarte y que hagas clic en el botón sin pensar. <br>3. El botón te llevaría a una página de 'Recuperación' que en realidad es un formulario para capturar tu contraseña actual."
+},
+//Escenario 7
+{
+    title: "Acceso a Documento Protegido",
+    content: `<strong>De:</strong> noreply@files-upslp-sharing.com<br>
+              <strong>Asunto:</strong> Has recibido un documento protegido: "Nomina_Practicantes_2026.pdf"<br><br>
+              <div style="font-family: 'Segoe UI', sans-serif; border: 1px solid #dee2e6; border-radius: 4px; overflow: hidden;">
+                <div style="background-color: #2b579a; color: white; padding: 8px 15px; font-size: 13px;">
+                    Visualizador de Archivos Seguros
+                </div>
+                <div style="padding: 25px; text-align: center; background-color: #f8f9fa;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="width: 100px; margin-bottom: 15px;">
+                    <p style="font-size: 14px; color: #333; margin-bottom: 20px;">Para ver <strong>"Nomina_Practicantes_2026.pdf"</strong>, inicia sesión con tu cuenta institucional.</p>
+                    
+                    <div style="max-width: 280px; margin: 0 auto; text-align: left; background: white; padding: 15px; border: 1px solid #ddd;">
+                        <input type="text" value="eduardo.morquecho@upslp.edu.mx" disabled style="width: 100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px; background-color: #f1f1f1; font-size: 13px;">
+                        <input type="password" placeholder="Contraseña" style="width: 100%; border: 1px solid #0078d4; padding: 5px; font-size: 13px;">
+                        <div style="background-color: #0078d4; color: white; padding: 8px; text-align: center; margin-top: 15px; cursor: pointer; font-weight: 600; font-size: 14px;">Iniciar sesión</div>
+                    </div>
+                </div>
+              </div>`,
+    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg",
+    isPhishing: true,
+    feedback: "¡Trampa de Credenciales! <br>1. <strong>Nunca</strong> ingreses tu contraseña en un recuadro dentro de un correo. <br>2. El dominio <em>files-upslp-sharing.com</em> es falso. <br>3. El gancho de la 'Nómina' busca que actúes por curiosidad sin revisar la seguridad."
+},
+//Escenario 8
+{
+    title: "Código de Verificación de Microsoft",
+    content: `<strong>De:</strong> account-security-noreply@accountprotection.microsoft.com<br>
+              <strong>Asunto:</strong> Código de seguridad de la cuenta de Microsoft<br><br>
+              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; color: #262626;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" width="110" style="margin-bottom: 20px;">
+                <p style="font-size: 14px;">
+                    Usa el siguiente código de seguridad para la cuenta de Microsoft: <strong>eduardo.morquecho@upslp.edu.mx</strong>
+                </p>
+                <div style="font-size: 24px; font-weight: bold; color: #0078d4; margin: 20px 0;">
+                    642901
+                </div>
+                <p style="font-size: 14px;">
+                    Si no has solicitado este código, puedes hacer caso omiso de este mensaje de correo electrónico. Otra persona puede haber escrito tu dirección de correo electrónico por error.
+                </p>
+                <p style="font-size: 12px; color: #666; margin-top: 30px;">
+                    Gracias,<br>El equipo de cuentas de Microsoft
+                </p>
+              </div>`,
+    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+    isPhishing: false, // <--- ¡ESTE ES SEGURO!
+    feedback: "¡Excelente análisis! Este correo es <strong>LEGÍTIMO</strong>. <br>1. El dominio <em>accountprotection.microsoft.com</em> es el oficial de Microsoft para alertas de seguridad. <br>2. <strong>No contiene enlaces</strong> ni botones sospechosos, solo un código numérico. <br>3. El texto te indica que si no fuiste tú, simplemente lo ignores (no te pide 'hacer clic aquí para cancelar'). Identificar correos reales evita la fatiga de alertas."
+},
+{
+    title: "Notificación de Pago Pendiente (SMS/Smishing)",
+    content: `<strong>De:</strong> +52 444 123 4567 (Mensajería UPSLP)<br>
+              <strong>Asunto:</strong> [URGENTE] Aviso de Control Escolar<br><br>
+              <div style="max-width: 300px; margin: 0 auto; background-color: #e5e5ea; padding: 15px; border-radius: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica; position: relative;">
+                <p style="margin: 0; font-size: 14px; color: #000;">
+                    UPSLP ADVIERTE: Tu pago de reinscripción para el periodo Primavera 2026 no ha sido procesado. 
+                    Evita la baja definitiva validando tu comprobante aquí: 
+                    <span style="color: #007aff; text-decoration: underline;">https://bit.ly/upslp-pagos-2026</span>
+                </p>
+                <small style="display: block; margin-top: 10px; color: #8e8e93; font-size: 10px; text-align: center;">Hoy 14:20</small>
+              </div>
+              <br>
+              <p class="text-center text-muted" style="font-size: 12px;"><i>* Simulación de mensaje de texto recibido en dispositivo móvil *</i></p>`,
+    senderLogoUrl: "https://cdn-icons-png.flaticon.com/512/3616/3616215.png", // Icono de mensaje o alerta
+    isPhishing: true,
+    feedback: "¡Cuidado con el Smishing! <br>1. Las instituciones oficiales <strong>rara vez</strong> usan acortadores de links como <em>bit.ly</em> para temas financieros. <br>2. El uso de amenazas como 'Baja definitiva' es una táctica de <strong>extrema urgencia</strong> para que no pienses. <br>3. Aunque el número tenga lada de San Luis (444), es muy fácil de falsificar. Siempre verifica directamente en el portal oficial de la Politécnica."
+},
+//Escenario 10: Spear Phishing
+{
+    title: "Alerta de Almacenamiento Lleno",
+    content: `<strong>De:</strong> msa-noreply@microsoft-storage-service.net<br>
+              <strong>Asunto:</strong> Acción Requerida: Tu buzón de correo está lleno y ha dejado de recibir mensajes<br><br>
+              <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; border: 1px solid #e1e1e1; background-color: #ffffff;">
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" width="100">
+                </div>
+                <h2 style="font-size: 19px; color: #d83b01; font-weight: 400;">Buzón de correo lleno (99% de capacidad)</h2>
+                <p style="font-size: 14px; color: #333;">
+                    Tu cuenta <strong>eduardo.morquecho@upslp.edu.mx</strong> ha excedido el límite de almacenamiento gratuito de 15 GB proporcionado por tu institución.
+                </p>
+                <div style="background-color: #f3f2f1; padding: 15px; margin: 20px 0; border-left: 4px solid #d83b01;">
+                    <strong>Estado actual:</strong> Los mensajes entrantes están siendo rechazados y devueltos al remitente.
+                </div>
+                <p style="font-size: 14px;">Para seguir recibiendo correos, debes validar tu cuenta y solicitar una extensión de almacenamiento temporal:</p>
+                <a href="#" style="background-color: #d83b01; color: white; padding: 12px 25px; text-decoration: none; display: inline-block; font-weight: 600; border-radius: 2px;">Aumentar Almacenamiento Gratis</a>
+                <br><br>
+                <p style="font-size: 12px; color: #666;">
+                    © 2026 Microsoft Corporation. Todos los derechos reservados.<br>
+                    Este es un aviso obligatorio sobre el servicio de tu cuenta.
+                </p>
+              </div>`,
+    senderLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+    isPhishing: true,
+    feedback: "¡Finalizado! Este fue un <strong>Caso Real</strong>. <br>1. El dominio <em>microsoft-storage-service.net</em> es falso; Microsoft usa dominios internos para el almacenamiento. <br>2. El color naranja y la amenaza de 'correos rechazados' crean un pánico técnico que nubla el juicio. <br>3. Al ser un usuario institucional, sabes que el almacenamiento lo gestiona la UPSLP, no un servicio externo de Microsoft. ¡Has completado el entrenamiento!"
 }
+
+
 ];
 let currentStep = 0;
 
