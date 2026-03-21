@@ -47,7 +47,17 @@
 
     <div id="consent-box" class="consent-container text-center">
   
-        <div class="consent-card">
+        <div class="consent-card shadow-lg p-4 rounded-4" style="background: white; max-width: 450px; margin: auto; border: 1px solid #e0e0e0;">
+        <h2 class="title mb-3" style="color: #0078d4;">🚀 Registro de Entrenamiento</h2>
+        <p class="subtitle text-muted mb-4">Ingresa tus datos para registrar tu puntaje en el ranking institucional.</p>
+
+        <div class="mb-4 text-start">
+            <label class="small fw-bold text-primary mb-1">Nombre o Alias:</label>
+            <input type="text" id="user-name" class="form-control mb-3" placeholder="Ej. NEO" required>
+            
+            <label class="small fw-bold text-primary mb-1">Correo:</label>
+            <input type="email" id="user-email" class="form-control" placeholder="correo@gmail,com" required>
+        </div>
             
             <h2 class="title">🔐 Aviso de Seguridad</h2>
             <p class="subtitle">
@@ -60,7 +70,7 @@
             <li>📘 Actividad diseñada para aprendizaje práctico</li>
             </ul>
 
-            <button class="start-btn" onclick="startQuiz()">
+            <button class="btn btn-primary w-100 py-2 fw-bold rounded-pill" onclick="startQuiz()">
             🚀 Aceptar y comenzar
             </button>
 
@@ -728,15 +738,10 @@ Este es un ataque diseñado para robar credenciales aprovechando el miedo a perd
 
 
 ];
-let currentStep = 0;
+
    
 function handleFakeLogin() {
     alert("⚠️ Simulación: tus credenciales habrían sido robadas");
-}
-function startQuiz() {
-    document.getElementById('consent-box').classList.add('d-none');
-    document.getElementById('quiz-container').classList.remove('d-none');
-    showScenario();
 }
 
 function showScenario() {
@@ -792,41 +797,59 @@ document.getElementById('email-content').innerHTML = `
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+// --- VARIABLES GLOBALES ---
+let currentStep = 0;
+let score = 0; // Contador de puntos
+let userSession = {
+    name: "",
+    email: ""
+};
+
+function startQuiz() {
+    const nameVal = document.getElementById('user-name').value.trim();
+    const emailVal = document.getElementById('user-email').value.trim();
+
+    if (nameVal === "" || emailVal === "") {
+        alert("Por favor, completa tus datos para registrar tu progreso.");
+        return;
+    }
+
+    // Guardamos los datos del usuario
+    userSession.name = nameVal;
+    userSession.email = emailVal;
+
+    // Ocultar registro y mostrar quiz
+    document.getElementById('consent-box').classList.add('d-none');
+    document.getElementById('quiz-container').classList.remove('d-none');
+    showScenario();
+}
+
 function handleAnswer(userSaysPhishing) {
     const s = scenarios[currentStep];
     const feedbackDiv = document.getElementById('feedback');
     const alertDiv = document.getElementById('feedback-alert');
 
-    const userAnswerText = userSaysPhishing ? "Es Phishing" : "Es Seguro";
-    const correctAnswerText = s.isPhishing ? "Es Phishing" : "Es Seguro";
-
-    // 🔒 Deshabilitar botones
     document.getElementById('btn-phishing').disabled = true;
     document.getElementById('btn-safe').disabled = true;
 
     feedbackDiv.classList.remove('d-none');
 
+    // LÓGICA DE PUNTUACIÓN
     if (userSaysPhishing === s.isPhishing) {
-        // ✅ CORRECTO
+        score++; // Sumamos un punto si es correcto
         alertDiv.className = "alert alert-success border-0 shadow";
-        document.getElementById('feedback-title').innerText = "✅ Correcto";
-
-        document.getElementById('feedback-text').innerHTML = `
-        <strong>Tu respuesta:</strong> ${userAnswerText} ✔️<br>
-        <strong>Respuesta correcta:</strong> ${correctAnswerText}<br><br>
-        ${s.explanation}
-        `;
+        document.getElementById('feedback-title').innerText = "✅ ¡Correcto!";
     } else {
-        // ❌ ERROR
         alertDiv.className = "alert alert-danger border-0 shadow";
-        document.getElementById('feedback-title').innerText = "❌ Error";
-
-        document.getElementById('feedback-text').innerHTML = `
-        <strong>Tu respuesta:</strong> ${userAnswerText} ❌<br>
-        <strong>Respuesta correcta:</strong> ${correctAnswerText} ✔️<br><br>
-        ${s.explanation}
-        `;
+        document.getElementById('feedback-title').innerText = "❌ Incorrecto";
     }
+
+    document.getElementById('feedback-text').innerHTML = `
+        <strong>Analista:</strong> ${userSession.name.split(' ')[0]}<br>
+        <strong>Tu respuesta:</strong> ${userSaysPhishing ? "Phishing" : "Seguro"}<br>
+        <strong>Explicación:</strong> ${s.explanation}
+    `;
 }
 
 function nextQuestion() {
@@ -834,9 +857,32 @@ function nextQuestion() {
     if (currentStep < scenarios.length) {
         showScenario();
     } else {
-        alert("¡Felicidades! Has completado el entrenamiento de concientización.");
-        location.reload(); 
+        finishQuiz();
     }
+}
+
+function finishQuiz() {
+    // Aquí es donde enviarías los datos a tu base de datos (PHP, Node.js, Firebase, etc.)
+    console.log("Enviando a BD:", userSession.name, userSession.email, "Score:", score);
+    
+    // Cambiamos el contenido del contenedor para mostrar el resultado final
+    const quizContainer = document.getElementById('quiz-container');
+    
+    let rango = "";
+    if(score >= 9) rango = "🏆 Defensor Elite";
+    else if(score >= 7) rango = "🛡️ Analista de Seguridad";
+    else rango = "⚠️ Usuario en Riesgo";
+
+    quizContainer.innerHTML = `
+        <div class="text-center p-5 shadow rounded-4 bg-white">
+            <h2 class="display-4 mb-3">¡Test Finalizado!</h2>
+            <h3 class="text-primary mb-4">${userSession.name}</h3>
+            <div class="display-1 fw-bolder mb-3">${score} / ${scenarios.length}</div>
+            <p class="lead mb-4">Tu rango es: <strong>${rango}</strong></p>
+            <p class="text-muted">Tus resultados han sido registrados con el correo: ${userSession.email}</p>
+            <button class="btn btn-outline-primary mt-3" onclick="location.reload()">Reiniciar Entrenamiento</button>
+        </div>
+    `;
 }
 
 </script>
