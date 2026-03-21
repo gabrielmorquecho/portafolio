@@ -56,7 +56,7 @@
             <input type="text" id="user-name" class="form-control mb-3" placeholder="Ej. NEO" required>
             
             <label class="small fw-bold text-primary mb-1">Correo:</label>
-            <input type="email" id="user-email" class="form-control" placeholder="correo@gmail,com" required>
+            <input type="email" id="user-email" class="form-control" placeholder="correo@gmail.com" required>
         </div>
             
             <h2 class="title">🔐 Aviso de Seguridad</h2>
@@ -361,7 +361,7 @@ Este es un intento de comprometer tu sistema mediante ejecución remota de códi
                 <strong>Asunto:</strong> [URGENTE] Acción requerida en tu repositorio "Personal-Finance-Dashboard"<br><br>
                 Estimado desarrollador, hemos detectado que tu proyecto utiliza una versión vulnerable de la librería <code>pandas</code>. Esta vulnerabilidad permite la ejecución remota de código (RCE). <br><br>
                 Para proteger tu código y recibir el parche de seguridad, por favor vincula tu cuenta de GitHub con nuestra herramienta de escaneo en el siguiente enlace: <br><br>
-                <a href="#" style="background-color: #2ea44f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">Vincular con GitHub</a><br><br>
+                <a href="#" title="https://githuub.com/login"style="background-color: #2ea44f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">Vincular con GitHub</a><br><br>
                 Si no realizas esta acción en las próximas 24 horas, tu repositorio podría ser marcado como inseguro.`,
     senderLogoUrl: "Actividades/img/python.png",
     isPhishing: true,
@@ -454,7 +454,7 @@ Este correo busca robar tu usuario y contraseña mediante una página falsa de M
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" width="110" style="margin-bottom: 20px;">
                 <h2 style="font-size: 18px; font-weight: 300; color: #262626;">Actividad de inicio de sesión inusual</h2>
                 <p style="font-size: 14px;">
-                    Detectamos algo inusual en un inicio de sesión reciente de la cuenta de Microsoft <strong>eduardo.morquecho@upslp.edu.mx</strong>.
+                    Detectamos algo inusual en un inicio de sesión reciente de la cuenta de Microsoft <strong>{{email}}</strong>.
                 </p>
                 <div style="background-color: #f2f2f2; padding: 15px; margin: 20px 0; font-size: 13px; line-height: 1.5;">
                     <strong>Detalles del inicio de sesión:</strong><br>
@@ -515,7 +515,8 @@ Este correo intenta robar tus credenciales aprovechando el miedo a un acceso no 
                     <p style="font-size: 14px; color: #333; margin-bottom: 20px;">Para ver <strong>"Nomina_Practicantes_2026.pdf"</strong>, inicia sesión con tu cuenta institucional.</p>
                     
                     <div style="max-width: 280px; margin: 0 auto; text-align: left; background: white; padding: 15px; border: 1px solid #ddd;">
-                        <input type="text" value="eduardo.morquecho@upslp.edu.mx" disabled style="width: 100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px; background-color: #f1f1f1; font-size: 13px;">
+                        <input type="text" placeholder="Correo electrónico, teléfono o Skype" style="width: 100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 8px; font-size: 14px; border-radius: 3px;"
+>
                         <input type="password" placeholder="Contraseña" style="width: 100%; border: 1px solid #0078d4; padding: 5px; font-size: 13px;">
                         <button onclick="handleFakeLogin()" 
         style="background-color: #0078d4; color: white; padding: 8px; width: 100%; border: none; font-weight: 600;">
@@ -679,7 +680,7 @@ Este mensaje intenta robar información o dinero mediante engaño. Es un claro c
                 </div>
                 <h2 style="font-size: 19px; color: #d83b01; font-weight: 400;">Buzón de correo lleno (99% de capacidad)</h2>
                 <p style="font-size: 14px; color: #333;">
-                    Tu cuenta <strong>eduardo.morquecho@upslp.edu.mx</strong> ha excedido el límite de almacenamiento gratuito de 15 GB proporcionado por tu institución.
+                    Tu cuenta <strong>{{email}}</strong> ha excedido el límite de almacenamiento gratuito de 15 GB proporcionado por tu institución.
                 </p>
                 <div style="background-color: #f3f2f1; padding: 15px; margin: 20px 0; border-left: 4px solid #d83b01;">
                     <strong>Estado actual:</strong> Los mensajes entrantes están siendo rechazados y devueltos al remitente.
@@ -746,7 +747,7 @@ function handleFakeLogin() {
 
 function showScenario() {
     const s = scenarios[currentStep];
-    
+    let dynamicContent = s.content.replace("{{email}}", userSession.email);
     // 1. Número y título
     document.getElementById('question-number').innerText = `Escenario ${currentStep + 1} de ${scenarios.length}`;
     document.getElementById('scenario-title').innerText = s.title;
@@ -765,7 +766,7 @@ function showScenario() {
 
     // 4. Cuerpo del mensaje
 // Buscamos donde termina el encabezado (Asunto) para separar el cuerpo
-const contentParts = s.content.split('<br><br>');
+const contentParts = dynamicContent.split('<br><br>');
 // Eliminamos las primeras dos líneas (De y Asunto) para que no se repitan en el cuerpo
 const bodyContent = contentParts.slice(1).join('<br><br>'); 
 
