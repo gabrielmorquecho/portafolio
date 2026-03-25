@@ -889,18 +889,18 @@ function nextQuestion() {
         finishQuiz();
     }
 }
-
 async function finishQuiz() {
     const tiempoTotal = scenarioTimes.reduce((a, b) => a + b.duration, 0); 
+    // Buscamos el objeto con la duración máxima en el array scenarioTimes
     const slowest = scenarioTimes.reduce((prev, curr) => (prev.duration > curr.duration) ? prev : curr);
 
-    // Preparamos el objeto para Firebase incluyendo 'points'
     const userData = {
         name: userSession.name,
         email: userSession.email,
-        score: score,           // Aciertos (ej. 8/10)
-        points: totalPoints,    // Puntos totales (ej. 950) - ESTO DESEMPATA
+        score: score,
+        points: totalPoints,
         slowestScenario: slowest.scenario,
+        slowestDuration: slowest.duration.toFixed(2), // Guardamos también cuánto tardó
         totalTime: tiempoTotal.toFixed(2),
         timestamp: Date.now()
     };
@@ -908,8 +908,8 @@ async function finishQuiz() {
     try {
         await db.ref('ranking').push(userData);
 
-        // MODIFICACIÓN AQUÍ: Ordenamos por 'points' para el desempate
-        db.ref('ranking').orderByChild('points').limitToLast(5).once('value', (snapshot) => {
+        // 1. Quitamos .limitToLast(5) para obtener la tabla completa
+        db.ref('ranking').orderByChild('points').once('value', (snapshot) => {
             let rankingHtml = `
                 <table class="table table-hover mt-4">
                     <thead class="table-dark">
@@ -920,8 +920,8 @@ async function finishQuiz() {
             let players = [];
             snapshot.forEach(child => { players.push(child.val()); });
             
+            // 2. Invertimos para que el puntaje más alto salga arriba
             players.reverse().forEach((p, index) => {
-                // Mostramos tanto aciertos como puntos para que se vea la diferencia
                 rankingHtml += `
                     <tr>
                         <td>${index + 1}</td>
@@ -932,8 +932,6 @@ async function finishQuiz() {
             });
             rankingHtml += `</tbody></table>`;
 
-            // ... resto de tu código para actualizar el quizContainer.innerHTML ...
-            // TIP: Asegúrate de mostrar totalPoints en el resumen final también
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
                 <div class="text-center p-5 shadow rounded-4 bg-white border-top border-primary border-5">
@@ -941,10 +939,20 @@ async function finishQuiz() {
                     <p class="lead">Buen trabajo, <strong>${userSession.name}</strong></p>
                     <div class="display-4 fw-bold text-dark mb-1">${totalPoints} pts</div>
                     <p class="text-muted">Lograste ${score} de ${scenarios.length} aciertos</p>
+                    
+                    <!-- NUEVA SECCIÓN: ESCENARIO MÁS LENTO -->
+                    <div class="alert alert-warning border-0 shadow-sm my-4">
+                        <i class="bi bi-hourglass-split"></i> 
+                        El escenario donde más tardaste fue: <br>
+                        <strong>"${slowest.scenario}"</strong> con <strong>${slowest.duration.toFixed(1)} segundos</strong>.
+                    </div>
+
                     <hr>
-                    <h4 class="mb-3">🏆 Hall of Fame (Top 5 por Puntos)</h4>
-                    ${rankingHtml}
-                    <button class="btn btn-primary mt-3 rounded-pill" onclick="location.reload()">Reiniciar</button>
+                    <h4 class="mb-3">🏆 Hall of Fame (Ranking Completo)</h4>
+                    <div class="table-responsive">
+                        ${rankingHtml}
+                    </div>
+                    <button class="btn btn-primary mt-3 rounded-pill px-5" onclick="location.reload()">Reiniciar Quiz</button>
                 </div>
             `;
         });
@@ -952,6 +960,7 @@ async function finishQuiz() {
         console.error("Error al finalizar:", error);
     }
 }
+
 
 </script>
 
