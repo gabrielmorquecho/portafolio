@@ -176,48 +176,38 @@
             </section>
 
             <!-- ── Certificates list ── -->
-            <section class="py-5">
-                <div class="container px-5">
+ <section class="py-5">
+    <div class="container px-5">
 
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 1 — Introduction to Cybersecurity
-                         ════════════════════════════════ -->
-                    <div class="card cert-card shadow mb-5">
-                        <div class="d-flex">
+        <div class="accordion" id="accordionCertificados">
 
-                            <!-- Accent stripe -->
-                            <div class="cert-stripe"></div>
-
-                            <!-- Main content -->
-                            <div class="flex-grow-1 p-4 p-md-5">
-
-                                <!-- Header row -->
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">1</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">Introducción a la Ciberseguridad</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>24 Mar 2026
-                                            </span>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">
+            <div class="card cert-card shadow mb-4 border-0">
+                <div class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed bg-white p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="cert-number">1</div>
+                            <div>
+                                <h2 class="fw-bolder mb-1 fs-5 text-dark">Introducción a la Ciberseguridad</h2>
+                                <div class="cert-meta d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">Cisco Networking Academy</span>
+                                    <span class="badge bg-success bg-opacity-10 text-success">24 Mar 2026</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
                                                 <i class="bi bi-mortarboard me-1"></i>UPSLP
                                             </span>
-                                        </div>
-                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
 
-                                <hr class="cert-divider">
-
-                                <!-- Reseña -->
-                                <h5 class="fw-bold mb-2">
-                                    <i class="bi bi-journal-text text-primary me-2"></i>Reseña
-                                </h5>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionCertificados">
+                    <div class="accordion-body p-0 border-top">
+                        <div class="d-flex">
+                            <div class="cert-stripe"></div>
+                            <div class="flex-grow-1 p-4 p-md-5">
+                                <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
                                 <p class="cert-resena" style="text-align: justify;">
-                                    <!-- ✏️ SUSTITUIR con tu reseña personal (~250 palabras) -->
+                                   
                                     El curso <em>Introducción a la Ciberseguridad</em> representó mi primer acercamiento formal al mundo de la ciberseguridad como una disciplina profesional. A lo largo del programa aprendí sobre el panorama actual de amenazas, entendiendo cómo evolucionan los ciberataques y el impacto que pueden tener en personas, empresas y gobiernos a nivel global.
                                 </p>
                                 <p class="cert-resena" style="text-align: justify;">
@@ -226,82 +216,48 @@
                                 <p class="cert-resena mb-0" style="text-align: justify;">
                                     Este certificado representa el inicio de mi camino para convertirme en Analista Junior de Ciberseguridad. Además de confirmar mi interés por esta especialidad, me motivó a seguir aprendiendo sobre áreas como pentesting, análisis forense y administración de redes seguras. Recomiendo este curso a cualquier estudiante de TI que quiera construir bases sólidas antes de profundizar en temas más avanzados.
                                 </p>
-
                                 <hr class="cert-divider">
-
-                                <!-- Actions row -->
                                 <div class="d-flex flex-wrap gap-3 align-items-center">
-
-                                    <!-- PDF preview button -->
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert1">
+                                    <button class="btn btn-outline-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCert1">
                                         <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
                                     </button>
-
-                                    <!-- Download button — apunta al PDF de tu proyecto -->
-                                    <a href="Actividades/Introduction_to_Cybersecurity_certificate_175805-upslp-edu-mx_f41e258a-91b6-4ef4-8636-1e85ecd3ffd1.pdf"
-                                       download
-                                       class="btn btn-primary rounded-pill px-4">
+                                    <a href="Actividades/Introduction_to_Cybersecurity_certificate_175805-upslp-edu-mx_f41e258a-91b6-4ef4-8636-1e85ecd3ffd1.pdf" download class="btn btn-primary rounded-pill px-4">
                                         <i class="bi bi-download me-2"></i>Descargar PDF
                                     </a>
                                 </div>
-                            </div><!-- /main content -->
-
-                            <!-- Badge column -->
-                            <div class="cert-badge-col d-none d-lg-flex">
-                                <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">
-                                    Insignia Digital
-                                </p>
-                                <!-- Credly badge embed -->
-                                <div data-iframe-width="150"
-                                     data-iframe-height="270"
-                                     data-share-badge-id="1e1f7293-ef2e-4c75-b632-31a0977685c5"
-                                     data-share-badge-host="https://www.credly.com">
-                                </div>
                             </div>
-
-                        </div><!-- /d-flex -->
-
-                        <!-- Mobile badge (visible only on small screens) -->
-                        <div class="d-lg-none text-center py-4 border-top">
-                            <p class="text-muted small fw-semibold mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">
-                                Insignia Digital
-                            </p>
-                            <div data-iframe-width="150"
-                                 data-iframe-height="270"
-                                 data-share-badge-id="1e1f7293-ef2e-4c75-b632-31a0977685c5"
-                                 data-share-badge-host="https://www.credly.com">
+                            <div class="cert-badge-col d-none d-lg-flex p-4 justify-content-center align-items-center flex-column">
+                                <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1e1f7293-ef2e-4c75-b632-31a0977685c5" data-share-badge-host="https://www.credly.com"></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                    </div><!-- /card cert 1 -->
-
-
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 2 — (plantilla para agregar después)
-                         ════════════════════════════════-->
-                    <div class="card cert-card shadow mb-5">
+            <div class="card cert-card shadow mb-4 border-0">
+                <div class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed bg-white p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="cert-number">2</div>
+                            <div>
+                                <h2 class="fw-bolder mb-1 fs-5 text-dark">Conceptos Básicos De Redes</h2>
+                                <div class="cert-meta d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">Cisco Networking Academy</span>
+                                    <span class="badge bg-success bg-opacity-10 text-success">20 Abr 2026</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
+                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionCertificados">
+                    <div class="accordion-body p-0 border-top">
                         <div class="d-flex">
                             <div class="cert-stripe"></div>
                             <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">2</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">Conceptos Básicos De Redes</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>20 Abr 2026
-                                            </span>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">
-                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
                                 <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
                                 <p class="cert-resena" style="text-align: justify;">
                                     
@@ -315,51 +271,48 @@
                                 </p>
                                 <hr class="cert-divider">
                                 <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert2">
+                                    <button class="btn btn-outline-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCert2">
                                         <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
                                     </button>
-                                    <a href="Actividades/Networking_Basics_certificate_175805-upslp-edu-mx_70c82852-2b44-4c3c-9ae0-147030973ce0.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
+                                    <a href="Actividades/Networking_Basics_certificate_175805-upslp-edu-mx_70c82852-2b44-4c3c-9ae0-147030973ce0.pdf" download class="btn btn-primary rounded-pill px-4">
                                         <i class="bi bi-download me-2"></i>Descargar PDF
                                     </a>
                                 </div>
                             </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
+                            <div class="cert-badge-col d-none d-lg-flex p-4 justify-content-center align-items-center flex-column">
                                 <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="71a13be3-119a-48f3-8b50-eb0c6375b373" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="71a13be3-119a-48f3-8b50-eb0c6375b373" data-share-badge-host="https://www.credly.com"></div>
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+            </div>
 
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 3 — (plantilla para agregar después)
-                         ════════════════════════════════-->
-                    <div class="card cert-card shadow mb-5">
+            <div class="card cert-card shadow mb-4 border-0">
+                <div class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed bg-white p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="cert-number">3</div>
+                            <div>
+                                <h2 class="fw-bolder mb-1 fs-5 text-dark">Dispositivos de Red y Configuración Inicial</h2>
+                                <div class="cert-meta d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">Cisco Networking Academy</span>
+                                    <span class="badge bg-success bg-opacity-10 text-success">20 Abr 2026</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
+                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionCertificados">
+                    <div class="accordion-body p-0 border-top">
                         <div class="d-flex">
                             <div class="cert-stripe"></div>
                             <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">3</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">Dispositivos de Red y Configuración Inicial</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>20 ABR 2026
-                                            </span>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">
-                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
                                 <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
-                                <p class="cert-resena" style="text-align: justify;">
+                               <p class="cert-resena" style="text-align: justify;">
                                    
                                     El curso <em>Dispositivos de Red y Configuración Inicial</em> de Cisco Networking Academy marcó mi transición de la teoría de redes hacia la práctica con entornos de hardware reales y simulados. Esta etapa fue muy importante en mi formación, ya que la correcta configuración y protección de switches y routers representa una de las primeras líneas de defensa dentro de cualquier infraestructura de red.
                                 </p>
@@ -371,50 +324,46 @@
                                 </p>
                                 <hr class="cert-divider">
                                 <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert3">
+                                    <button class="btn btn-outline-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCert3">
                                         <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
                                     </button>
-                                    <a href="Actividades/Networking_Devices_and_Initial_Configuration_certificate_175805-upslp-edu-mx_804e5fbc-6333-4a09-8e60-bd75d38bae12.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
+                                    <a href="Actividades/Networking_Devices_and_Initial_Configuration_certificate_175805-upslp-edu-mx_804e5fbc-6333-4a09-8e60-bd75d38bae12.pdf" download class="btn btn-primary rounded-pill px-4">
                                         <i class="bi bi-download me-2"></i>Descargar PDF
                                     </a>
                                 </div>
                             </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
+                            <div class="cert-badge-col d-none d-lg-flex p-4 justify-content-center align-items-center flex-column">
                                 <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4b260805-c9eb-4021-b9c2-7e8202742329" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4b260805-c9eb-4021-b9c2-7e8202742329" data-share-badge-host="https://www.credly.com"></div>
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+            </div>
 
-
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 4 — 
-                         ════════════════════════════════-->
-                    <div class="card cert-card shadow mb-5">
+            <div class="card cert-card shadow mb-4 border-0">
+                <div class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed bg-white p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="cert-number">4</div>
+                            <div>
+                                <h2 class="fw-bolder mb-1 fs-5 text-dark">Gestión de Amenazas Cibernéticas</h2>
+                                <div class="cert-meta d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">Cisco Networking Academy</span>
+                                    <span class="badge bg-success bg-opacity-10 text-success">19 May 2026</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
+                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionCertificados">
+                    <div class="accordion-body p-0 border-top">
                         <div class="d-flex">
                             <div class="cert-stripe"></div>
                             <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">4</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">Gestión de Amenazas Cibernéticas</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>19 May 2026
-                                            </span>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">
-                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
                                 <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
                                 <p class="cert-resena" style="text-align: justify;">
                                    
@@ -428,50 +377,48 @@
                                 </p>
                                 <hr class="cert-divider">
                                 <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert4">
+                                    <button class="btn btn-outline-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCert4">
                                         <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
                                     </button>
-                                    <a href="Actividades/Cyber_Threat_Management_certificate_175805-upslp-edu-mx_17a1b150-cfe1-4d2c-a49a-3c55db31f5fe.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
+                                    <a href="Actividades/Cyber_Threat_Management_certificate_175805-cfe1-4d2c-a49a-3c55db31f5fe.pdf" download class="btn btn-primary rounded-pill px-4">
                                         <i class="bi bi-download me-2"></i>Descargar PDF
                                     </a>
                                 </div>
                             </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
+                            <div class="cert-badge-col d-none d-lg-flex p-4 justify-content-center align-items-center flex-column">
                                 <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="432cc8ae-e3f5-4091-9112-126bef217bca" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="432cc8ae-e3f5-4091-9112-126bef217bca" data-share-badge-host="https://www.credly.com"></div>
                             </div>
                         </div>
                     </div>
-                
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 6 — 
-                         ════════════════════════════════-->
-                    <div class="card cert-card shadow mb-5">
+                </div>
+            </div>
+
+            <div class="card cert-card shadow mb-4 border-0">
+                <div class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed bg-white p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="cert-number">5</div>
+                            <div>
+                                <h2 class="fw-bolder mb-1 fs-5 text-dark">Carrera Profesional de Analista Junior en Ciberseguridad</h2>
+                                <div class="cert-meta d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">Cisco Networking Academy</span>
+                                    <span class="badge bg-success bg-opacity-10 text-success">20 Abr 2026</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
+                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionCertificados">
+                    <div class="accordion-body p-0 border-top">
                         <div class="d-flex">
                             <div class="cert-stripe"></div>
                             <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">5</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">Carrera Profesional de Analista Junior en Ciberseguridad</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>20 Abr 2026
-                                            </span>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">
-                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
                                 <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
-                                <p class="cert-resena" style="text-align: justify;">
+                               <p class="cert-resena" style="text-align: justify;">
                                    
                                     El curso <em>Carrera Profesional de Analista Junior en Ciberseguridad</em> representó una etapa muy importante en mi formación, ya que integró los conocimientos técnicos que había desarrollado previamente en redes, sistemas operativos, análisis de amenazas y seguridad informática. A diferencia de otros cursos más enfocados en temas específicos, este programa tuvo un enfoque más completo y orientado al trabajo real que se realiza dentro de un Centro de Operaciones de Seguridad (SOC). Cabe destacar que este aprendizaje fue desarrollado principalmente en clase junto con nuestro profesor, complementando la formación obtenida en Cisco Networking Academy.
                                 </p>
@@ -483,48 +430,46 @@
                                 </p>
                                 <hr class="cert-divider">
                                 <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert6">
+                                    <button class="btn btn-outline-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCert6">
                                         <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
                                     </button>
-                                    <a href="Actividades/Junior_Cybersecurity_Analyst_Career_Path_certificate_175805-upslp-edu-mx_e7f58058-0e2b-429b-8a15-befdead6d552.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
+                                    <a href="Actividades/Junior_Cybersecurity_Analyst_Career_Path_certificate_175805-upslp-edu-mx_e7f58058-0e2b-429b-8a15-befdead6d552.pdf" download class="btn btn-primary rounded-pill px-4">
                                         <i class="bi bi-download me-2"></i>Descargar PDF
                                     </a>
                                 </div>
                             </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
+                            <div class="cert-badge-col d-none d-lg-flex p-4 justify-content-center align-items-center flex-column">
                                 <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                               <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2e855322-427f-490a-98a9-217299d5ff45" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2e855322-427f-490a-98a9-217299d5ff45" data-share-badge-host="https://www.credly.com"></div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 5 — (plantilla para agregar después)
-                         ════════════════════════════════-->
-                    <div class="card cert-card shadow mb-5">
+            <div class="card cert-card shadow mb-4 border-0">
+                <div class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed bg-white p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="cert-number">6</div>
+                            <div>
+                                <h2 class="fw-bolder mb-1 fs-5 text-dark">Hacker Ético</h2>
+                                <div class="cert-meta d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">Cisco Networking Academy</span>
+                                    <span class="badge bg-success bg-opacity-10 text-success">19 May 2026</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">
+                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionCertificados">
+                    <div class="accordion-body p-0 border-top">
                         <div class="d-flex">
                             <div class="cert-stripe"></div>
                             <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">6</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">Hacker Ético</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>19 May 2026
-                                            </span>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">
-                                                <i class="bi bi-mortarboard me-1"></i>UPSLP
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
                                 <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
                                 <p class="cert-resena" style="text-align: justify;">
                                     
@@ -538,114 +483,24 @@
                                 </p>
                                 <hr class="cert-divider">
                                 <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert5">
+                                    <button class="btn btn-outline-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCert5">
                                         <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
                                     </button>
-                                    <a href="Actividades/Ethical_Hacker_certificate_175805-upslp-edu-mx_b62199b2-20ea-4363-bd52-fa1abce0e8d2.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
+                                    <a href="Actividades/Ethical_Hacker_certificate_175805-upslp-edu-mx_b62199b2-20ea-4363-bd52-fa1abce0e8d2.pdf" download class="btn btn-primary rounded-pill px-4">
                                         <i class="bi bi-download me-2"></i>Descargar PDF
                                     </a>
                                 </div>
                             </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
+                            <div class="cert-badge-col d-none d-lg-flex p-4 justify-content-center align-items-center flex-column">
                                 <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="96d4e1b1-49c2-49bc-9e31-807e960cb4c7" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="96d4e1b1-49c2-49bc-9e31-807e960cb4c7" data-share-badge-host="https://www.credly.com"></div>
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+            </div>
 
-<!-- ════════════════════════════════
-                         CERTIFICADO 6 — (plantilla para agregar después)
-                         ════════════════════════════════
-                    <div class="card cert-card shadow mb-5">
-                        <div class="d-flex">
-                            <div class="cert-stripe"></div>
-                            <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">2</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">TÍTULO DEL CERTIFICADO</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>FECHA
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
-                                <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
-                                <p class="cert-resena">TU RESEÑA AQUÍ (~250 palabras)...</p>
-                                <hr class="cert-divider">
-                                <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert2">
-                                        <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
-                                    </button>
-                                    <a href="Actividades/ARCHIVO.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
-                                        <i class="bi bi-download me-2"></i>Descargar PDF
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
-                                <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                                BADGE EMBED AQUÍ
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-                    <!-- ════════════════════════════════
-                         CERTIFICADO 7 — (plantilla para agregar después)
-                         ════════════════════════════════
-                    <div class="card cert-card shadow mb-5">
-                        <div class="d-flex">
-                            <div class="cert-stripe"></div>
-                            <div class="flex-grow-1 p-4 p-md-5">
-                                <div class="d-flex align-items-start gap-3 mb-3">
-                                    <div class="cert-number">2</div>
-                                    <div>
-                                        <h2 class="fw-bolder mb-1">TÍTULO DEL CERTIFICADO</h2>
-                                        <div class="cert-meta d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">
-                                                <i class="bi bi-building me-1"></i>Cisco Networking Academy
-                                            </span>
-                                            <span class="badge bg-success bg-opacity-10 text-success">
-                                                <i class="bi bi-calendar-check me-1"></i>FECHA
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="cert-divider">
-                                <h5 class="fw-bold mb-2"><i class="bi bi-journal-text text-primary me-2"></i>Reseña</h5>
-                                <p class="cert-resena">TU RESEÑA AQUÍ (~250 palabras)...</p>
-                                <hr class="cert-divider">
-                                <div class="d-flex flex-wrap gap-3">
-                                    <button class="btn btn-outline-primary rounded-pill px-4"
-                                            data-bs-toggle="modal" data-bs-target="#modalCert2">
-                                        <i class="bi bi-file-earmark-pdf-fill me-2"></i>Ver Certificado
-                                    </button>
-                                    <a href="Actividades/ARCHIVO.pdf" download
-                                       class="btn btn-primary rounded-pill px-4">
-                                        <i class="bi bi-download me-2"></i>Descargar PDF
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="cert-badge-col d-none d-lg-flex">
-                                <p class="text-muted small fw-semibold text-center mb-3" style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;">Insignia Digital</p>
-                                BADGE EMBED AQUÍ
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-                </div><!-- /container -->
-            </section>
+        </div></div></section>
 
         </main>
 
@@ -854,3 +709,4 @@
         <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
     </body>
 </html>
+
