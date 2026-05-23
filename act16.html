@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Actividad 16</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <style>
+          /* ── Shared palette ── */
+          :root {
+            --blue:   #1a638b;
+            --blue2:  #0d4a6b;
+            --red:    #c0392b;
+            --green:  #1e7e34;
+            --amber:  #d97706;
+            --purple: #6a1aab;
+          }
+
+          /* ── Policy header (reused from other acts) ── */
+          .policy-header {
+            background-color: var(--blue);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+          }
+
+          /* ── Reflection box ── */
+          .reflection-box-blue {
+            background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+            border-top: 5px solid var(--blue);
+          }
+          .quote-icon-blue { font-size: 2rem; color: var(--blue); opacity: 0.3; }
+
+          /* ── Scenario hero banners ── */
+          .scenario-banner {
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+          }
+          .scenario-banner::before {
+            content: '';
+            position: absolute;
+            right: -40px; top: -40px;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+          }
+          .scenario-banner::after {
+            content: '';
+            position: absolute;
+            right: 40px; bottom: -60px;
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+          }
+          .banner-1 { background: linear-gradient(135deg, #1a638b 0%, #0d4a6b 100%); }
+          .banner-2 { background: linear-gradient(135deg, #c0392b 0%, #922b21 100%); }
+          .banner-3 { background: linear-gradient(135deg, #6a1aab 0%, #4a0e80 100%); }
+
+          .scenario-num {
+            font-size: 4rem;
+            font-weight: 900;
+            opacity: 0.15;
+            position: absolute;
+            right: 1.5rem; top: 0.5rem;
+            line-height: 1;
+          }
+
+          /* ── Question accordion items ── */
+          .q-block {
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            background: white;
+          }
+          .q-block .q-header {
+            padding: 0.9rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: default;
+          }
+          .q-block .q-body { padding: 0 1.25rem 1rem 1.25rem; }
+
+          .q-num {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.72rem; font-weight: 800;
+            flex-shrink: 0;
+            color: white;
+          }
+
+          /* ── Ethics trio ── */
+          .ethics-card {
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            height: 100%;
+            border-top: 4px solid;
+          }
+          .ethics-card.util  { border-color: var(--amber);  background: #fffbeb; }
+          .ethics-card.facts { border-color: var(--blue);   background: #f0f7ff; }
+          .ethics-card.common{ border-color: var(--green);  background: #f0faf3; }
+
+          /* ── Commandments grid ── */
+          .cmd-card {
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+            font-size: 0.82rem;
+            border-left: 4px solid;
+          }
+          .cmd-card.violated { border-color: var(--red);   background: #fff5f5; }
+          .cmd-card.respected{ border-color: var(--green); background: #f0faf3; }
+
+          /* ── Crime type tags ── */
+          .crime-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            border-radius: 50px;
+            padding: 5px 14px;
+            font-size: 0.78rem; font-weight: 600;
+            margin: 3px;
+          }
+          .crime-primary   { background: var(--red);    color: white; }
+          .crime-secondary { background: #e9ecef; color: #444; }
+
+          /* ── Side-by-side verdict box ── */
+          .verdict-box {
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            height: 100%;
+          }
+          .verdict-box.do-it    { background:#fff5f5; border:2px solid #e74c3c; }
+          .verdict-box.dont-do  { background:#f0faf3; border:2px solid #1e7e34; }
+
+          /* ── Timeline (specialist action) ── */
+          .action-step {
+            display: flex; gap: 1rem; align-items: flex-start;
+            margin-bottom: 0.85rem;
+          }
+          .action-dot {
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.78rem; font-weight: 800;
+            color: white; flex-shrink: 0;
+            margin-top: 2px;
+          }
+
+          /* ── Divider ── */
+          .section-divider {
+            border: none;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), transparent);
+            border-radius: 2px;
+            margin: 2.5rem 0;
+          }
+
+          /* ── Article-style header bar ── */
+          .article-label {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px;
+            color: var(--blue);
+          }
+        </style>
+    </head>
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Ciberseguridad</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="projects.html">Actividades</a></li>
+                            <li class="nav-item"><a class="nav-link" href="certifications.html">Certificaciones</a></li>
+                            <li class="nav-item"><a class="nav-link" href="act08.html">ROAD TO HALL OF FAME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="py-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+                        <div class="container my-5">
+
+                            <!-- Title -->
+                            <h1 class="display-5 fw-bolder mb-0" style="text-align:center;">
+                                <span class="text-gradient d-inline">ACTIVIDAD 16</span>
+                            </h1>
+
+                            <!-- Download -->
+                            <div class="text-center my-5">
+                                <a href="Actividades/act16-Equipo4.pdf" download="act16-Equipo4.pdf" class="btn btn-lg shadow-sm px-4 py-3" style="background-color:#1a638b;color:white;border-radius:50px;font-weight:600;border:none;">
+                                    <i class="bi bi-file-earmark-pdf-fill me-2"></i> Descargar Reporte (PDF)
+                                </a>
+                            </div>
+
+                            <!-- Intro card -->
+                            <div class="card shadow rounded-4 border-0 mb-4">
+                                <div class="card-body p-4 p-md-5">
+                                    <h2 class="card-title-custom mb-3">Dilemas Éticos en Ciberseguridad</h2>
+                                    <p class="text-dark" style="text-align:justify;">
+                                        Los especialistas en ciberseguridad tienen acceso privilegiado a sistemas, datos e infraestructuras críticas. Este poder técnico inevitablemente genera <strong>dilemas éticos</strong> donde la decisión correcta no siempre es la más sencilla ni la más rentable. En esta actividad se analizan tres escenarios reales aplicando marcos éticos formales, los mandamientos de ética informática y la clasificación jurídica de los delitos involucrados.
+                                    </p>
+
+                                    <!-- Overview cards -->
+                                    <div class="row g-3 mt-2">
+                                        <div class="col-md-4">
+                                            <div class="p-3 rounded-3 text-center h-100" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);">
+                                                <i class="bi bi-shield-lock-fill fs-2 mb-2" style="color:var(--blue);"></i>
+                                                <p class="small fw-bold mb-1" style="color:var(--blue);">Escenario 1</p>
+                                                <p class="small mb-0 text-dark">Acceso no autorizado interno: abuso de privilegios sobre el correo del director.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="p-3 rounded-3 text-center h-100" style="background:linear-gradient(135deg,#ffebee,#ffcdd2);">
+                                                <i class="bi bi-bug-fill fs-2 mb-2" style="color:var(--red);"></i>
+                                                <p class="small fw-bold mb-1" style="color:var(--red);">Escenario 2</p>
+                                                <p class="small mb-0 text-dark">Vulnerabilidad crítica no reportada: tentación de explotar un sistema financiero.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="p-3 rounded-3 text-center h-100" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);">
+                                                <i class="bi bi-person-lines-fill fs-2 mb-2" style="color:var(--purple);"></i>
+                                                <p class="small fw-bold mb-1" style="color:var(--purple);">Escenario 3</p>
+                                                <p class="small mb-0 text-dark">Uso de OSINT para presión psicológica ordenada por un superior.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ══════════════════════════════════════
+                                 ESCENARIO 1
+                            ══════════════════════════════════════ -->
+                            <div class="card shadow rounded-4 border-0 mb-4">
+                                <div class="card-body p-0">
+
+                                    <!-- Banner -->
+                                    <div class="scenario-banner banner-1 m-3 m-md-4">
+                                        <span class="scenario-num">01</span>
+                                        <span class="article-label" style="color:rgba(255,255,255,0.7);">Escenario</span>
+                                        <h3 class="fw-bold mb-1 mt-1">Acceso No Autorizado Interno</h3>
+                                        <p class="small mb-0" style="opacity:0.85;">Un compañero accede a correos privados del director general argumentando "detección de fugas".</p>
+                                    </div>
+
+                                    <div class="px-4 pb-4 px-md-5 pb-md-5">
+
+                                        <!-- Q1 Dilema -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--blue);">1</span>
+                                                <span style="color:var(--blue);">¿Cuál es el dilema ético?</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <p class="small text-dark mb-0" style="text-align:justify;">El compañero del área usa de forma poco profesional sus privilegios, invadiendo espacios informáticos personales como el correo del director general. Aunque el fin parezca legítimo, el medio representa un <strong>abuso de privilegios</strong> que compromete la confianza institucional y los derechos individuales dentro de la organización.</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q2 Acción -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--blue);">2</span>
+                                                <span style="color:var(--blue);">¿Qué harías como especialista?</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--blue);">A</div>
+                                                    <p class="small mb-0"><strong>Acta administrativa</strong> correspondiente al acto realizado, documentando el hallazgo en los logs.</p>
+                                                </div>
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--blue);">B</div>
+                                                    <p class="small mb-0"><strong>Capacitación</strong> sobre el acuerdo de confidencialidad vigente en la organización.</p>
+                                                </div>
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--blue);">C</div>
+                                                    <p class="small mb-0"><strong>Restricción de acceso</strong>: prohibición directa a estos accesos sin autorización previa del personal a revisar.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q3 Enfoques éticos -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--blue);">3</span>
+                                                <span style="color:var(--blue);">Justificación ética</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="row g-3">
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card util">
+                                                            <p class="small fw-bold mb-1" style="color:var(--amber);"><i class="bi bi-people-fill me-1"></i>Ética Utilitarista</p>
+                                                            <p class="small mb-0">La sanción y la prohibición promueven la confianza general del personal, protegiendo el mayor bien colectivo a través del buen uso de privilegios técnicos.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card facts">
+                                                            <p class="small fw-bold mb-1" style="color:var(--blue);"><i class="bi bi-clipboard2-check-fill me-1"></i>Enfoque de Hechos</p>
+                                                            <p class="small mb-0">Hubo acceso no autorizado documentado en logs, sin orden formal ni procedimiento de auditoría. Los hechos no cambian por la motivación: es una violación objetiva de protocolos.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card common">
+                                                            <p class="small fw-bold mb-1" style="color:var(--green);"><i class="bi bi-globe2 me-1"></i>Bien Común</p>
+                                                            <p class="small mb-0">Permitir accesos bajo justificaciones personales erosiona la confianza en el área de ciberseguridad. Los canales formales y auditables benefician a toda la organización.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q4 Mandamientos -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--blue);">4</span>
+                                                <span style="color:var(--blue);">Mandamientos de ética informática</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="row g-2">
+                                                    <div class="col-12"><p class="small fw-bold mb-1 text-danger"><i class="bi bi-x-circle-fill me-1"></i>Violados</p></div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 3</span>
+                                                            <p class="mb-0">"No fisgonees en los archivos informáticos de otras personas." Accedió a correos privados sin autorización.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 7</span>
+                                                            <p class="mb-0">"No uses recursos informáticos de otras personas sin autorización." Utilizó privilegios fuera de su alcance permitido.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 10</span>
+                                                            <p class="mb-0">"Siempre muestra consideración y respeto hacia tus compañeros." Violó la privacidad del director.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 mt-2"><p class="small fw-bold mb-1 text-success"><i class="bi bi-check-circle-fill me-1"></i>Respetados (en intención)</p></div>
+                                                    <div class="col-md-6">
+                                                        <div class="cmd-card respected">
+                                                            <span class="badge bg-success mb-1">Mandamiento 9</span>
+                                                            <p class="mb-0">En su intención original, el compañero afirmó pensar en las consecuencias para la empresa, aunque el método fue inapropiado.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q5 Clasificación -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--blue);">5</span>
+                                                <span style="color:var(--blue);">Clasificación del delito</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="mb-2">
+                                                    <span class="crime-tag crime-primary"><i class="bi bi-exclamation-triangle-fill"></i>Delito Informático</span>
+                                                    <span class="crime-tag crime-secondary">Delito asistido por computadora</span>
+                                                    <span class="crime-tag crime-secondary">Delito incidental</span>
+                                                </div>
+                                                <p class="small text-muted mb-0">El sistema informático (correo corporativo) fue el objetivo directo del acceso no autorizado. En México, esto puede encuadrarse en el <strong>Artículo 211 bis del Código Penal Federal</strong>, que sanciona el acceso sin autorización a sistemas de cómputo protegidos.</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ══════════════════════════════════════
+                                 ESCENARIO 2
+                            ══════════════════════════════════════ -->
+                            <div class="card shadow rounded-4 border-0 mb-4">
+                                <div class="card-body p-0">
+
+                                    <div class="scenario-banner banner-2 m-3 m-md-4">
+                                        <span class="scenario-num">02</span>
+                                        <span class="article-label" style="color:rgba(255,255,255,0.7);">Escenario</span>
+                                        <h3 class="fw-bold mb-1 mt-1">Vulnerabilidad Crítica No Reportada</h3>
+                                        <p class="small mb-0" style="opacity:0.85;">Durante un pentest se encuentra una falla que permite extraer dinero; el contrato aún no está firmado.</p>
+                                    </div>
+
+                                    <div class="px-4 pb-4 px-md-5 pb-md-5">
+
+                                        <!-- Verdict visual -->
+                                        <div class="row g-3 mb-3">
+                                            <div class="col-md-6">
+                                                <div class="verdict-box do-it">
+                                                    <p class="small fw-bold mb-2 text-danger"><i class="bi bi-x-circle-fill me-1"></i>Si se explota la vulnerabilidad…</p>
+                                                    <ul class="small mb-0 text-dark">
+                                                        <li>Daño económico directo al cliente y sus usuarios.</li>
+                                                        <li>Pérdida de confianza en el sistema financiero.</li>
+                                                        <li>Fraude informático tipificado en el CPF.</li>
+                                                        <li>Fin de la carrera profesional del especialista.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="verdict-box dont-do">
+                                                    <p class="small fw-bold mb-2 text-success"><i class="bi bi-check-circle-fill me-1"></i>Si se reporta responsablemente…</p>
+                                                    <ul class="small mb-0 text-dark">
+                                                        <li>Falla corregida antes de ser explotada maliciosamente.</li>
+                                                        <li>Confianza reforzada con el cliente y el sector.</li>
+                                                        <li>Cumplimiento del alcance pactado del pentest.</li>
+                                                        <li>Mayor bien para el mayor número de personas.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q1 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--red);">1</span>
+                                                <span style="color:var(--red);">¿Cuál es el dilema ético?</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <p class="small text-dark mb-0" style="text-align:justify;">La tensión se da entre la <strong>oportunidad técnica</strong> de explotar una vulnerabilidad crítica para obtener beneficio personal (aprovechando la aparente zona gris del contrato no firmado) y la <strong>responsabilidad ética</strong> del especialista de actuar con integridad, reportar el hallazgo y no causar daño. Beneficio individual inmediato vs. deber profesional hacia el cliente, los usuarios y la comunidad.</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q2 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--red);">2</span>
+                                                <span style="color:var(--red);">¿Qué harías como especialista?</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--red);">1</div>
+                                                    <p class="small mb-0"><strong>Reportar de forma inmediata y documentada</strong> al cliente, independientemente del estado del contrato.</p>
+                                                </div>
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--red);">2</div>
+                                                    <p class="small mb-0"><strong>Notificar al equipo interno</strong>: el hallazgo queda registrado con alcance y evidencia.</p>
+                                                </div>
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--red);">3</div>
+                                                    <p class="small mb-0">Si el cliente no responde con urgencia, <strong>escalar por canales de divulgación responsable</strong>.</p>
+                                                </div>
+                                                <p class="small text-muted mt-1 mb-0"><em>No explotar la vulnerabilidad no es opcional: es la única decisión ética posible.</em></p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q3 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--red);">3</span>
+                                                <span style="color:var(--red);">Justificación ética</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="row g-3">
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card util">
+                                                            <p class="small fw-bold mb-1" style="color:var(--amber);"><i class="bi bi-people-fill me-1"></i>Ética Utilitarista</p>
+                                                            <p class="small mb-0">Reportar protege al cliente, sus usuarios y la estabilidad del sector. El mayor beneficio para el mayor número resulta inequívocamente de la divulgación responsable.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card facts">
+                                                            <p class="small fw-bold mb-1" style="color:var(--blue);"><i class="bi bi-clipboard2-check-fill me-1"></i>Enfoque de Hechos</p>
+                                                            <p class="small mb-0">El acceso fue concedido exclusivamente para pruebas. La ausencia del contrato firmado no crea vacío ético. Explotar constituiría fraude informático independientemente del estado contractual.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card common">
+                                                            <p class="small fw-bold mb-1" style="color:var(--green);"><i class="bi bi-globe2 me-1"></i>Bien Común</p>
+                                                            <p class="small mb-0">Los sistemas financieros son infraestructura crítica de la que depende la sociedad. Los especialistas en seguridad deben actuar como guardianes, no como amenazas.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q4 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--red);">4</span>
+                                                <span style="color:var(--red);">Mandamientos de ética informática</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="row g-2">
+                                                    <div class="col-12"><p class="small fw-bold mb-1 text-danger"><i class="bi bi-x-circle-fill me-1"></i>Violados si se explota</p></div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 1</span>
+                                                            <p class="mb-0">"No uses la computadora para dañar a otras personas." Extraer dinero causa daño directo.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 4</span>
+                                                            <p class="mb-0">"No uses la computadora para robar." La extracción de fondos constituye robo.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 7</span>
+                                                            <p class="mb-0">"No uses recursos sin autorización." El alcance del acceso no incluía explotación.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 mt-2"><p class="small fw-bold mb-1 text-success"><i class="bi bi-check-circle-fill me-1"></i>Respetados al reportar</p></div>
+                                                    <div class="col-md-6">
+                                                        <div class="cmd-card respected">
+                                                            <span class="badge bg-success mb-1">Mandamientos 9 y 10</span>
+                                                            <p class="mb-0">Pensar en las consecuencias sociales y actuar con respeto hacia los demás, priorizando el bien colectivo sobre el beneficio individual.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q5 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--red);">5</span>
+                                                <span style="color:var(--red);">Clasificación del delito</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="mb-2">
+                                                    <span class="crime-tag crime-primary"><i class="bi bi-exclamation-triangle-fill"></i>Delito Informático Puro</span>
+                                                    <span class="crime-tag crime-secondary">Fraude mediante sistemas de cómputo</span>
+                                                </div>
+                                                <p class="small text-muted mb-0">Tipificado en el <strong>Artículo 211 bis del CPF</strong> y en la <strong>Ley Federal de Instituciones de Crédito</strong>. La explotación para extraer dinero de un sistema financiero es fraude/robo digital en su forma más directa.</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ══════════════════════════════════════
+                                 ESCENARIO 3
+                            ══════════════════════════════════════ -->
+                            <div class="card shadow rounded-4 border-0 mb-4">
+                                <div class="card-body p-0">
+
+                                    <div class="scenario-banner banner-3 m-3 m-md-4">
+                                        <span class="scenario-num">03</span>
+                                        <span class="article-label" style="color:rgba(255,255,255,0.7);">Escenario</span>
+                                        <h3 class="fw-bold mb-1 mt-1">Uso de OSINT para Presión Psicológica</h3>
+                                        <p class="small mb-0" style="opacity:0.85;">Un superior ordena usar información personal recolectada (dirección, familia, hábitos) para coaccionar a un sospechoso de fraude.</p>
+                                    </div>
+
+                                    <div class="px-4 pb-4 px-md-5 pb-md-5">
+
+                                        <!-- OSINT info graphic -->
+                                        <div class="row g-3 mb-3">
+                                            <div class="col-md-6">
+                                                <div class="p-3 rounded-3 h-100" style="background:#f3e5f5; border:2px solid #ce93d8;">
+                                                    <p class="small fw-bold mb-2" style="color:var(--purple);"><i class="bi bi-check2-circle me-1"></i>Recolección OSINT: puede ser legítima</p>
+                                                    <p class="small mb-0 text-dark">Investigar fuentes abiertas para contextualizar a un sospechoso de fraude puede ser parte de una investigación válida si sigue marcos legales y éticos.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="p-3 rounded-3 h-100" style="background:#ffebee; border:2px solid #ef9a9a;">
+                                                    <p class="small fw-bold mb-2 text-danger"><i class="bi bi-x-circle me-1"></i>Uso para coacción: ilegal y antiético</p>
+                                                    <p class="small mb-0 text-dark">Usar dirección, familia y hábitos para <em>presionar psicológicamente</em> configura objetivamente un acto de coerción, independientemente de la culpabilidad del investigado.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q1 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--purple);">1</span>
+                                                <span style="color:var(--purple);">¿Cuál es el dilema ético?</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <p class="small text-dark mb-0" style="text-align:justify;">El conflicto está entre <strong>obedecer una orden directa</strong> del superior (aparente deber institucional) y la <strong>obligación ética y legal</strong> de no usar información personal recolectada mediante OSINT para intimidar psicológicamente a una persona, aunque sea sospechosa. La recolección inicial pudo ser legítima, pero el uso ordenado representa una instrumentalización inapropiada de los datos para causar daño.</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q2 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--purple);">2</span>
+                                                <span style="color:var(--purple);">¿Qué harías como especialista?</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--purple);">1</div>
+                                                    <p class="small mb-0"><strong>Negarse a ejecutar la orden</strong>. El hecho de que el sospechoso sea culpable no suspende sus derechos fundamentales.</p>
+                                                </div>
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--purple);">2</div>
+                                                    <p class="small mb-0"><strong>Documentar formalmente</strong> la instrucción recibida del superior, con fecha, canal y contenido.</p>
+                                                </div>
+                                                <div class="action-step">
+                                                    <div class="action-dot" style="background:var(--purple);">3</div>
+                                                    <p class="small mb-0"><strong>Escalar a los canales correspondientes</strong>: área legal, compliance o instancia jerárquica superior.</p>
+                                                </div>
+                                                <p class="small text-muted mt-1 mb-0"><em>Participar en la coacción me haría copartícipe de un acto potencialmente ilegal y definitivamente antiético.</em></p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q3 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--purple);">3</span>
+                                                <span style="color:var(--purple);">Justificación ética</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="row g-3">
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card util">
+                                                            <p class="small fw-bold mb-1" style="color:var(--amber);"><i class="bi bi-people-fill me-1"></i>Ética Utilitarista</p>
+                                                            <p class="small mb-0">La presión psicológica dañaría al sospechoso, a su familia (inocentes), expone a la organización a responsabilidades legales y contamina cualquier evidencia. El mayor bien se logra siguiendo procedimientos legales.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card facts">
+                                                            <p class="small fw-bold mb-1" style="color:var(--blue);"><i class="bi bi-clipboard2-check-fill me-1"></i>Enfoque de Hechos</p>
+                                                            <p class="small mb-0">Usar datos personales (domicilio, familia, hábitos) para ejercer presión psicológica configura objetivamente un acto de coerción, violando la Ley Federal de Protección de Datos Personales y el Código Penal.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="ethics-card common">
+                                                            <p class="small fw-bold mb-1" style="color:var(--green);"><i class="bi bi-globe2 me-1"></i>Bien Común</p>
+                                                            <p class="small mb-0">Normalizar el uso de OSINT para presión psicológica sobre cualquier "sospechoso" amenaza las libertades civiles de toda la sociedad. Las herramientas de inteligencia deben operar dentro de marcos legales estrictos.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q4 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--purple);">4</span>
+                                                <span style="color:var(--purple);">Mandamientos de ética informática</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="row g-2">
+                                                    <div class="col-12"><p class="small fw-bold mb-1 text-danger"><i class="bi bi-x-circle-fill me-1"></i>Violados al ejecutar la orden</p></div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 1</span>
+                                                            <p class="mb-0">"No uses la computadora para dañar a otras personas." La presión psicológica causa daño directo a la persona y su entorno familiar.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 3</span>
+                                                            <p class="mb-0">"No fisgonees en la información personal de otros." Recopilar y usar datos con fines de intimidación excede cualquier propósito legítimo.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="cmd-card violated">
+                                                            <span class="badge bg-danger mb-1">Mandamiento 10</span>
+                                                            <p class="mb-0">"Siempre actúa con consideración y respeto hacia tus semejantes." La coacción psicológica es lo opuesto al respeto.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Q5 -->
+                                        <div class="q-block">
+                                            <div class="q-header">
+                                                <span class="q-num" style="background:var(--purple);">5</span>
+                                                <span style="color:var(--purple);">Clasificación del delito</span>
+                                            </div>
+                                            <div class="q-body">
+                                                <div class="mb-2">
+                                                    <span class="crime-tag" style="background:var(--purple);color:white;"><i class="bi bi-exclamation-triangle-fill"></i>Delito Asistido por Computadora</span>
+                                                    <span class="crime-tag crime-secondary">Coacción / Amenazas</span>
+                                                    <span class="crime-tag crime-secondary">Acoso facilitado digitalmente</span>
+                                                </div>
+                                                <p class="small text-muted mb-0">La computadora y las herramientas OSINT son el <strong>medio</strong> para cometer un delito diferente (coacción, amenazas, acoso), no el objetivo en sí. El delito subyacente es la presión psicológica, potencialmente tipificable bajo la <strong>Ley Federal de Protección de Datos Personales</strong> y el Código Penal Federal.</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ══════════════════════════════════════
+                                 COMPARATIVE TABLE
+                            ══════════════════════════════════════ -->
+                            <div class="card shadow rounded-4 border-0 mb-4">
+                                <div class="card-body p-4 p-md-5">
+                                    <h4 class="fw-bold mb-4" style="color:var(--blue);">
+                                        <i class="bi bi-table me-2"></i>Comparativa de Escenarios
+                                    </h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered align-middle shadow-sm">
+                                            <thead class="policy-header text-center">
+                                                <tr>
+                                                    <th>Escenario</th>
+                                                    <th>Tipo de Dilema</th>
+                                                    <th>Decisión Ética</th>
+                                                    <th>Clasificación</th>
+                                                    <th>Marco Legal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="small">
+                                                <tr>
+                                                    <td class="fw-bold">1 – Acceso interno</td>
+                                                    <td>Abuso de privilegios técnicos</td>
+                                                    <td>Acta + capacitación + restricción</td>
+                                                    <td><span class="badge" style="background:var(--blue);">Delito informático</span></td>
+                                                    <td>Art. 211 bis CPF</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bold">2 – Pentest crítico</td>
+                                                    <td>Beneficio personal vs. deber ético</td>
+                                                    <td>Divulgación responsable inmediata</td>
+                                                    <td><span class="badge bg-danger">Delito informático puro</span></td>
+                                                    <td>Art. 211 bis CPF + Ley LFIC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bold">3 – OSINT + coacción</td>
+                                                    <td>Obediencia jerárquica vs. ética</td>
+                                                    <td>Negarse + documentar + escalar</td>
+                                                    <td><span class="badge" style="background:var(--purple);">Delito asistido por PC</span></td>
+                                                    <td>LFPDPPP + CPF (amenazas)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reflection -->
+                            <div class="card reflection-box-blue shadow-sm border-0 rounded-4 mt-2">
+                                <div class="card-body p-4 p-md-5">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <i class="bi bi-lightbulb-fill quote-icon-blue me-3"></i>
+                                        <h3 class="fw-bold mb-0" style="color:var(--blue);">Reflexión Final: El Peso de los Privilegios</h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <p style="text-align:justify; line-height:1.7;">
+                                                Los tres escenarios comparten una constante: el especialista en ciberseguridad posee <strong>acceso técnico que va más allá de lo que cualquier persona común podría obtener</strong>. Ese privilegio no es neutral; conlleva una responsabilidad proporcional. La ética no es un añadido opcional a la competencia técnica: es el marco que determina si ese conocimiento se convierte en un bien o en un arma.
+                                            </p>
+                                            <p style="text-align:justify; line-height:1.7;">
+                                                En todos los casos, la decisión correcta implica <strong>anteponer el bien colectivo, los procedimientos formales y los derechos fundamentales</strong> por encima del beneficio personal, la orden jerárquica o la facilidad técnica. La diferencia entre un hacker ético y un criminal a menudo no es la habilidad, sino la decisión que se toma cuando nadie está mirando.
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="p-4 bg-white rounded-4 border shadow-sm">
+                                                <h6 class="fw-bold mb-3" style="color:var(--blue);">Principios Transversales:</h6>
+                                                <ul class="list-unstyled small mb-0">
+                                                    <li class="mb-3"><i class="bi bi-shield-check me-2" style="color:var(--blue);"></i><strong>Integridad:</strong> Actuar con ética independientemente de quién observe o del estado contractual.</li>
+                                                    <li class="mb-3"><i class="bi bi-shield-check me-2" style="color:var(--blue);"></i><strong>Trazabilidad:</strong> Documentar siempre las decisiones críticas para protección propia y de la organización.</li>
+                                                    <li><i class="bi bi-shield-check me-2" style="color:var(--blue);"></i><strong>Escalamiento:</strong> Ante presiones indebidas, los canales formales son el escudo ético y legal del especialista.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3 border-top text-center">
+                                        <p class="mb-0 text-muted italic">
+                                            <small>"Con gran poder técnico viene una responsabilidad ética igualmente grande. El profesional de la ciberseguridad no solo protege sistemas; protege personas."</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy;Eduardo Gabriel Morquecho Medina-2026</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Aviso de Privacidad</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Repositorio</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="contact.html">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
